@@ -5,6 +5,7 @@
 </template>
 
 <script>
+import globalConfig from "@/globalConfig.js";
 
 export default {
   name: "BemLoading",
@@ -12,6 +13,13 @@ export default {
     return {
       visible: false
     };
+  },
+  watch: {
+    visible() {
+      this.visible
+        ? globalConfig.store.dispatch("isAutoLeave", false)
+        : globalConfig.store.dispatch("isAutoLeave", true);
+    }
   }
 };
 </script>

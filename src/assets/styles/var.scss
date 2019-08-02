@@ -42,3 +42,16 @@ $--box-shadow-base: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04) !de
 $--box-shadow-dark: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .12) !default;
 // 浅色投影
 $--box-shadow-light:  0 2px 12px 0 rgba(0, 0, 0, 0.1) !default;
+
+/* Button
+-------------------------*/
+$--button-font-size: 0.3rem !default;
+$--button-border-radius: 0.2em !default;
+$--button-padding-vertical: 0.2em !default;
+$--button-padding-horizontal: 1em !default;
+$--button-small-font-size: $--button-font-size - 0.1rem !default;
+$--button-small-padding-vertical: 0.4em !default;
+$--button-small-padding-horizontal: 1em !default;
+$--button-large-font-size: $--button-font-size + 0.05rem !default;
+$--button-large-padding-vertical: 0.2em !default;
+$--button-large-padding-horizontal: 2em !default;

@@ -1,17 +1,19 @@
 import CountDown from "@/utils/countDown.js";
 import globalConfig from "@/globalConfig.js";
+import localStore from '@/store/local.js'
 import _ from 'lodash'
 
-var store, hospital, timeoutId;
+var store, timeoutId;
 var endCallback, beforeCountDown;
 var setNowTimeout = null;
 
 function autoleave() {
-  setNowTimeout(hospital.exit_timeout)
+  const exit_timeout = localStore.hospital.exit_timeout || 180
+  setNowTimeout(exit_timeout)
   CountDown.ticker({
     ticker: "AutoLeaveTimer",
     step: 1000,
-    stopCount: hospital.exit_timeout,
+    stopCount: exit_timeout,
     callback: () => {
       setNowTimeout(store.state.common.nowTimeout - 1)
     },
@@ -51,7 +53,6 @@ export default {
         endCallback = binding.value
       }
       store = globalConfig.store
-      hospital = store.state.common.hospital;
       setNowTimeout = p => store.commit('setNowTimeout', p);
       el.addEventListener('click', handleClick);
     }

@@ -89,10 +89,12 @@ export default {
   },
   watch: {
     async visible() {
-      if (!this.visible) return;
-      this.hospList = await OrgConfigApi.getOrgList();
-      if (this.storeOrgId) {
-        this.orgId = this.storeOrgId
+      if (this.visible) {
+        this.$isAutoLeave(false)
+        this.hospList = await OrgConfigApi.getOrgList();
+        this.storeOrgId && (this.orgId = this.storeOrgId)
+      } else { 
+        this.$isAutoLeave(true)
       }
     },
     async orgId(id) {
@@ -141,7 +143,6 @@ export default {
         this.count++;
         if (this.count >= 5) {
           this.count = 0;
-          this.hospList = await OrgConfigApi.getOrgList();
           this.visible = true;
         }
       }

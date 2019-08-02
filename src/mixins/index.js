@@ -18,7 +18,7 @@ export default {
   },
   methods: {
     $isAutoLeave(status) {
-      this.$store.commit('isAutoLeave', status)
+      this.$store.dispatch('isAutoLeave', status)
     },
     $info: data => info(data),
     $warn: data => warn(data),

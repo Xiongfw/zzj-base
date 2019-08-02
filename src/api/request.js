@@ -3,7 +3,6 @@ import loading from '../components/loading/index.js'
 import showalert from '../components/alert/index.js'
 import localStore from '../store/local.js'
 import * as logs from '../lib/logger/index.js'
-import globalConfig from "@/globalConfig.js";
 
 const instance = axios.create({
   // 请求超时时间（60s）
@@ -13,11 +12,9 @@ const instance = axios.create({
 /** 是否显示加载动画 */
 function isLoading(status) {
   if (status) {
-    globalConfig.store.commit("isAutoLeave", false)
     loading.show()
   } else {
     loading.close()
-    globalConfig.store.commit("isAutoLeave", true)
   }
 }
 

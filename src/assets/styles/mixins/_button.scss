@@ -6,4 +6,27 @@
     background: mix(#000, $background-color, 10%);
     border-color: mix(#000, $border-color, 10%);
   }
+  &.is-plain {
+    @include button-plain($background-color);
+  }
+  &.is-transparent {
+    background: transparent;
+    border-color: $border-color;
+  }
+}
+
+@mixin button-plain($color) {
+  color: $color;
+  background: mix(#fff, $color, 90%);
+  border-color: mix(#fff, $color, 60%);
+  &:active {
+    background: mix(#000, $color, 10%);
+    border-color: mix(#000, $color, 10%);
+    color: #fff;
+  }
+}
+
+@mixin button-size($padding-vertical, $padding-horizontal, $font-size) {
+  padding: $padding-vertical $padding-horizontal;
+  font-size: $font-size;
 }

@@ -8,18 +8,37 @@
       <bem-button @click="handleClick" type="danger">danger</bem-button>
     </div>
     <div>
-      <bem-button @click="handleClick" round>圆角</bem-button>
+      <bem-button @click="handleClick" round>round</bem-button>
       <bem-button @click="handleClick" type="success" round>success</bem-button>
       <bem-button @click="handleClick" type="info" round>info</bem-button>
       <bem-button @click="handleClick" type="warning" round>warning</bem-button>
       <bem-button @click="handleClick" type="danger" round>danger</bem-button>
     </div>
+    <div>
+      <bem-button @click="handleClick" plain>plain</bem-button>
+      <bem-button @click="handleClick" type="success" plain>success</bem-button>
+      <bem-button @click="handleClick" type="info" plain>info</bem-button>
+      <bem-button @click="handleClick" type="warning" plain>warning</bem-button>
+      <bem-button @click="handleClick" type="danger" plain>danger</bem-button>
+    </div>
     <div style="background: #2C8DF0; padding: 0.3rem 0.1rem;border-radius:0.1rem;">
-      <bem-button @click="handleClick" type="success" round transparent>透明</bem-button>
-      <bem-button @click="handleClick" type="success" round transparent>success</bem-button>
-      <bem-button @click="handleClick" type="info" round transparent>info</bem-button>
-      <bem-button @click="handleClick" type="warning" round transparent>warning</bem-button>
-      <bem-button @click="handleClick" type="danger" round transparent>danger</bem-button>
+      <bem-button @click="handleClick" type="transparent" round>transparent</bem-button>
+      <bem-button @click="handleClick" type="transparent" round>success</bem-button>
+      <bem-button @click="handleClick" type="transparent" round>info</bem-button>
+      <bem-button @click="handleClick" type="transparent" round>warning</bem-button>
+      <bem-button @click="handleClick" type="transparent" round>danger</bem-button>
+    </div>
+    <div>
+      <bem-button @click="handleClick" transparent plain round>背景透明</bem-button>
+      <bem-button @click="handleClick" transparent plain round>success</bem-button>
+      <bem-button @click="handleClick" transparent plain round>info</bem-button>
+      <bem-button @click="handleClick" transparent plain round>warning</bem-button>
+      <bem-button @click="handleClick" transparent plain round>danger</bem-button>
+    </div>
+    <div>
+      <bem-button @click="handleClick" size="large">大按钮</bem-button>
+      <bem-button @click="handleClick">默认大小</bem-button>
+      <bem-button @click="handleClick" size="small">小按钮</bem-button>
     </div>
   </div>
 </template>

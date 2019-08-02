@@ -62,9 +62,9 @@ export default {
   watch: {
     visible(val) {
       if (val) {
-        globalConfig.store.commit("isAutoLeave", false)
+        globalConfig.store.dispatch("isAutoLeave", false)
       } else {
-        globalConfig.store.commit("isAutoLeave", true)
+        globalConfig.store.dispatch("isAutoLeave", true)
         typeof this.onClose === "function" && this.onClose(this.confirm);
         setTimeout(() => {
           this.$el.parentNode.removeChild(this.$el);

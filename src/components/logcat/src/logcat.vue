@@ -92,10 +92,7 @@ export default {
   watch: {
     show() {
       if (this.show) {
-        this.$isAutoLeave(false);
         this.getAllLogs();        
-      } else {
-        this.$isAutoLeave(true);
       }
     }
   },

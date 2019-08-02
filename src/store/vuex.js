@@ -2,6 +2,8 @@ import globalConfig from '@/globalConfig.js'
 import localStore from './local.js'
 import _ from 'lodash'
 
+const autoLeaveQueue = []
+
 export default {
   state: {
     // 是否自动退出
@@ -22,7 +24,7 @@ export default {
     setNowTimeout(state, v) {
       _.isUndefined(v) ? state.nowTimeout-- : state.nowTimeout = v
     },
-    isAutoLeave(state, v) {
+    _isAutoLeave(state, v) {
       if (state.hospital && v) {
         state.nowTimeout = state.hospital.exit_timeout
       }
@@ -30,7 +32,18 @@ export default {
       globalConfig.el.click()
     }
   },
-  actions: {},
+  actions: {
+    isAutoLeave({ commit, state }, v) {
+      // 如果isAutoLeave状态为false并且入参也为false，就把后者的false存起来
+      // 之后只能由改变从false改变true
+      if (!state.isAutoLeave && !v) {
+        autoLeaveQueue.push(v)
+      } else {
+        commit("_isAutoLeave", v)
+        !_.isEmpty(autoLeaveQueue) && commit("_isAutoLeave", autoLeaveQueue.shift())
+      }
+    }
+  },
   getters: {
     getOrgId(state) {
       if (state.hospital) {

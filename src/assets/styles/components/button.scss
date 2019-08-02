@@ -1,0 +1,75 @@
+/* 全局输入样式*/
+@import "../var.scss";
+@import "../mixins/button.scss";
+
+/* 按钮样式 */
+.bem-button {
+  // min-width: 1.7rem;
+  display: inline-block;
+  box-sizing: border-box;
+  margin: 0;
+  line-height: 1.5;
+  padding: $--button-padding-vertical $--button-padding-horizontal;
+  text-align: center;
+  font-size: $--button-font-size;
+  border: 0.01rem solid;
+  border-radius: $--button-border-radius;
+  white-space: nowrap;
+  outline: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  @include button-variant(#fff, $--color-primary, $--color-primary);
+}
+
+$size-map: (
+  small: (
+    $--button-small-padding-vertical,
+    $--button-small-padding-horizontal,
+    $--button-small-font-size
+  ),
+  large: (
+    $--button-large-padding-vertical,
+    $--button-large-padding-horizontal,
+    $--button-large-font-size
+  )
+);
+
+$type-map: (
+  info: (
+    #fff,
+    $--color-info,
+    $--color-info
+  ),
+  danger: (
+    #fff,
+    $--color-danger,
+    $--color-danger
+  ),
+  warning: (
+    #fff,
+    $--color-warning,
+    $--color-warning
+  ),
+  success: (
+    #fff,
+    $--color-success,
+    $--color-success
+  ),
+  transparent: (
+    #fff,
+    transparent,
+    #fff
+  )
+);
+
+@each $key, $var in $size-map {
+  .bem-button--#{$key} {
+    @include button-size($var...);
+  }
+}
+
+@each $key, $var in $type-map {
+  .bem-button--#{$key} {
+    @include button-variant($var...);
+  }
+}
