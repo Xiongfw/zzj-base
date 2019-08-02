@@ -1,0 +1,59 @@
+<template>
+  <div></div>
+</template>
+
+<script>
+import CountDown from "@/utils/countDown.js";
+import localStore from "@/store/local.js";
+import { OrgConfigApi } from "@/api/index.js";
+import _ from "lodash";
+
+export default {
+  name: "BemCheckVersion",
+  mounted() {
+    this.checkVersion();
+  },
+  beforeDestroy() {
+    this.cancelCheckVersion();
+  },
+  props: {
+    // 检测更新间隔，默认60秒
+    interval: {
+      type: Number,
+      default: 60
+    }
+  },
+  methods: {
+    /** 获取版本更新 */
+    async getVersion() {
+      const version = await OrgConfigApi.getVersion({
+        hosp_code: localStore.hospital.hosp_code,
+        winConfigId: localStore.winConfigId
+      });
+      if (_.isEmpty(localStore.version)) {
+        localStore.version = version;
+      } else if (localStore.version != version) {
+        localStore.version = version;
+        window.location.reload(true);
+      }
+    },
+    /** 开始查询版本 */
+    checkVersion() {
+      if (!localStore.hospital) {
+        throw new Error("该机器未初始化");
+      }
+      CountDown.ticker({
+        ticker: "CheckVersionTicker",
+        step: this.interval * 1000,
+        callback: () => {
+          this.getVersion();
+        }
+      });
+    },
+    /** 取消查询版本 */
+    cancelCheckVersion() {
+      CountDown.stop("CheckVersionTicker");
+    }
+  }
+};
+</script>

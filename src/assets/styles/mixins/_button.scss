@@ -1,0 +1,9 @@
+@mixin button-variant($color, $background-color, $border-color) {
+  color: $color;
+  background-color: $background-color;
+  border-color: $border-color;
+  &:active {
+    background: mix(#000, $background-color, 10%);
+    border-color: mix(#000, $border-color, 10%);
+  }
+}

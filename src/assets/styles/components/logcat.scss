@@ -1,0 +1,111 @@
+@import "../var.scss";
+@import "../mixins/index.scss";
+
+.bem-logcat {
+  font-size: 0.2rem;
+  background: #212430;
+  color: #fff;
+}
+
+.bem-logcat__header {
+  padding: 0.2rem 0.3rem 0rem;
+  img.icon + .icon {
+    margin-left: 0.2rem;
+  }
+  img.icon {
+    width: 0.4rem;
+  }
+  img.close {
+    position: fixed;
+    right: 0.35em;
+    top: 0.26em;
+    width: 0.6rem;
+  }
+}
+
+.bem-logcat__main {
+  width: 100vw;
+  height: calc(100% - 0.6rem);
+  border-collapse: separate;
+  border-spacing: 0.1em 0.7em;
+  padding-left: 0.2rem;
+  padding-right: 0.1rem;
+  .empty {
+    text-align: center;
+    font-size: 1.5em;
+    color: #a7a8ad;
+  }
+  thead tr,
+  tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+  }
+  thead {
+    color: #a7a8ad;
+    text-align: left;
+    font-size: 1.2em;
+    th {
+      white-space: nowrap;
+    }
+  }
+  tbody {
+    width: 100%;
+    height: 100%;
+    display: block;
+    overflow-y: auto;
+    &::-webkit-scrollbar {
+      height: 0.08rem;
+      width: 0.08rem;
+    }
+    &::-webkit-scrollbar-thumb {
+      border-radius: 0.08rem;
+      box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+      background: rgba(250, 250, 250, 0.5);
+    }
+    &::-webkit-scrollbar-track {
+      box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+      border-radius: 0.08rem;
+      background: rgba(250, 250, 250, 0.2);
+    }
+    td.unfold {
+      text-align: right;
+      padding-right: 1em;
+      img {
+        width: 0.2rem;
+      }
+    }
+    td.desc {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .desc-content {
+      padding: 0.5em;
+      border-bottom: 1px solid #999;
+      .label {
+        color: #a7a8ad;
+      }
+      pre {
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        font-family: sans-serif;
+      }
+    }
+  }
+  .create-time {
+    width: 22%;
+  }
+  .oper-id,
+  .oper-name {
+    width: 15%;
+    text-align: center;
+    word-break: break-word;
+  }
+  .desc {
+    width: 48%;
+  }
+  .unfold {
+    width: 5%;
+  }
+}

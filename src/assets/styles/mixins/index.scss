@@ -1,0 +1,8 @@
+/* flex居中 */
+@mixin flex-box($direction: row, $wrap: wrap, $justify-content: center, $align-item: center) {
+  display: flex;
+  flex-direction: $direction;
+  flex-wrap: $wrap;
+  justify-content: $justify-content;
+  align-items: $align-item;
+}

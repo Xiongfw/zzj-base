@@ -1,0 +1,61 @@
+/* 全局输入样式*/
+@import "./var.scss";
+@import "./mixins/button.scss";
+
+/* 按钮样式 */
+.bem-button {
+  min-width: 1.7rem;
+  display: inline-block;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0.2rem 0.3rem;
+  text-align: center;
+  line-height: 1;
+  font-size: $--font-size-base;
+  color: #fff;
+  background: $--color-primary;
+  border: 0.01rem solid $--color-primary;
+  border-radius: $--border-radius-small;
+  white-space: nowrap;
+  outline: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  &:active {
+    background: mix(#000, $--color-primary, 10%);
+    border-color: mix(#000, $--color-primary, 10%);
+  }
+}
+
+$type-map: (
+  info: $--color-info,
+  danger: $--color-danger,
+  warning: $--color-warning,
+  success: $--color-success
+);
+
+@each $key, $var in $type-map {
+  .bem-button--#{$key} {
+    @include button-variant(#fff, $var, $var);
+  }
+}
+
+// 全屏
+.bem--fullscreen {
+  width: 100vw;
+  height: 100vh;
+  box-sizing: border-box;
+  z-index: 10000;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+// 透明
+.bem--transparent {
+  @include button-variant(#fff, transparent, #fff);
+}
+
+// 圆角
+.bem--round {
+  border-radius: $--border-radius-large;
+}

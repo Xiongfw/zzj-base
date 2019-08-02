@@ -1,0 +1,43 @@
+@import "../mixins/index.scss";
+@import "../mixins/button.scss";
+@import "../var.scss";
+
+.bem-alert-mask {
+  @include flex-box();
+  background: rgba(#000, 0.2);
+  font-size: $--font-size-base;
+  color: $--color-text-primary;
+}
+.bem-alert-box {
+  min-width: 3rem;
+  max-width: 90%;
+  background: #fff;
+  border-radius: $--border-radius-small;
+  padding: 0 0.35rem;
+  padding-bottom: 0.2rem;
+  letter-spacing: 0.01rem;
+  @at-root {
+    #{&}__header {
+      font-size: 1.1em;
+      padding: 0.1rem 0;
+    }
+    #{&}__content {
+      padding: 0.23rem 0;
+      font-size: 1.1em;
+      text-align: center;
+    }
+    #{&}__btns {
+      padding: 0.08rem 0;
+      @include flex-box();
+      .bem-button + .bem-button {
+        margin-left: 0.3rem;
+      }
+      .bem-button {
+        min-width: 1.85rem;
+      }
+      .btn--cancel {
+        @include button-variant(#fff, #c9cbcd, #c9cbcd);
+      }
+    }
+  }
+}

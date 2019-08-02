@@ -1,0 +1,33 @@
+@import "./var.scss";
+
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+html {
+  overflow: hidden;
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  color: #333;
+  overflow: hidden;
+  font-size: $--font-size-base;
+  background: #fff;
+  font-family: "Microsoft YaHei";
+  /* 禁止复制 */
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-font-smoothing: antialiased;
+}
+
+li {
+  list-style: none;
+}
+
+input[type="text"] {
+  outline: none;
+}

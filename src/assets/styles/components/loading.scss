@@ -1,0 +1,6 @@
+@import "../mixins/index.scss";
+
+.bem-loading-mask {
+  @include flex-box();
+  background: rgba(#000, 0.24);
+}
