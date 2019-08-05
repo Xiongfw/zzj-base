@@ -35,6 +35,19 @@
       </ul>
     </div>
     <bem-logcat :show.sync="showlog"></bem-logcat>
+    <bem-popup :show.sync="showInput" width="auto" closeOnClickMask>
+      <input
+        slot="title"
+        type="search"
+        class="bem-setup__pwd-input"
+        ref="theInput"
+        v-model="inputVal"
+        placeholder="请输入维护密码"
+      />
+      <div class="bem-setup__pwd">
+        <bem-keypad :showKeyPad="showInput" :setContent="inputVal" v-on:changeNum="changePwd"></bem-keypad>
+      </div>
+    </bem-popup>
   </div>
 </template>
 
@@ -54,6 +67,10 @@ export default {
   },
   data() {
     return {
+      // 显示键盘
+      showInput: false,
+      // 输入的密码
+      inputVal: "",
       // 显示日志
       showlog: false,
       // 医院信息
@@ -90,11 +107,11 @@ export default {
   watch: {
     async visible() {
       if (this.visible) {
-        this.$isAutoLeave(false)
+        this.$isAutoLeave(false);
         this.hospList = await OrgConfigApi.getOrgList();
-        this.storeOrgId && (this.orgId = this.storeOrgId)
-      } else { 
-        this.$isAutoLeave(true)
+        this.storeOrgId && (this.orgId = this.storeOrgId);
+      } else {
+        this.$isAutoLeave(true);
       }
     },
     async orgId(id) {
@@ -139,12 +156,14 @@ export default {
     /* 显示维护界面 */
     async showSetup(e) {
       !this.lastTime && (this.lastTime = e.timeStamp);
-      if (e.timeStamp - this.lastTime < 500) {
+      if (e.timeStamp - this.lastTime < 1000) {
         this.count++;
         if (this.count >= 5) {
           this.count = 0;
-          this.visible = true;
+          this.showInput = true;
         }
+      } else {
+        this.count = 1
       }
       this.lastTime = e.timeStamp;
     },
@@ -158,16 +177,28 @@ export default {
       this.$emit("initSuccess", this.hospInfo);
       this.visible = false;
     },
-
     //清除缓存
     clearCache() {
       localStorage.clear();
       window.location.reload(true);
     },
-
     //下载文件
     openFile() {
       window.open(this.fileUri);
+    },
+    //获取键盘输入内容
+    changePwd(content, num) {
+      if (content == "close") {
+        if (this.inputVal == this.$hospital.oper_pwd) {
+          this.visible = true;
+          this.showInput = false;
+        } else {
+          this.$bem.showalert("密码错误");
+        }
+      } else {
+        this.inputVal = content;
+        this.$refs.theInput.focus();
+      }
     }
   }
 };

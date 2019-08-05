@@ -8,7 +8,7 @@
       {
         'is-round': round,
         'is-plain': plain,
-        'is-transparent': transparent
+        'is-transparent': plain && !transparent
       }
     ]"
     :type="nativeType"

@@ -7,6 +7,8 @@
       <router-link to="/logcat">日志组件</router-link>
       <router-link to="/alert">对话框</router-link>
       <router-link to="/checkVersion">检查更新</router-link>
+      <router-link to="/popup">弹出窗</router-link>
+      <router-link to="/keypad">键盘</router-link>
     </div>
   </div>
 </template>
