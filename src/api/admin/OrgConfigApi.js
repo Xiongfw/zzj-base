@@ -9,27 +9,27 @@ export default {
    * @param {Object} options 选项
    */
   getVersion(params, options = {}) {
-    return axios.get(baseUrl + 'getVersion', { params, options: { ...options, loading: false, log: true } })
+    return axios.get(baseUrl + 'getVersion', { params, options: { ...options, loading: false, log: false } })
   },
   /**
    * @param {Object} params 接口入参
    * @param {Object} options 选项
    */
   getOrgList(params, options = {}) {
-    return axios.get(baseUrl + 'getOrgList', { params, options: { ...options, log: true } })
+    return axios.get(baseUrl + 'getOrgList', { params, options: { ...options, log: false } })
   },
   /**
    * @param {Object} params 接口入参
    * @param {Object} options 选项
    */
   getWinCodeList(params, options = {}) {
-    return axios.get(baseUrl + 'getWinCodeList', { params, options: { ...options, log: true } })
+    return axios.get(baseUrl + 'getWinCodeList', { params, options: { ...options, log: false } })
   },
   /**
    * @param {Object} params 接口入参
    * @param {Object} options 选项
    */
   getOrgWinconfigDetail(params, options = {}) {
-    return axios.get(baseUrl + 'getOrgWinconfigDetail', { params, options: { ...options, log: true } })
+    return axios.get(baseUrl + 'getOrgWinconfigDetail', { params, options: { ...options, log: false } })
   }
 }
