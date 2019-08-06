@@ -9,6 +9,7 @@ const store = {
   orgId: null,
   // 机器ID
   winConfigId: null,
+  winCode: null,
 }
 
 Object.keys(store).forEach(key => {

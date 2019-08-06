@@ -105,6 +105,9 @@ export default {
     };
   },
   watch: {
+    showInput(val) {
+      val && (this.inputVal = "")
+    },
     async visible() {
       if (this.visible) {
         this.$isAutoLeave(false);

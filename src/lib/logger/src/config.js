@@ -1,4 +1,15 @@
 import localStore from '@/store/local.js'
+import globalConfig from '@/globalConfig.js'
+
+function f(arr) {
+  try {
+    return arr.reduce((p, item) => {
+      return p[item]
+    }, globalConfig.store.state)
+  } catch (e) {
+    return null
+  }
+}
 
 // 对象仓库名
 export const object_store_name = 'logs'
@@ -26,9 +37,9 @@ export const fields = () => {
     // 接口出参
     out_param: null,
     // 操作人ID
-    oper_id: null,
+    oper_id: f(globalConfig.logger.oper_id),
     // 操作人姓名
-    oper_name: null,
+    oper_name: f(globalConfig.logger.oper_name),
     // 机构ID
     org_id: localStore.orgId,
     // 机器ID

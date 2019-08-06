@@ -1,9 +1,15 @@
 <template>
   <div v-if="show" class="bem-logcat bem--fullscreen">
     <div class="bem-logcat__header">
-      <img class="icon" src="../../../assets/imgs/logcat/refresh.png" @click="getAllLogs" />
+      <img class="icon" src="../../../assets/imgs/logcat/refresh.png" @click="getAllByTimeAndLevel()" />
       <img class="icon" src="../../../assets/imgs/logcat/clear.png" @click="clearLog" />
       <img class="close" src="../../../assets/imgs/logcat/close-circle.png" @click="close" />
+      <select v-model="selectedTime" class="bem-logcat__select">
+        <option :value="item.value" v-for="item in timeOptions">{{ item.label }}</option>
+      </select>
+      <select v-model="selectedLevel" class="bem-logcat__select">
+        <option :value="level.value" v-for="level in levelOptions">{{ level.label }}</option>
+      </select>
     </div>
     <table v-if="logs" class="bem-logcat__main" cellpadding="0" cellspacing="0">
       <thead>
@@ -80,7 +86,20 @@ export default {
   name: "BemLogcat",
   data() {
     return {
-      logs: null
+      logs: null,
+      selectedLevel: 0,
+      levelOptions: [
+        { label: "全部", value: 0 },
+        { label: "info", value: "info" },
+        { label: "warn", value: "warn" },
+        { label: "error", value: "error" }
+      ],
+      selectedTime: "h",
+      timeOptions: [
+        { label: "一小时内", value: "h" },
+        { label: "一天以内", value: "d" },
+        { label: "全部", value: 0 }
+      ]
     };
   },
   props: {
@@ -92,8 +111,14 @@ export default {
   watch: {
     show() {
       if (this.show) {
-        this.getAllLogs();        
+        this.getAllByTimeAndLevel();
       }
+    },
+    selectedLevel(level) {
+      this.getAllByTimeAndLevel(level, this.selectedTime);
+    },
+    selectedTime(unit) {
+      this.getAllByTimeAndLevel(this.selectedLevel, unit);
     }
   },
   methods: {
@@ -102,21 +127,34 @@ export default {
       this.$bem.showalert({
         content: "确定要清空所有日志吗？",
         showCancel: true,
+        isAutoExit: false,
         onClose: confirm => {
           if (confirm) {
             logger.clear();
-            this.getAllLogs();
+            this.getAllByTimeAndLevel()
           }
         }
       });
     },
-    /** 获取所有日志 */
-    getAllLogs() {
+    getAllByTimeAndLevel(level, timeUnit) {
+      level = level || this.selectedLevel;
+      timeUnit = timeUnit || this.selectedTime;
       this.$bem.loading.show();
-      logger.getAll(res => {
-        this.logs = res.reverse();
-        this.$bem.loading.close();
-      });
+      if (!timeUnit) {
+        logger.getAll(res => {
+          this.logs = level ? res.filter(item => item.level === level) : res;
+          this.$bem.loading.close();
+        });
+      } else {
+        logger.getAllByTime(
+          res => {
+            this.logs = level ? res.filter(item => item.level === level) : res;
+            this.$bem.loading.close();
+          },
+          1,
+          timeUnit
+        );
+      }
     },
     /** 关闭事件 */
     close() {

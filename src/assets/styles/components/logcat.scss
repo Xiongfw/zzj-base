@@ -8,6 +8,7 @@
 }
 
 .bem-logcat__header {
+  @include flex-box($justify-content: flex-start);
   padding: 0.2rem 0.3rem 0rem;
   img.icon + .icon {
     margin-left: 0.2rem;
@@ -108,4 +109,12 @@
   .unfold {
     width: 5%;
   }
+}
+
+.bem-logcat__select {
+  font-size: 1.1em;
+  outline: none;
+  padding: 0.08rem 0.1rem;
+  margin-left: 0.2rem;
+  border-radius: 0.2em;
 }

@@ -5,4 +5,9 @@ export default {
   store: null,
   // 非必填，默认自适应
   fontSize: null,
+  // 日志选项，操作人ID和姓名
+  logger: {
+    oper_id: null,
+    oper_name: null
+  },
 }

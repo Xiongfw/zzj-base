@@ -20,6 +20,7 @@ export default {
       localStore.hospital = state.hospital
       localStore.orgId = state.hospital.id
       localStore.winConfigId = state.hospital.winConfig.winConfigInfo.win_config_id
+      localStore.winCode = state.hospital.winConfig.win_code
     },
     setNowTimeout(state, v) {
       _.isUndefined(v) ? state.nowTimeout-- : state.nowTimeout = v
@@ -53,6 +54,11 @@ export default {
     getWinConfigId(state) {
       if (state.hospital) {
         return state.hospital.winConfig.winConfigInfo.win_config_id
+      }
+    },
+    getWinCode(state) {
+      if (state.hospital) {
+        return state.hospital.winConfig.win_code
       }
     }
   }

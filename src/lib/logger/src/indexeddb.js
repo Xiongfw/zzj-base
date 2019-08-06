@@ -76,9 +76,17 @@ function getAllByIndex(callback, indexName, query, count) {
       throw new Error('索引不能为空或不存在')
     }
     const index = store.index(indexName)
-    const request = index.getAll(query, count)
+    const request = index.openCursor(query, 'prev')
+    const data = []
     request.onsuccess = event => {
-      _.isFunction(callback) && callback(event.target.result, null)
+      const cursor = event.target.result
+      if (cursor && (_.isUndefined(count) || count)) {
+        count && count--
+        data.push(cursor.value)
+        cursor.continue()
+      } else {
+        _.isFunction(callback) && callback(data, null)
+      }
     }
     request.onerror = event => {
       _.isFunction(callback) && callback(null, event)
@@ -90,9 +98,17 @@ function getAllByIndex(callback, indexName, query, count) {
 /** 获取全部日志 */
 function getAll(callback, query, count) {
   getObjectStore(store => {
-    const request = store.getAll(query, count)
+    const request = store.openCursor(query, 'prev')
+    const data = []
     request.onsuccess = event => {
-      _.isFunction(callback) && callback(event.target.result, null)
+      const cursor = event.target.result
+      if (cursor && (_.isUndefined(count) || count)) {
+        count && count--
+        data.push(cursor.value)
+        cursor.continue()
+      } else {
+        _.isFunction(callback) && callback(data, null)
+      }
     }
     request.onerror = event => {
       _.isFunction(callback) && callback(null, event)
