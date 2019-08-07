@@ -52,6 +52,7 @@
     "rollup-plugin-commonjs": "^10.0.1",
     "rollup-plugin-img": "^1.1.0",
     "rollup-plugin-json": "^4.0.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-vue": "^5.0.1",
     "sass-loader": "^7.1.0",
     "semver": "^5.3.0",

@@ -1,3 +1,4 @@
+import resolve from 'rollup-plugin-node-resolve'
 import alias from 'rollup-plugin-alias'
 import commonjs from 'rollup-plugin-commonjs'
 import vue from 'rollup-plugin-vue'
@@ -12,26 +13,28 @@ function resolvePath(dir) {
 
 export default {
   input: './src/index.js',
+  external: ['vue', 'vuex', 'axios', 'dayjs', 'lodash'],
   output: {
     format: 'es',
-    sourcemap: true,
+    // sourcemap: true,
     file: './lib/zzj-base.js'
   },
   plugins: [
-    commonjs(),
+    resolve(),
     vue(),
     img({
       output: `${resolvePath('lib')}/images`,
       limit: 10000
     }),
-    json(),
     alias({
       resolve: ['.vue', '.js', '.json'],
       '@': resolvePath('src')
     }),
+    json(),
     babel({
       exclude: 'node_modules/**',
       runtimeHelpers: true
     }),
+    commonjs()
   ],
 }
