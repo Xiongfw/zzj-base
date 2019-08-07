@@ -15,7 +15,6 @@
 </template>
 
 <script>
-import globalConfig from "@/globalConfig.js";
 import BemButton from "@/components/button/index.js";
 
 export default {
@@ -62,9 +61,9 @@ export default {
   watch: {
     visible(val) {
       if (val) {
-        globalConfig.store.dispatch("isAutoLeave", false)
+        this.$store.dispatch("isAutoLeave", false)
       } else {
-        globalConfig.store.dispatch("isAutoLeave", true)
+        this.$store.dispatch("isAutoLeave", true)
         typeof this.onClose === "function" && this.onClose(this.confirm);
         setTimeout(() => {
           this.$el.parentNode.removeChild(this.$el);

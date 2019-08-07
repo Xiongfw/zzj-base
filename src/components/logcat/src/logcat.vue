@@ -136,6 +136,7 @@ export default {
         }
       });
     },
+    /** 根据时间和日志等级获取日志 */
     getAllByTimeAndLevel(level, timeUnit) {
       level = level || this.selectedLevel;
       timeUnit = timeUnit || this.selectedTime;

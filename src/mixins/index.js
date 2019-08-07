@@ -4,10 +4,10 @@ import { info, warn, error } from '@/lib/logger/index.js'
 export default {
   computed: {
     $nowTimeout() {
-      return storeCommon.state.nowTimeout
+      return this.$store.state.common.nowTimeout
     },
     $hospital() {
-      return storeCommon.state.hospital
+      return this.$store.state.common.hospital
     },
     $orgId() {
       return this.$store.getters.getOrgId

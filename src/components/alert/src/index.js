@@ -1,7 +1,10 @@
 import Vue from 'vue'
+import Vuex from 'vuex'
 import alertVue from './alert.vue'
 import _ from 'lodash'
+import globalConfig from "@/globalConfig.js";
 
+Vue.use(Vuex)
 const AlertConstructor = Vue.extend(alertVue)
 
 const Alert = (...args) => {
@@ -17,7 +20,8 @@ const Alert = (...args) => {
   }
   let vm = new AlertConstructor({
     el: document.createElement('div'),
-    data: options
+    data: options,
+    store: globalConfig.store
   })
   document.body.appendChild(vm.$el)
   vm.visible = true
