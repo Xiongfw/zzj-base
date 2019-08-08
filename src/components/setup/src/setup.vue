@@ -134,14 +134,10 @@ export default {
     },
     async winConfigId(id) {
       if (!id) return;
-      if (this.storeHospital && !this.hospInfo) {
-        this.hospInfo = this.storeHospital;
-      } else {
-        this.hospInfo = await OrgConfigApi.getOrgWinconfigDetail({
-          orgId: this.orgId,
-          winConfigId: this.winConfigId
-        });
-      }
+      this.hospInfo = await OrgConfigApi.getOrgWinconfigDetail({
+        orgId: this.orgId,
+        winConfigId: this.winConfigId
+      });
     }
   },
   computed: {
