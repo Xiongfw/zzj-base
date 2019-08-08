@@ -34,7 +34,11 @@ export default {
         localStore.version = version;
       } else if (localStore.version != version) {
         localStore.version = version;
-        window.location.reload(true);
+        if (window.nativeMethod) {
+          window.nativeMethod.refresh()
+        } else {
+          window.location.reload(true);
+        }
       }
     },
     /** 开始查询版本 */
