@@ -17,6 +17,7 @@
     "lodash": "^4.17.15"
   },
   "peerDependencies": {
+    "crypto": "^1.0.1",
     "vue": "^2.5.2",
     "vuex": "^2.3.1"
   },

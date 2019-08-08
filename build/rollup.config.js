@@ -13,7 +13,7 @@ function resolvePath(dir) {
 
 export default {
   input: './src/index.js',
-  external: ['vue', 'vuex', 'axios', 'dayjs', 'lodash'],
+  external: ['vue', 'vuex', 'axios', 'dayjs', 'lodash', 'crypto'],
   output: {
     format: 'es',
     // sourcemap: true,
