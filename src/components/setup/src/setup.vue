@@ -42,6 +42,7 @@
         class="bem-setup__pwd-input"
         ref="theInput"
         v-model="inputVal"
+        readonly
         placeholder="请输入维护密码"
       />
       <div class="bem-setup__pwd">

@@ -1,15 +1,9 @@
-// //统一支付接口地址
-// let Unified_Payment_URL = "https://zzjpayapi.linkingcloud.cn/api/"
-// //服务窗接口地址
-// let Service_Window_URL = "https://zzjfwcapi.linkingcloud.cn/api/"
-// //后台管理地址
-// let ORG_CONFIG_URL = "https://zzjadminapi.linkingcloud.cn/api/"
 //统一支付接口地址
-let Unified_Payment_URL = "http://192.168.0.119:8012/api/"
+let Unified_Payment_URL = "https://zzjpayapi.linkingcloud.cn/api/"
 //服务窗接口地址
-let Service_Window_URL = "http://192.168.0.119:8013/api/"
+let Service_Window_URL = "https://zzjfwcapi.linkingcloud.cn/api/"
 //后台管理地址
-let ORG_CONFIG_URL = "http://192.168.0.119:8014/api/"
+let ORG_CONFIG_URL = "https://zzjadminapi.linkingcloud.cn/api/"
 
 
 // 开发环境的常量地址
