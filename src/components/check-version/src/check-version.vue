@@ -26,9 +26,9 @@ export default {
   methods: {
     /** 获取版本更新 */
     async getVersion() {
-      const version = await OrgConfigApi.getVersion({
-        hosp_code: localStore.hospital.hosp_code,
-        winConfigId: localStore.winConfigId
+      const version = await OrgConfigApi.getVersionById({
+        orgId: this.$orgId,
+        winConfigId: this.$winConfigId
       });
       if (_.isEmpty(localStore.version)) {
         localStore.version = version;
@@ -39,7 +39,7 @@ export default {
     },
     /** 开始查询版本 */
     checkVersion() {
-      if (!localStore.hospital) {
+      if (!this.$hospital) {
         throw new Error("该机器未初始化");
       }
       CountDown.ticker({

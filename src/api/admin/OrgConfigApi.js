@@ -8,6 +8,13 @@ export default {
    * @param {Object} params 接口入参
    * @param {Object} options 选项
    */
+  getVersionById(params, options = {}) {
+    return axios.get(baseUrl + 'getVersionById', { params, options: { ...options, loading: false, log: false } })
+  },
+  /**
+   * @param {Object} params 接口入参
+   * @param {Object} options 选项
+   */
   getVersion(params, options = {}) {
     return axios.get(baseUrl + 'getVersion', { params, options: { ...options, loading: false, log: false } })
   },

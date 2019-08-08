@@ -5,6 +5,14 @@ const baseUrl = Constants.Service_Window_URL
 
 export default {
   /**
+   * 99.20、代扣协议查询 FWC_IF_Withholding_Query
+   * @param {Object} params 接口入参
+   * @param {Object} options 选项
+   */
+  FWC_IF_Withholding_Query(params, options = {}) {
+    return axios.post(baseUrl + 'FWC_IF_Withholding_Query', params, { options })
+  },
+  /**
    * 99.27、自助绑卡 FWC_IF_BindCard
    * @param {Object} params 接口入参
    * @param {Object} options 选项
