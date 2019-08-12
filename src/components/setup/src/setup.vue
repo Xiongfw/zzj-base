@@ -6,6 +6,7 @@
         <button class="bem-setup__btn bem-setup--shadow" @click="showlog = !showlog">显示日志</button>
         <button class="bem-setup__btn bem-setup--shadow" @click="clearCache">重置机器</button>
         <button class="bem-setup__btn bem-setup--shadow" @click="openFile()">下载文件</button>
+        <button class="bem-setup__btn bem-setup--shadow" @click="showApiUrl = true">API地址</button>
       </div>
       <div class="bem-setup__select-wrap">
         <select v-model="orgId" class="bem-setup__select bem-setup--shadow">
@@ -35,6 +36,7 @@
       </ul>
     </div>
     <bem-logcat :show.sync="showlog"></bem-logcat>
+    <api-url :show.sync="showApiUrl"></api-url>
     <bem-popup :show.sync="showInput" width="auto" closeOnClickMask>
       <input
         slot="title"
@@ -56,6 +58,8 @@
 import logcat from "@/components/logcat/index";
 import OrgConfigApi from "@/api/admin/OrgConfigApi";
 import showalert from "@/components/alert/index";
+import ApiUrl from './api-url.vue';
+
 export default {
   name: "BemSetup",
   mounted() {
@@ -64,10 +68,12 @@ export default {
     }
   },
   components: {
-    logcat
+    logcat,
+    ApiUrl
   },
   data() {
     return {
+      showApiUrl: false,
       // 显示键盘
       showInput: false,
       // 输入的密码
@@ -107,7 +113,7 @@ export default {
   },
   watch: {
     showInput(val) {
-      val && (this.inputVal = "")
+      val && (this.inputVal = "");
     },
     async visible() {
       if (this.visible) {
@@ -163,7 +169,7 @@ export default {
           this.showInput = true;
         }
       } else {
-        this.count = 1
+        this.count = 1;
       }
       this.lastTime = e.timeStamp;
     },

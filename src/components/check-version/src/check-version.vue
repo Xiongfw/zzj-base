@@ -6,6 +6,7 @@
 import CountDown from "@/utils/countDown.js";
 import localStore from "@/store/local.js";
 import { OrgConfigApi } from "@/api/index.js";
+import { refresh } from "@/utils/index.js";
 import _ from "lodash";
 
 export default {
@@ -34,11 +35,7 @@ export default {
         localStore.version = version;
       } else if (localStore.version != version) {
         localStore.version = version;
-        if (window.nativeMethod) {
-          window.nativeMethod.refresh()
-        } else {
-          window.location.reload(true);
-        }
+        refresh()
       }
     },
     /** 开始查询版本 */

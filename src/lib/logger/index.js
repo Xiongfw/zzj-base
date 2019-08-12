@@ -33,8 +33,9 @@ function add(level, data = fields(), callback) {
  * @param {function} callback 回调函数
  * @param {IDBKeyRange|string|number} query 查询条件
  * @param {number} count 查询条数
+ * @param {Boolean} isDelete 查询后是否删除
  */
-function getAll(callback, query, count) {
+function getAll(callback, query, count, isDelete) {
   db.getAll(...arguments)
 }
 
@@ -84,6 +85,15 @@ function deleteAllByTime(callback, value, unit) {
 }
 
 /**
+ * 删除日志并返回
+ * @param {function} callback 回调函数
+ * @param {Number} count 删除条数
+ */
+function pop(callback, count) {
+  getAll(callback, null, count, true)
+}
+
+/**
  * 清空全部日志
  * @param {function} callback 回调函数
  */
@@ -96,6 +106,7 @@ export {
   warn,
   error,
   clear,
+  pop,
   getAll,
   getAllByIndex,
   getAllByTime,

@@ -1,6 +1,6 @@
 <template>
   <div class="bem-popup" v-if="show">
-    <div v-if="mask" class="bem-popup__mask" @clickMask="handleClickMask"></div>
+    <div v-if="mask" class="bem-popup__mask" @click="handleClickMask"></div>
     <div class="bem-popup__main" :style="style">
       <div class="bem-popup__header" :style="center ? {'text-align':'center'} : ''">
         <slot name="title">

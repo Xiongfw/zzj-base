@@ -1,4 +1,5 @@
 import OrgConfigApi from './admin/OrgConfigApi'
+import ZWLApi from './admin/ZWLApi'
 
 import BillServiceApi from './fwc/BillServiceApi'
 import BookingServiceApi from './fwc/BookingServiceApi'
@@ -23,6 +24,7 @@ import PayTradeServiceApi from './pay/PayTradeServiceApi'
 
 export {
   OrgConfigApi,
+  ZWLApi,
   BillServiceApi,
   BookingServiceApi,
   ClinicChargeServiceApi,

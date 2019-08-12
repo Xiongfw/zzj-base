@@ -10,6 +10,12 @@ const store = {
   // 机器ID
   winConfigId: null,
   winCode: null,
+  // 统一支付平台地址
+  payUrl: null,
+  // 服务窗地址
+  fwcUrl: null,
+  // 管理后台地址
+  adminUrl: null
 }
 
 Object.keys(store).forEach(key => {

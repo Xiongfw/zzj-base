@@ -38,7 +38,7 @@ function deleteAllByIndex(callback, indexName, query) {
       throw new Error('索引不能为空或不存在')
     }
     const index = store.index(indexName)
-    const request = index.openCursor(query)
+    const request = index.openCursor(query, 'prev')
     request.onsuccess = event => {
       const cursor = event.target.result
       if (cursor) {
@@ -96,7 +96,7 @@ function getAllByIndex(callback, indexName, query, count) {
 }
 
 /** 获取全部日志 */
-function getAll(callback, query, count) {
+function getAll(callback, query, count, isDelete) {
   getObjectStore(store => {
     const request = store.openCursor(query, 'prev')
     const data = []
@@ -105,6 +105,7 @@ function getAll(callback, query, count) {
       if (cursor && (_.isUndefined(count) || count)) {
         count && count--
         data.push(cursor.value)
+        isDelete && cursor.delete()
         cursor.continue()
       } else {
         _.isFunction(callback) && callback(data, null)

@@ -8,7 +8,7 @@
   right: 0;
   background: rgba(0, 0, 0, 0.5);
   text-align: center;
-  z-index: 2;
+  z-index: 10001;
 }
 
 .bem-popup__main {
@@ -17,7 +17,7 @@
   top: 50%;
   transform: translate(-50%, -50%);
   background: #fff;
-  z-index: 2;
+  z-index: 10001;
   border-radius: $--border-radius-small;
 }
 

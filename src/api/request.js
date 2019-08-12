@@ -39,8 +39,8 @@ function record(level, res) {
       console.log('%c执行异常\n请求URL=>%s', 'color:#F56C6C;font-weight:bold;', url)
     }
   }
-  outInfo[level]()
   if (options.log === false) return
+  outInfo[level]()
   logs[level]({
     type: 'api',
     desc: isError() ? res.message : url.substring(url.lastIndexOf('/') + 1),

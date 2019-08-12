@@ -6,6 +6,7 @@ import Index from '../views/Index'
 import Logcat from '../views/Logcat'
 import Alert from '../views/Alert'
 import CheckVersion from '../views/CheckVersion'
+import UploadLogs from '../views/UploadLogs'
 import Button from '../views/Button'
 import Popup from '../views/Popup'
 import Keypad from '../views/Keypad'
@@ -20,6 +21,7 @@ const router = new VueRouter({
     { path: '/alert', component: Alert },
     { path: '/button', component: Button },
     { path: '/checkVersion', component: CheckVersion },
+    { path: '/uploadLogs', component: UploadLogs },
     { path: '/popup', component: Popup },
     { path: '/keypad', component: Keypad },
   ]
