@@ -5,7 +5,7 @@
 <script>
 import CountDown from "@/utils/countDown.js";
 import { ZWLApi } from "@/api/index.js";
-import { pop as logPop } from "@/lib/logger/index.js";
+import { pop as logPop, getAll } from "@/lib/logger/index.js";
 
 export default {
   name: "BemUploadLogs",
@@ -36,7 +36,8 @@ export default {
           log.out_param = log.out_param ? JSON.stringify(log.out_param) : "";
         });
         try {
-          await ZWLApi.receiveLogs({ zzjWebLogsList: res });
+          await ZWLApi.receiveLogs({ zzjWebLogsList: res }, { alert: false });
+          logPop(null, this.count);
         } catch (e) {
           console.error(e);
         }
@@ -48,7 +49,7 @@ export default {
         ticker: "UploadLogsTicker",
         step: this.interval * 1000,
         callback: () => {
-          logPop(res => this.uploadLogs(res), this.count);
+          getAll(res => this.uploadLogs(res), null, this.count);
         }
       });
     },
