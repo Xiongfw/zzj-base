@@ -25,7 +25,7 @@ if (!isExistApiUrl()) {
 
 /* 开发环境的常量地址 */
 if (process.env.NODE_ENV == "development") {
-  localStore.adminUrl = "http://192.168.0.119:8085/api/"
+  // localStore.adminUrl = "http://192.168.0.119:8085/api/"
 }
 
 export default {
