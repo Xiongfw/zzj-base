@@ -36,7 +36,7 @@ function add(level, data = fields(), callback) {
  * @param {Boolean} isDelete 查询后是否删除
  */
 function getAll(callback, query, count, isDelete) {
-  db.getAll(...arguments)
+  db.getAll(callback, query, count, isDelete)
 }
 
 /**
@@ -47,7 +47,7 @@ function getAll(callback, query, count, isDelete) {
  * @param {number} count 查询条数
  */
 function getAllByIndex(callback, indexName, query, count) {
-  db.getAllByIndex(...arguments)
+  db.getAllByIndex(callback, indexName, query, count)
 }
 
 /**
@@ -69,7 +69,7 @@ function getAllByTime(callback, value, unit) {
  * @param {IDBKeyRange|string|number} query 查询条件
  */
 function deleteAllByIndex(callback, indexName, query) {
-  db.deleteAllByIndex(...arguments)
+  db.deleteAllByIndex(callback, indexName, query)
 }
 
 /**
@@ -82,6 +82,21 @@ function deleteAllByTime(callback, value, unit) {
   const currentTime = dayjs().valueOf()
   const startTime = dayjs(currentTime).subtract(value, unit).valueOf()
   deleteAllByIndex(callback, 'timestamp', IDBKeyRange.bound(startTime, currentTime))
+}
+
+/**
+ * 
+ * @param {Array|String} key 主键
+ * @param {Function} callback 回调函数
+ */
+function remove(keys, callback) {
+  if (Array.isArray(keys)) {
+    keys.forEach(item => {
+      db.remove(item.id, callback)
+    })
+  } else {
+    db.remove(keys.id, callback)
+  }
 }
 
 /**
@@ -106,6 +121,7 @@ export {
   warn,
   error,
   clear,
+  remove,
   pop,
   getAll,
   getAllByIndex,

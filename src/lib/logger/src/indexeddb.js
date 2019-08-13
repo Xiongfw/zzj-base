@@ -21,7 +21,7 @@ function init(callback) {
       if (db.objectStoreNames.contains(config.object_store_name)) {
         db.deleteObjectStore(config.object_store_name)
       }
-      const objectStore = db.createObjectStore(config.object_store_name, { autoIncrement: true })
+      const objectStore = db.createObjectStore(config.object_store_name, { keyPath: 'id', autoIncrement: true })
       Object.keys(config.fields()).forEach(key => {
         objectStore.createIndex(key, key, { unique: false })
       })
@@ -137,7 +137,7 @@ function remove(key, callback) {
   getObjectStore(store => {
     const request = store.delete(key)
     request.onsuccess = event => {
-      _.isFunction(callback) && callback(event.target.result, null)
+      _.isFunction(callback) && callback(true, null)
     }
     request.onerror = event => {
       _.isFunction(callback) && callback(null, event)

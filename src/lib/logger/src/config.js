@@ -16,7 +16,7 @@ export const object_store_name = 'logs'
 // 数据库名
 export const database_name = 'berm'
 // 数据库版本
-export const database_version = 1
+export const database_version = 2
 // 日志字段
 export const fields = () => {
   return {

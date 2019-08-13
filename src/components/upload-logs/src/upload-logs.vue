@@ -5,7 +5,7 @@
 <script>
 import CountDown from "@/utils/countDown.js";
 import { ZWLApi } from "@/api/index.js";
-import { pop as logPop, getAll } from "@/lib/logger/index.js";
+import { getAllByTime, remove } from "@/lib/logger/index.js";
 
 export default {
   name: "BemUploadLogs",
@@ -15,8 +15,13 @@ export default {
   beforeDestroy() {
     this.stopLoop();
   },
+  data() {
+    return {
+      lock: true
+    };
+  },
   props: {
-    // 检测更新间隔
+    // 上传日志间隔
     interval: {
       type: Number,
       default: 10
@@ -25,22 +30,34 @@ export default {
     count: {
       type: Number,
       default: 5
+    },
+    // 上传多少小时内的日志, 默认48小时内
+    time: {
+      type: String,
+      default: '48'
     }
   },
   methods: {
     /** 轮询每次执行 */
-    async uploadLogs(res) {
-      if (Array.isArray(res) && res.length > 0) {
-        res.forEach(log => {
-          log.in_param = log.in_param ? JSON.stringify(log.in_param) : "";
-          log.out_param = log.out_param ? JSON.stringify(log.out_param) : "";
-        });
-        try {
-          await ZWLApi.receiveLogs({ zzjWebLogsList: res }, { alert: false });
-          logPop(null, this.count);
-        } catch (e) {
-          console.error(e);
+    async uploadLogs(logs) {
+      this.lock = false;
+      try {
+        if (this.$hospital.log_level) {
+          logs = logs.filter(log => log.level === this.$hospital.log_level);
         }
+        if (logs.length > 0) {
+          logs = logs.slice(0, this.count);
+          logs.forEach(log => {
+            log.in_param = log.in_param ? JSON.stringify(log.in_param) : "";
+            log.out_param = log.out_param ? JSON.stringify(log.out_param) : "";
+          });
+          await ZWLApi.receiveLogs({ zzjWebLogsList: logs });
+          remove(logs);
+        }
+      } catch (e) {
+        console.error(e);
+      } finally {
+        this.lock = true;
       }
     },
     /** 开始轮询 */
@@ -49,7 +66,9 @@ export default {
         ticker: "UploadLogsTicker",
         step: this.interval * 1000,
         callback: () => {
-          getAll(res => this.uploadLogs(res), null, this.count);
+           getAllByTime(res => {
+            this.lock && Array.isArray(res) && res.length > 0 && this.uploadLogs(res)
+          }, this.time, "h");
         }
       });
     },
