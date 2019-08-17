@@ -10,6 +10,7 @@ import UploadLogs from '../views/UploadLogs'
 import Button from '../views/Button'
 import Popup from '../views/Popup'
 import Keypad from '../views/Keypad'
+import Audio from '../views/Audio'
 
 Vue.use(VueRouter)
 
@@ -24,6 +25,7 @@ const router = new VueRouter({
     { path: '/uploadLogs', component: UploadLogs },
     { path: '/popup', component: Popup },
     { path: '/keypad', component: Keypad },
+    { path: '/audio', component: Audio },
   ]
 })
 

@@ -1,5 +1,6 @@
 import * as api from "./api/index.js"
 import * as logger from './lib/logger/index.js'
+import audio from './lib/audio/index.js'
 import install from './install.js'
 import axios from "./api/request.js"
 import showalert from './components/alert/index.js'
@@ -14,4 +15,5 @@ export {
   logger,
   showalert,
   loading,
+  audio
 }

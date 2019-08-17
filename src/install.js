@@ -6,6 +6,7 @@ import globalConfig from './globalConfig.js'
 import _ from 'lodash'
 
 import showalert from './components/alert/index.js'
+import audio from './lib/audio/index.js'
 import loading from './components/loading/index.js'
 import components from './components/index.js'
 import directives from './directives/index.js'
@@ -44,7 +45,8 @@ const install = function (Vue, config = globalConfig) {
   Vue.prototype.$bem = {
     showalert,
     loading,
-    api
+    api,
+    audio
   }
 }
 

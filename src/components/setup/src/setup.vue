@@ -56,7 +56,7 @@
 
 <script>
 import logcat from "@/components/logcat/index";
-import OrgConfigApi from "@/api/admin/OrgConfigApi";
+import { OrgConfigApi, WHTApi} from "@/api/index.js";
 import showalert from "@/components/alert/index";
 import ApiUrl from './api-url.vue';
 
@@ -180,6 +180,8 @@ export default {
         return;
       }
       this.$store.commit("setHospital", this.hospInfo);
+      // const hardwareInfo =  await WHTApi.getInfoByWinConfigId({ winConfigId: this.winConfigId })
+      // this.$store.commit("setHardWare", hardwareInfo)
       this.$emit("initSuccess", this.hospInfo);
       this.visible = false;
     },

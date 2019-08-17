@@ -51,7 +51,7 @@ export default {
             log.in_param = log.in_param ? JSON.stringify(log.in_param) : "";
             log.out_param = log.out_param ? JSON.stringify(log.out_param) : "";
           });
-          await ZWLApi.receiveLogs({ zzjWebLogsList: logs });
+          await ZWLApi.receiveLogs({ zzjWebLogsList: logs }, { alert: false });
           remove(logs);
         }
       } catch (e) {
@@ -67,7 +67,8 @@ export default {
         step: this.interval * 1000,
         callback: () => {
            getAllByTime(res => {
-            this.lock && Array.isArray(res) && res.length > 0 && this.uploadLogs(res)
+            // 后台日志等级不为none&&当前没有日志在上传&&日志不为空 则上传日志
+            this.$hospital.log_level !== 'none' && this.lock && Array.isArray(res) && res.length > 0 && this.uploadLogs(res)
           }, this.time, "h");
         }
       });

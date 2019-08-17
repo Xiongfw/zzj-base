@@ -1,7 +1,8 @@
 <template>
   <div v-if="show" class="bem-logcat bem--fullscreen">
     <div class="bem-logcat__header">
-      <img class="icon" src="../../../assets/imgs/logcat/refresh.png" @click="getAllByTimeAndLevel()" />
+      <img class="icon" src="../../../assets/imgs/logcat/refresh.png" @click="refresh" />
+      <img class="icon" src="../../../assets/imgs/logcat/upload.png" @click="handleUploadClick" />
       <img class="icon" src="../../../assets/imgs/logcat/clear.png" @click="clearLog" />
       <img class="close" src="../../../assets/imgs/logcat/close-circle.png" @click="close" />
       <select v-model="selectedTime" class="bem-logcat__select">
@@ -82,6 +83,8 @@
 
 <script>
 import * as logger from "@/lib/logger/index";
+import { ZWLApi } from "@/api/index.js";
+
 export default {
   name: "BemLogcat",
   data() {
@@ -97,7 +100,7 @@ export default {
       selectedTime: "h",
       timeOptions: [
         { label: "一小时内", value: "h" },
-        { label: "一天以内", value: "d" },
+        { label: "两天以内", value: "d" },
         { label: "全部", value: 0 }
       ]
     };
@@ -122,6 +125,44 @@ export default {
     }
   },
   methods: {
+    /** 上传日志 */
+    async uploadLogs(logs) {
+      if (this.$hospital.log_level) {
+        logs = logs.filter(log => log.level === this.$hospital.log_level);
+      }
+      if (logs.length > 0) {
+        logs.forEach(log => {
+          log.in_param = log.in_param ? JSON.stringify(log.in_param) : "";
+          log.out_param = log.out_param ? JSON.stringify(log.out_param) : "";
+        });
+        await ZWLApi.receiveLogs({ zzjWebLogsList: logs });
+        await logger.remove(logs);
+        this.refresh();
+      }
+    },
+    /** 刷新 */
+    refresh() {
+      this.getAllByTimeAndLevel();
+    },
+    /** 上传按钮事件 */
+    handleUploadClick() {
+      this.$bem.showalert({
+        content: "上传并删除全部日志",
+        showCancel: true,
+        isAutoExit: false,
+        onClose: confirm => {
+          if (confirm) {
+            logger.getAll(res => {
+              if (res.length > 0) {
+                this.uploadLogs(res)
+              } else {
+                this.$bem.showalert("日志为空")
+              }
+            })
+          }
+        }
+      })
+    },
     /** 清空日志 */
     clearLog() {
       this.$bem.showalert({
@@ -131,7 +172,7 @@ export default {
         onClose: confirm => {
           if (confirm) {
             logger.clear();
-            this.getAllByTimeAndLevel()
+            this.refresh();
           }
         }
       });
@@ -152,7 +193,7 @@ export default {
             this.logs = level ? res.filter(item => item.level === level) : res;
             this.$bem.loading.close();
           },
-          1,
+          2,
           timeUnit
         );
       }

@@ -5,8 +5,6 @@ import App from './App'
 import Vuex from 'vuex'
 import router from './router/index'
 import { install } from "../src/index"
-import "../src/assets/styles/reset.scss"
-import "../src/assets/styles/index.scss"
 
 Vue.config.productionTip = false
 

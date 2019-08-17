@@ -10,4 +10,8 @@ export default {
     oper_id: null,
     oper_name: null
   },
+  // 音频播放选项
+  audio: {
+    baseUrl: 'https://zzjfaceapp.linkingcloud.cn/audio/'
+  }
 }

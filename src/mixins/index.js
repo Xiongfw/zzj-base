@@ -9,6 +9,9 @@ export default {
     $hospital() {
       return this.$store.state.common.hospital
     },
+    $hardware() {
+      return this.$store.state.common.hardware
+    },
     $orgId() {
       return this.$store.getters.getOrgId
     },

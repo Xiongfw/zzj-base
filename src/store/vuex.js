@@ -6,6 +6,8 @@ const autoLeaveQueue = []
 
 export default {
   state: {
+    // 硬件信息
+    hardware: localStore.hardware || null, 
     // 是否自动退出
     isAutoLeave: true,
     // 当前倒计时时间
@@ -21,6 +23,10 @@ export default {
       localStore.orgId = state.hospital.id
       localStore.winConfigId = state.hospital.winConfig.winConfigInfo.win_config_id
       localStore.winCode = state.hospital.winConfig.win_code
+    },
+    setHardWare(state, v) {
+      state.hardware = v
+      localStore.hardware = state.hardware
     },
     setNowTimeout(state, v) {
       _.isUndefined(v) ? state.nowTimeout-- : state.nowTimeout = v

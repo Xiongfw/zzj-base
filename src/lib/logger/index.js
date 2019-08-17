@@ -85,18 +85,24 @@ function deleteAllByTime(callback, value, unit) {
 }
 
 /**
- * 
+ * 删除一条或者多条
  * @param {Array|String} key 主键
- * @param {Function} callback 回调函数
  */
-function remove(keys, callback) {
+function remove(keys) {
+  const tasks = []
+  const promiseify = function (id) {
+    return new Promise(resolve => {
+      db.remove(id, res => { resolve(res) })
+    })
+  }
   if (Array.isArray(keys)) {
     keys.forEach(item => {
-      db.remove(item.id, callback)
+      tasks.push(promiseify(item.id))
     })
   } else {
-    db.remove(keys.id, callback)
+    tasks.push(promiseify(keys.id))
   }
+  return Promise.all(tasks)
 }
 
 /**

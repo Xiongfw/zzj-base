@@ -18,7 +18,9 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
+@import "../src/assets/styles/reset.scss";
+@import "../src/assets/styles/index.scss";
 .app-main {
   padding: 0.2rem 0.3rem;
 }

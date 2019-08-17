@@ -9,6 +9,6 @@ export default {
    * @param {Object} options 选项
    */
   receiveLogs(params, options = {}) {
-    return axios.post(baseUrl + 'receiveLogs', params, { options: { ...options, log: false, loading: false, alert: false } })
+    return axios.post(baseUrl + 'receiveLogs', params, { options: { ...options, log: false, loading: false } })
   }
 }

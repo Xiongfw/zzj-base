@@ -1,6 +1,8 @@
 import _ from 'lodash'
 
 const store = {
+  // 硬件信息
+  hardware: null,
   // 医院信息
   hospital: null,
   // 版本

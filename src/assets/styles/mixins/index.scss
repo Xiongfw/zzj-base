@@ -1,3 +1,5 @@
+@import "../var.scss";
+
 /* flex居中 */
 @mixin flex-box($direction: row, $wrap: wrap, $justify-content: center, $align-item: center) {
   display: flex;
@@ -5,4 +7,46 @@
   flex-wrap: $wrap;
   justify-content: $justify-content;
   align-items: $align-item;
+}
+
+/* 文字溢出省略 */
+@mixin ellipsis($lines: 1) {
+  @if ($lines == 1) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  } @else {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: $lines;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-all;
+  }
+}
+
+/* 三角形 */
+@mixin triangle($direction: down, $size: 0.3rem, $color: $--color-primary) {
+  width: 0px;
+  height: 0px;
+  @if ($direction == left) {
+    border-top: $size solid transparent;
+    border-bottom: $size solid transparent;
+    border-right: $size solid $color;
+  }
+  @else if ($direction == right) {
+    border-top: $size solid transparent;
+    border-bottom: $size solid transparent;
+    border-left: $size solid $color;
+  }
+  @else if ($direction == down) {
+    border-left: $size solid transparent;
+    border-right: $size solid transparent;
+    border-top: $size solid $color;
+  }
+  @else {
+    border-left: $size solid transparent;
+    border-right: $size solid transparent;
+    border-bottom: $size solid $color;
+  }
 }

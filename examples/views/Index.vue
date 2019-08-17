@@ -10,6 +10,7 @@
       <router-link to="/popup">弹出窗</router-link>
       <router-link to="/keypad">键盘</router-link>
       <router-link to="/uploadLogs">轮询上传日志</router-link>
+      <router-link to="/audio">音频</router-link>
     </div>
   </div>
 </template>
