@@ -35,7 +35,7 @@ async function saveHardwareInfo({ store }) {
 
 export default function init(config) {
   setHtmlFontSize(config)
-  // saveHardwareInfo(config)
+  saveHardwareInfo(config)
   /* 屏蔽右键菜单 */
   document.oncontextmenu = function () { return false; }
   /* 禁止用户两指缩放 */

@@ -180,8 +180,8 @@ export default {
         return;
       }
       this.$store.commit("setHospital", this.hospInfo);
-      // const hardwareInfo =  await WHTApi.getInfoByWinConfigId({ winConfigId: this.winConfigId })
-      // this.$store.commit("setHardWare", hardwareInfo)
+      const hardwareInfo =  await WHTApi.getInfoByWinConfigId({ winConfigId: this.winConfigId })
+      this.$store.commit("setHardWare", hardwareInfo)
       this.$emit("initSuccess", this.hospInfo);
       this.visible = false;
     },
