@@ -13,6 +13,11 @@
     background: transparent;
     border-color: $border-color;
   }
+  &.is-disabled {
+    background: #e0e0e0;
+    color: #ffffff;
+    border: 0;
+  }
 }
 
 @mixin button-plain($color) {

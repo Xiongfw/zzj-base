@@ -127,18 +127,13 @@ export default {
   methods: {
     /** 上传日志 */
     async uploadLogs(logs) {
-      if (this.$hospital.log_level) {
-        logs = logs.filter(log => log.level === this.$hospital.log_level);
-      }
-      if (logs.length > 0) {
-        logs.forEach(log => {
-          log.in_param = log.in_param ? JSON.stringify(log.in_param) : "";
-          log.out_param = log.out_param ? JSON.stringify(log.out_param) : "";
-        });
-        await ZWLApi.receiveLogs({ zzjWebLogsList: logs });
-        await logger.remove(logs);
-        this.refresh();
-      }
+      logs.forEach(log => {
+        log.in_param = log.in_param ? JSON.stringify(log.in_param) : "";
+        log.out_param = log.out_param ? JSON.stringify(log.out_param) : "";
+      });
+      await ZWLApi.receiveLogs({ zzjWebLogsList: logs });
+      await logger.remove(logs);
+      this.refresh();
     },
     /** 刷新 */
     refresh() {

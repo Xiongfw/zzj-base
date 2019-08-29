@@ -66,9 +66,10 @@ export default {
         ticker: "UploadLogsTicker",
         step: this.interval * 1000,
         callback: () => {
-           getAllByTime(res => {
-            // 后台日志等级不为none&&当前没有日志在上传&&日志不为空 则上传日志
-            this.$hospital.log_level !== 'none' && this.lock && Array.isArray(res) && res.length > 0 && this.uploadLogs(res)
+          // 后台日志等级不为none&&当前没有日志在上传&&日志不为空 则上传日志
+          if (this.$hospital.log_level == 'none' || !this.lock) return;
+          getAllByTime(res => {
+            Array.isArray(res) && res.length > 0 && this.uploadLogs(res)
           }, this.time, "h");
         }
       });
