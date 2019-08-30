@@ -10,6 +10,8 @@ export default {
     hardware: localStore.hardware || null, 
     // 是否自动退出
     isAutoLeave: true,
+    // 是否全屏
+    isFullscreen: false,
     // 当前倒计时时间
     nowTimeout: 0,
     // 当前医院
@@ -31,12 +33,15 @@ export default {
     setNowTimeout(state, v) {
       _.isUndefined(v) ? state.nowTimeout-- : state.nowTimeout = v
     },
+    isFullscreen(state, v) {
+      state.isFullscreen = v
+    },
     _isAutoLeave(state, v) {
       if (state.hospital && v) {
         state.nowTimeout = state.hospital.exit_timeout
       }
       state.isAutoLeave = v
-      globalConfig.el.click()
+      globalConfig.autoLeavelEl.click()
     }
   },
   actions: {

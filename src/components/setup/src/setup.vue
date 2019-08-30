@@ -117,11 +117,13 @@ export default {
     },
     async visible() {
       if (this.visible) {
+        this.$store.commit("isFullscreen", true);
         this.$isAutoLeave(false);
         this.hospList = await OrgConfigApi.getOrgList();
         this.storeOrgId && (this.orgId = this.storeOrgId);
       } else {
         this.$isAutoLeave(true);
+        this.$store.commit("isFullscreen", false);
       }
     },
     async orgId(id) {

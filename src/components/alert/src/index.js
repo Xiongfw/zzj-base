@@ -23,7 +23,14 @@ const Alert = (...args) => {
     data: options,
     store: globalConfig.store
   })
-  document.body.appendChild(vm.$el)
+  const el = document.querySelector(globalConfig.el)
+  if (el && !globalConfig.store.state.common.isFullscreen) {
+    el.style.position != "relative" && (el.style.position = "relative")
+    vm.$el.style.position != "absolute" && (vm.$el.style.position = "absolute")
+    el.appendChild(vm.$el)
+  } else {
+    document.body.appendChild(vm.$el)
+  }
   vm.visible = true
   return vm
 }

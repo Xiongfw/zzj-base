@@ -1,4 +1,6 @@
 export default {
+  // 自动退出指令绑定的dom元素
+  autoLeavelEl: null,
   // el元素
   el: null,
   // 必传，vuex实例

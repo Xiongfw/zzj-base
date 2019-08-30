@@ -6,6 +6,7 @@ import axios from "./api/request.js"
 import showalert from './components/alert/index.js'
 import loading from './components/loading/index.js'
 import localStore from './store/local.js'
+import * as utils from './utils/index.js'
 
 export {
   install,
@@ -15,5 +16,6 @@ export {
   logger,
   showalert,
   loading,
-  audio
+  audio,
+  utils
 }

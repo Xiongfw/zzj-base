@@ -12,6 +12,7 @@ Vue.use(Vuex)
 const store = new Vuex.Store()
 
 Vue.use(install, {
+  el: "#app-main",
   store
 })
 /* eslint-disable no-new */

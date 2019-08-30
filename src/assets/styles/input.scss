@@ -3,8 +3,8 @@
 
 // 全屏
 .bem--fullscreen {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   box-sizing: border-box;
   z-index: 10001;
   position: fixed;

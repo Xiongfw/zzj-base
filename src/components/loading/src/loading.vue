@@ -1,5 +1,5 @@
 <template>
-  <div v-if="visible" class="bem--fullscreen bem-loading-mask">
+  <div class="bem--fullscreen bem-loading-mask" v-show="visible">
     <img src="../../../assets/imgs/loading.gif" />
   </div>
 </template>
@@ -16,9 +16,11 @@ export default {
   },
   watch: {
     visible() {
-      this.visible
-        ? globalConfig.store.dispatch("isAutoLeave", false)
-        : globalConfig.store.dispatch("isAutoLeave", true);
+      if (this.visible) {
+        globalConfig.store.dispatch("isAutoLeave", false);
+      } else {
+        globalConfig.store.dispatch("isAutoLeave", true);
+      }
     }
   }
 };

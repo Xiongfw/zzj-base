@@ -46,7 +46,7 @@ export default {
   name: 'auto-leave',
   value: {
     inserted: function (el, binding) {
-      globalConfig.el = el
+      globalConfig.autoLeavelEl = el
       if (_.isPlainObject(binding.value)) {
         ({ endCallback, beforeCountDown } = binding.value)
       } else if (_.isFunction(binding.value)) {

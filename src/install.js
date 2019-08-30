@@ -3,6 +3,7 @@ import init from './init.js'
 import { error } from './lib/logger/index.js'
 import storeCommon from './store/vuex.js'
 import globalConfig from './globalConfig.js'
+import * as utils from './utils/index.js'
 import _ from 'lodash'
 
 import showalert from './components/alert/index.js'
@@ -11,6 +12,7 @@ import loading from './components/loading/index.js'
 import components from './components/index.js'
 import directives from './directives/index.js'
 import mixins from './mixins/index.js'
+import filters from './filters/index.js'
 
 const install = function (Vue, config = globalConfig) {
   config = _.defaultsDeep(config, globalConfig)
@@ -25,7 +27,7 @@ const install = function (Vue, config = globalConfig) {
     throw new Error('请传入Vuex实例对象')
   }
   init(config)
-  // 全局捕获异常
+  // VUE全局捕获异常
   Vue.config.errorHandler = function (err, vm, info) {
     const arr = [info, vm.$options.name, err.message, err.stack]
     console.error(err)
@@ -34,6 +36,10 @@ const install = function (Vue, config = globalConfig) {
   // 注册全局组件
   components.forEach(component => {
     Vue.component(component.name, component)
+  })
+  // 全局过滤器
+  filters.forEach(filter => {
+    Vue.filter(filter.name, filter)
   })
   // 全局指令
   directives.forEach(directive => {
@@ -46,7 +52,8 @@ const install = function (Vue, config = globalConfig) {
     showalert,
     loading,
     api,
-    audio
+    audio,
+    utils
   }
 }
 

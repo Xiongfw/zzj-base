@@ -28,7 +28,7 @@ function setHtmlFontSize({ fontSize }) {
 async function saveHardwareInfo({ store }) {
   const { getWinConfigId: winConfigId } = store.getters
   if (winConfigId) {
-    const hardwareInfo =  await WHTApi.getInfoByWinConfigId({ winConfigId })
+    const hardwareInfo = await WHTApi.getInfoByWinConfigId({ winConfigId })
     store.commit("setHardWare", hardwareInfo)
   }
 }
@@ -37,7 +37,7 @@ export default function init(config) {
   setHtmlFontSize(config)
   saveHardwareInfo(config)
   /* 屏蔽右键菜单 */
-  document.oncontextmenu = function () { return false; }
+  document.addEventListener("contextmenu", function (e) { return false; })
   /* 禁止用户两指缩放 */
   document.addEventListener("touchstart", function (e) {
     if (e.touches.length > 1) {

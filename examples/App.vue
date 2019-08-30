@@ -1,6 +1,6 @@
 <template>
   <div id="app" v-auto-leave="handleAutoLeave">
-    <router-view class="app-main"></router-view>
+    <router-view class="app-main" id="app-main"></router-view>
   </div>
 </template>
 
