@@ -1,6 +1,6 @@
 <template>
   <div class="bem__api-url">
-    <bem-popup :show.sync="visible" @close="close" title="设置">
+    <bem-popup :show.sync="visible" @close="close" title="设置" width="85%">
       <ul>
         <li>
           <p class="label">网关地址</p>
