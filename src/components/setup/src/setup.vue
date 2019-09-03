@@ -6,7 +6,7 @@
         <button class="bem-setup__btn bem-setup--shadow" @click="showlog = !showlog">显示日志</button>
         <button class="bem-setup__btn bem-setup--shadow" @click="clearCache">重置机器</button>
         <button class="bem-setup__btn bem-setup--shadow" @click="openFile()">下载文件</button>
-        <button class="bem-setup__btn bem-setup--shadow" @click="showApiUrl = true">API地址</button>
+        <button class="bem-setup__btn bem-setup--shadow" @click="showApiUrl = true">网关地址</button>
       </div>
       <div class="bem-setup__select-wrap">
         <select v-model="orgId" class="bem-setup__select bem-setup--shadow">

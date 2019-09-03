@@ -12,6 +12,8 @@ const store = {
   // 机器ID
   winConfigId: null,
   winCode: null,
+  // 网关默认地址
+  gateway: null,
   // 统一支付平台地址
   payUrl: null,
   // 服务窗地址

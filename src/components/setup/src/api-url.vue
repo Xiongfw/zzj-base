@@ -1,18 +1,10 @@
 <template>
   <div class="bem__api-url">
-    <bem-popup :show.sync="visible" @close="close">
+    <bem-popup :show.sync="visible" @close="close" title="设置">
       <ul>
         <li>
-          <p class="label">服务窗地址</p>
-          <input type="search" v-model="fwcUrl" />
-        </li>
-        <li>
-          <p class="label">统一支付平台地址</p>
-          <input type="search" v-model="payUrl" />
-        </li>
-        <li>
-          <p class="label">管理后台地址</p>
-          <input type="search" v-model="adminUrl" />
+          <p class="label">网关地址</p>
+          <input type="search" v-model="gateway" />
         </li>
       </ul>
       <div slot="footer">
@@ -31,9 +23,7 @@ export default {
   data() {
     return {
       visible: false,
-      fwcUrl: null,
-      payUrl: null,
-      adminUrl: null
+      gateway: null
     };
   },
   props: {
@@ -45,24 +35,21 @@ export default {
   watch: {
     show() {
       if (this.show) {
-        this.fwcUrl = localStore.fwcUrl;
-        this.payUrl = localStore.payUrl;
-        this.adminUrl = localStore.adminUrl;
+        this.gateway = localStore.gateway;
       }
       this.visible = this.show;
     }
   },
   methods: {
     save() {
-      localStore.fwcUrl = this.fwcUrl;
-      localStore.payUrl = this.payUrl;
-      localStore.adminUrl = this.adminUrl;
+      if (this.gateway.endsWith("/")) {
+        this.gateway = this.gateway.slice(0, -1);
+      }
+      localStore.gateway = this.gateway;
       refresh();
     },
     reset() {
-      this.fwcUrl = "https://zzjfwcapi.linkingcloud.cn/api/";
-      this.payUrl = "https://zzjpayapi.linkingcloud.cn/api/";
-      this.adminUrl = "https://zzjadminapi.linkingcloud.cn/api/";
+      this.gateway = "https://zzjfwcapi.lingkingcloud.cn/gateway";
     },
     close() {
       this.$emit("update:show", false);
