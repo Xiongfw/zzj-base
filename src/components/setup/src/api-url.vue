@@ -49,7 +49,7 @@ export default {
       refresh();
     },
     reset() {
-      this.gateway = "https://zzjfwcapi.lingkingcloud.cn/gateway";
+      this.gateway = "https://zzjapi.linkingcloud.cn";
     },
     close() {
       this.$emit("update:show", false);

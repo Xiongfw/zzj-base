@@ -1,7 +1,7 @@
 import localStore from "@/store/local.js";
 
 // 网关地址
-let gateway = localStore.gateway || "https://zzjfwcapi.lingkingcloud.cn/gateway"
+let gateway = localStore.gateway || "https://zzjapi.linkingcloud.cn"
 // 统一支付接口地址
 let Unified_Payment_URL
 // 服务窗接口地址
