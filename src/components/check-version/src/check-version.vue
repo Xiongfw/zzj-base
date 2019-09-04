@@ -1,5 +1,10 @@
 <template>
-  <div></div>
+  <bem-popup :show.sync="showTip" :showClose="false" fullscreen>
+    <div class="bem-check-version">
+      <img class="icon" src="../../../assets/imgs/warn-icon.png" />
+      <p class="tip-text">暂停使用，系统维护中</p>
+    </div>
+  </bem-popup>
 </template>
 
 <script>
@@ -11,6 +16,11 @@ import _ from "lodash";
 
 export default {
   name: "BemCheckVersion",
+  data() {
+    return {
+      showTip: false
+    };
+  },
   mounted() {
     this.checkVersion();
   },
@@ -21,7 +31,7 @@ export default {
     // 检测更新间隔，默认60秒
     interval: {
       type: Number,
-      default: 60
+      default: 5
     }
   },
   methods: {
@@ -31,11 +41,13 @@ export default {
         orgId: this.$orgId,
         winConfigId: this.$winConfigId
       });
-      if (_.isEmpty(localStore.version)) {
+      if (version === "stop") {
+        this.showTip = true;
+      } else if (_.isEmpty(localStore.version)) {
         localStore.version = version;
       } else if (localStore.version != version) {
         localStore.version = version;
-        refresh()
+        refresh();
       }
     },
     /** 开始查询版本 */

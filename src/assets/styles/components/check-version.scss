@@ -1,0 +1,17 @@
+@import "../var.scss";
+@import "../mixins/index.scss";
+
+.bem-check-version {
+  @include flex-box(column);
+  height: 100%;
+  margin-top: -3rem;
+  .icon {
+    width: 3rem;
+    margin: center;
+  }
+  .tip-text {
+    margin-top: 0.8em;
+    font-weight: bold;
+    font-size: 0.7rem;
+  }
+}

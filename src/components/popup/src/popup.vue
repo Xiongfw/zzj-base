@@ -1,17 +1,12 @@
 <template>
   <div class="bem-popup" v-if="show">
-    <div v-if="mask" class="bem-popup__mask" @click="handleClickMask"></div>
-    <div class="bem-popup__main" :style="style">
-      <div class="bem-popup__header" :style="center ? {'text-align':'center'} : ''">
+    <div @click="handleClickMask" class="bem-popup__mask" v-if="mask"></div>
+    <div :style="style" class="bem-popup__main">
+      <div :style="center ? {'text-align':'center'} : ''" class="bem-popup__header">
         <slot name="title">
           <span class="bem-popup__title">{{ title }}</span>
         </slot>
-        <img
-          v-if="showClose"
-          class="bem-popup__close"
-          @click="close"
-          src="../../../assets/imgs/close_icon.png"
-        />
+        <img @click="close" class="bem-popup__close" src="../../../assets/imgs/close_icon.png" v-if="showClose" />
       </div>
       <div class="bem-popup__body">
         <slot></slot>
@@ -33,7 +28,8 @@ export default {
     style() {
       let style = {};
       style.marginTop = this.top;
-      style.width = this.width;
+      style.width = this.fullscreen ? "100%" : this.width;
+      this.fullscreen && (style.height = "100%");
       return style;
     }
   },
@@ -85,11 +81,6 @@ export default {
     closeOnClickMask: {
       type: Boolean,
       default: false
-    },
-    // 是否显示遮罩
-    mask: {
-      type: Boolean,
-      default: true
     },
     // 是否显示关闭按钮
     showClose: {
