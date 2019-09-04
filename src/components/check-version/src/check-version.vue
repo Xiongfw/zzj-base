@@ -31,7 +31,7 @@ export default {
     // 检测更新间隔，默认60秒
     interval: {
       type: Number,
-      default: 5
+      default: 60
     }
   },
   methods: {
