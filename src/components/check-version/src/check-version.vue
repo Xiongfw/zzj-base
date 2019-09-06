@@ -1,7 +1,6 @@
 <template>
   <bem-popup :show.sync="showTip" :showClose="false" fullscreen>
     <div class="bem-check-version">
-      <img class="icon" src="../../../assets/imgs/warn-icon.png" />
       <p class="tip-text">暂停使用，系统维护中</p>
     </div>
   </bem-popup>
