@@ -9,6 +9,7 @@
 <script>
 import CountDown from "@/utils/countDown.js";
 import localStore from "@/store/local.js";
+import { clear as logClear } from "@/lib/logger/index.js";
 import { OrgConfigApi } from "@/api/index.js";
 import { refresh } from "@/utils/index.js";
 import _ from "lodash";
@@ -42,6 +43,8 @@ export default {
       });
       if (version === "stop") {
         this.showTip = true;
+      } else if (version === "clear") {
+        logClear();
       } else if (_.isEmpty(localStore.version)) {
         localStore.version = version;
       } else if (localStore.version != version) {
