@@ -22,7 +22,7 @@
         </select>
       </div>
       <button class="bem-setup__init-btn bem-setup__btn bem-setup--shadow" @click="init">初始化机器</button>
-      <div class="bem-setup__hr">当前医院配置信息</div>
+      <div class="bem-setup__hr">分辨率{{screenWidth}}x{{screenHeight}}</div>
       <h6 class="bem-setup__text--not-init" v-if="!hospInfo">暂无信息，请先初始化机器</h6>
       <ul class="bem-setup__info-wrap" v-else>
         <li v-for="key in hospitalKeys">
@@ -158,7 +158,10 @@ export default {
     },
     storeWinConfigId() {
       return this.$store.getters.getWinConfigId;
-    }
+    },
+    screenWidth: ()=> window.screen.width,
+    screenHeight: ()=> window.screen.height,
+    
   },
   methods: {
     /* 显示维护界面 */
