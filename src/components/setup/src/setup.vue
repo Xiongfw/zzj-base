@@ -48,7 +48,7 @@
         placeholder="请输入维护密码"
       />
       <div class="bem-setup__pwd">
-        <bem-keypad :showKeyPad="showInput" :setContent="inputVal" v-on:changeNum="changePwd"></bem-keypad>
+        <bem-keypad-2 :showKeyPad="showInput" :setContent="inputVal" v-on:changeNum="changePwd"></bem-keypad-2>
       </div>
     </bem-popup>
   </div>

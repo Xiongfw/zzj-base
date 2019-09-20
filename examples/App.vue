@@ -12,7 +12,7 @@ export default {
   },
   methods: {
     handleAutoLeave() {
-      this.$router.replace("/");
+      // this.$router.replace("/");
     }
   }
 };

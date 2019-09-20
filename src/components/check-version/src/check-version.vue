@@ -1,7 +1,7 @@
 <template>
-  <bem-popup :show.sync="showTip" :showClose="false" fullscreen>
+  <bem-popup :show.sync="isShowTip" :showClose="false" fullscreen>
     <div class="bem-check-version">
-      <p class="tip-text">暂停使用，系统维护中</p>
+      <p class="tip-text">系统维护中，{{ tip }}</p>
     </div>
   </bem-popup>
 </template>
@@ -12,13 +12,14 @@ import localStore from "@/store/local.js";
 import { clear as logClear } from "@/lib/logger/index.js";
 import { OrgConfigApi } from "@/api/index.js";
 import { refresh } from "@/utils/index.js";
-import _ from "lodash";
+import { isString, isEmpty } from "lodash";
 
 export default {
   name: "BemCheckVersion",
   data() {
     return {
-      showTip: false
+      isShowTip: false,
+      tip: "暂停使用"
     };
   },
   mounted() {
@@ -41,14 +42,20 @@ export default {
         orgId: this.$orgId,
         winConfigId: this.$winConfigId
       });
-      if (version === "stop") {
-        this.showTip = true;
+      if (isString(version) && version.startsWith("stop")) {
+        version.includes("_") && (this.tip = "请等待" + version.split("_")[1]);
+        this.isShowTip = true;
       } else if (version === "clear") {
         logClear();
-      } else if (_.isEmpty(localStore.version)) {
+      } else if (isEmpty(localStore.version)) {
         localStore.version = version;
       } else if (localStore.version != version) {
         localStore.version = version;
+        const hospInfo = await OrgConfigApi.getOrgWinconfigDetail({
+          orgId: this.$orgId,
+          winConfigId: this.$winConfigId
+        });
+        this.$store.commit("setHospital", hospInfo);
         refresh();
       }
     },

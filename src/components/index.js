@@ -4,6 +4,7 @@ import UploadLogs from './upload-logs/index.js'
 import Logcat from './logcat/index.js'
 import Button from './button/index.js'
 import Keypad from './keypad/index.js'
+import Keypad2 from './keypad2/index.js'
 import Popup from './popup/index.js'
 
 export default [
@@ -13,5 +14,6 @@ export default [
   UploadLogs,
   Button,
   Keypad,
+  Keypad2,
   Popup
 ]
