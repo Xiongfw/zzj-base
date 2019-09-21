@@ -7,7 +7,7 @@ const autoLeaveQueue = []
 export default {
   state: {
     // 硬件信息
-    hardware: localStore.hardware || null, 
+    hardware: localStore.hardware || null,
     // 是否自动退出
     isAutoLeave: true,
     // 是否全屏
@@ -70,6 +70,11 @@ export default {
     getWinCode(state) {
       if (state.hospital) {
         return state.hospital.winConfig.win_code
+      }
+    },
+    getExtInfo(state) {
+      if (state.hospital && state.hospital.ext_info) {
+        return JSON.parse(state.hospital.ext_info)
       }
     }
   }

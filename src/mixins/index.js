@@ -20,6 +20,9 @@ export default {
     },
     $winCode() {
       return this.$store.getters.getWinCode
+    },
+    $extInfo() {
+      return this.$store.getters.getExtInfo
     }
   },
   methods: {

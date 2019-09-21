@@ -1,12 +1,17 @@
 <template>
   <div class="bem-popup" v-if="show">
-    <div @click="handleClickMask" class="bem-popup__mask" v-if="mask"></div>
-    <div :style="style" class="bem-popup__main">
-      <div :style="center ? {'text-align':'center'} : ''" class="bem-popup__header">
+    <div :style="maskStyle" @click="handleClickMask" class="bem-popup__mask" v-if="mask"></div>
+    <div :style="mainStyle" class="bem-popup__main">
+      <div :style="headerStyle" class="bem-popup__header">
         <slot name="title">
           <span class="bem-popup__title">{{ title }}</span>
         </slot>
-        <img @click="close" class="bem-popup__close" src="../../../assets/imgs/close_icon.png" v-if="showClose" />
+        <img
+          @click="close"
+          class="bem-popup__close"
+          src="../../../assets/imgs/close_icon.png"
+          v-if="showClose"
+        />
       </div>
       <div class="bem-popup__body">
         <slot></slot>
@@ -19,14 +24,34 @@
 </template>
 
 <script>
+import globalConfig from "@/globalConfig.js";
+
 export default {
   name: "BemPopup",
   data() {
     return {};
   },
   computed: {
-    style() {
-      let style = {};
+    headerStyle() {
+      const style = {};
+      if (this.$slots.title) {
+        style.padding = "0.3rem 0.3rem 0.2rem";
+      }
+      this.center && (style.textAlign = "center");
+      return style;
+    },
+    maskStyle() {
+      const style = {};
+      if (document.querySelector(globalConfig.el)) {
+        style.position = "absolute";
+      }
+      return style
+    },
+    mainStyle() {
+      const style = {};
+      if (document.querySelector(globalConfig.el)) {
+        style.position = "absolute";
+      }
       style.marginTop = this.top;
       style.width = this.fullscreen ? "100%" : this.width;
       this.fullscreen && (style.height = "100%");
