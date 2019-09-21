@@ -1,8 +1,13 @@
 <template>
-  <div class="bem-keypad" style="width:80%" v-if="visible">
-    <keep-alive>
-      <component :is="inputType" @confirm="confirm" @exit="exit" @switchType="switchType" v-model="content"></component>
-    </keep-alive>
+  <div :style="{width}" class="bem-keypad" v-if="visible">
+    <div class="keypad__header" v-if="$slots.header">
+      <slot name="header"></slot>
+    </div>
+    <div :style="keypadStyle" class="keypad__main">
+      <keep-alive>
+        <component :is="inputType" @confirm="confirm" @exit="exit" @switchType="switchType" v-model="content"></component>
+      </keep-alive>
+    </div>
   </div>
 </template>
 
@@ -30,6 +35,9 @@ export default {
       this.inputType = this.type;
     },
     show() {
+      if (this.show) {
+        this.content = "";
+      }
       this.visible = this.show;
     },
     content() {
@@ -45,12 +53,29 @@ export default {
     show: {
       type: Boolean,
       default: false
+    },
+    width: {
+      type: String,
+      default: "70%"
+    },
+    height: {
+      type: String,
+      default: "4rem"
+    }
+  },
+  computed: {
+    keypadStyle() {
+      return {
+        height: this.height
+      };
     }
   },
   methods: {
     /** 关闭键盘 */
     close() {
-      this.$emit("update:show", false);
+      setTimeout(() => {
+        this.$emit("update:show", false);
+      }, 60);
     },
     /* 确定 */
     confirm() {
@@ -67,7 +92,9 @@ export default {
     },
     /* 切换输入 */
     switchType(type) {
-      this.inputType = type;
+      setTimeout(() => {
+        this.inputType = type;
+      }, 60);
     }
   }
 };

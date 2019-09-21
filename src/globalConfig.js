@@ -1,7 +1,7 @@
 export default {
   // 自动退出指令绑定的dom元素
   autoLeavelEl: null,
-  // el元素
+  // loading alert 绑定到的el元素, 默认是body
   el: null,
   // 必传，vuex实例
   store: null,
@@ -11,6 +11,11 @@ export default {
   logger: {
     oper_id: null,
     oper_name: null
+  },
+  // 提示框
+  alert: {
+    // 提示框自动退出时间
+    time: 30,
   },
   // 音频播放选项
   audio: {

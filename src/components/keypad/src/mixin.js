@@ -1,6 +1,6 @@
 export default {
   activated() {
-    if (this.value) {
+    if (this.value !== null) {
       this.content = this.value
     }
   },

@@ -7,9 +7,13 @@
       <span @click="handleKeyClick(value)" class="keypad__key-btn" v-for="value in row2">{{value}}</span>
     </div>
     <div class="keypad--letter__row-3">
-      <span :class="[{'keypad__key-btn--longpress': capsLock}, 'keypad__key-btn']" @click="switchCapsLock">大写</span>
+      <span
+        :class="[{'keypad__key-btn--longpress': capsLock}, 'keypad__key-btn']"
+        @click="switchCapsLock"
+        style="flex: 1.54"
+      >大写</span>
       <span @click="handleKeyClick(value)" class="keypad__key-btn" v-for="value in row3">{{value}}</span>
-      <span @click="del" class="keypad__key-btn">删除</span>
+      <span @click="del" class="keypad__key-btn" style="flex: 1.54">删除</span>
     </div>
     <div class="keypad--letter__row-4">
       <span @click="switchType('number')" class="keypad__key-btn">数字</span>

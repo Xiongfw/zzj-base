@@ -13,8 +13,8 @@
     </div>
     <div class="keypad--number__col-4">
       <span @click="del" class="keypad__key-btn">删除</span>
-      <span @click="confirm" class="keypad__key-btn">确定</span>
       <span @click="clear" class="keypad__key-btn">清空</span>
+      <span @click="confirm" class="keypad__key-btn" style="flex:2;">确定</span>
     </div>
   </div>
 </template>

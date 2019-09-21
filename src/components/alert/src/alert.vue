@@ -16,6 +16,7 @@
 
 <script>
 import BemButton from "@/components/button/index.js";
+import globalConfig from "@/globalConfig.js"
 
 export default {
   name: "BemAlert",
@@ -51,7 +52,7 @@ export default {
       // 确定按钮文本内容
       confirmText: "确定",
       // 倒计时时间
-      time: 10,
+      time: globalConfig.alert.time,
       // 是否自动退出
       isAutoExit: true,
       // 关闭回调事件

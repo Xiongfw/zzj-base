@@ -1,12 +1,12 @@
 @import "../var.scss";
 
 /* flex居中 */
-@mixin flex-box($direction: row, $wrap: wrap, $justify-content: center, $align-item: center) {
+@mixin flex-box($direction: row, $wrap: wrap, $justify-content: center, $align-items: center) {
   display: flex;
   flex-direction: $direction;
   flex-wrap: $wrap;
   justify-content: $justify-content;
-  align-items: $align-item;
+  align-items: $align-items;
 }
 
 /* 文字溢出省略 */
