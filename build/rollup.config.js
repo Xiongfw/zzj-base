@@ -24,7 +24,7 @@ export default {
     vue(),
     img({
       output: `${resolvePath('lib')}/images`,
-      limit: 15000
+      limit: 200000
     }),
     alias({
       resolve: ['.vue', '.js', '.json'],

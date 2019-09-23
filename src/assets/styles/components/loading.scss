@@ -3,4 +3,7 @@
 .bem-loading-mask {
   @include flex-box();
   background: rgba(#000, 0.24);
+  img {
+    width: 4rem;
+  }
 }
