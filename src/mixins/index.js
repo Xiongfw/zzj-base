@@ -1,4 +1,3 @@
-import storeCommon from '@/store/vuex.js'
 import { info, warn, error } from '@/lib/logger/index.js'
 
 export default {

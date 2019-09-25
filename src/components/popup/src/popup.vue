@@ -34,7 +34,7 @@ export default {
   computed: {
     headerStyle() {
       const style = {};
-      if (this.$slots.title) {
+      if (this.$slots.title || this.title) {
         style.padding = "0.3rem 0.3rem 0.2rem";
       }
       this.center && (style.textAlign = "center");

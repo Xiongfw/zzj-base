@@ -1,5 +1,3 @@
-import { WHTApi } from "./api/index.js"
-
 /** 设置html font-size大小 */
 function setHtmlFontSize({ fontSize }) {
   const docEl = document.documentElement
@@ -24,18 +22,16 @@ function setHtmlFontSize({ fontSize }) {
   document.addEventListener('DOMContentLoaded', recalc, false);
 }
 
-/** 保存硬件信息 */
-async function saveHardwareInfo({ store }) {
-  const { getWinConfigId: winConfigId } = store.getters
-  if (winConfigId) {
-    const hardwareInfo = await WHTApi.getInfoByWinConfigId({ winConfigId })
-    store.commit("setHardWare", hardwareInfo)
+function setTitle({ store }) {
+  const { hospital } = store.state.common
+  if (hospital && hospital.hosp_name) {
+    document.title = hospital.hosp_name
   }
 }
 
 export default function init(config) {
   setHtmlFontSize(config)
-  saveHardwareInfo(config)
+  setTitle(config)
   /* 屏蔽右键菜单 */
   document.addEventListener("contextmenu", function (e) { return false; })
   /* 禁止用户两指缩放 */
