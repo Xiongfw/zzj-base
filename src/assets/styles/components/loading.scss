@@ -2,7 +2,7 @@
 
 .bem-loading-mask {
   @include flex-box();
-  background: rgba(#000, 0.24);
+  background: rgba(#000, 0.5);
   img {
     width: 4rem;
   }

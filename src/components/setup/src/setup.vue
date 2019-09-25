@@ -94,11 +94,10 @@ export default {
         "hosp_code",
         "org_code",
         "authorize_redirect_uri",
-        "authorize_url",
         "serv_url",
         "gate_way"
       ],
-      winConfigKeys: ["win_name", "win_url", "win_code"],
+      winConfigKeys: ["win_url", "win_code"],
       /* 医院列表 */
       hospList: null,
       /* 自助机列表 */
