@@ -7,7 +7,7 @@
         <button @click="clearCache" class="bem-setup__btn bem-setup--shadow">重置机器</button>
         <button @click="openFile()" class="bem-setup__btn bem-setup--shadow">下载文件</button>
         <button @click="showApiUrl = true" class="bem-setup__btn bem-setup--shadow">网关地址</button>
-        <button v-if="nativeMethod" @click="nativeMethod.gotoAndroidSetting" class="bem-setup__btn bem-setup--shadow">回到安卓</button>
+        <button v-if="nativeMethod" @click="nativeMethod.gotoAndroidSetting()" class="bem-setup__btn bem-setup--shadow">回到安卓</button>
       </div>
       <div class="bem-setup__select-wrap">
         <select class="bem-setup__select bem-setup--shadow" v-model="orgId">

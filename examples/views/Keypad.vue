@@ -5,7 +5,7 @@
     <!-- <div style="height:4rem;width:4rem;">
       <bem-keypad-2 :setContent="inputVal" :showKeyPad="isShowOldKeypad" v-on:changeNum="changePwd"></bem-keypad-2>
     </div>-->
-    <bem-keypad :show.sync="isShowNewKeypad" v-model="username">
+    <bem-keypad :show.sync="isShowNewKeypad" :v-model="username">
       <div slot="header" style="text-align:center;">
         <input
           style="font-size:0.3rem;border:1px solid #82848a;padding:0.1rem 0.1rem;"
