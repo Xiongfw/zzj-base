@@ -67,7 +67,7 @@ import ApiUrl from "./api-url.vue";
 export default {
   name: "BemSetup",
   mounted() {
-    if (!this.storeHospital) {
+    if (!this.storeHospital || !localStore.authorization) {
       this.visible = true;
     }
   },
@@ -160,10 +160,8 @@ export default {
   methods: {
     /* 登录 */
     async login() {
-      console.log('login')
       let username, password;
       if (localStore.username) {
-        console.log('localStore.username')
         username = localStore.username;
         password = localStore.password;
       } else {
