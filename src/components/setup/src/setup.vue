@@ -125,8 +125,9 @@ export default {
         this.$store.commit("isFullscreen", false);
       }
     },
-    async orgId() {
-      this.winCodeList = await OrgConfigApi.getWinCodeList({ orgId: this.orgId });
+    async orgId(orgId) {
+      if (!orgId) return;
+      this.winCodeList = await OrgConfigApi.getWinCodeList({ orgId });
       if (this.storeWinConfigId && !this.hospInfo) {
         this.winConfigId = this.storeWinConfigId;
       } else if (Array.isArray(this.winCodeList) && this.winCodeList.length > 0) {
@@ -218,6 +219,7 @@ export default {
     close() {
       this.hospInfo = null;
       this.winConfigId = null;
+      this.orgId = null;
       this.visible = false;
     },
     /* 初始化校验 */
