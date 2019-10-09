@@ -8,7 +8,11 @@
 export default {
   name: "App",
   created() {
-    this.$router.replace("/");
+    if (!this.$hospital) {
+      this.$router.replace("/setup")
+    } else {
+      this.$router.replace("/");
+    }
   },
   methods: {
     handleAutoLeave() {

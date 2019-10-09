@@ -1,49 +1,27 @@
-import OrgConfigApi from './admin/OrgConfigApi'
-import ZWLApi from './admin/ZWLApi'
-import WHTApi from './admin/WHTApi'
+export { default as OrgConfigApi } from './admin/OrgConfigApi'
+export { default as ZWLApi } from './admin/ZWLApi'
+export { default as WHTApi } from './admin/WHTApi'
+export { default as AccountApi } from "./admin/AccountApi"
+export { default as UserApi } from "./admin/UserApi"
+export { default as OauthApi } from "./admin/OauthApi"
 
-import BillServiceApi from './fwc/BillServiceApi'
-import BookingServiceApi from './fwc/BookingServiceApi'
-import ClinicChargeServiceApi from './fwc/ClinicChargeServiceApi'
-import EvaluateServiceApi from './fwc/EvaluateServiceApi'
-import FwcServiceApi from './fwc/FwcServiceApi'
-import HospitalizationAppointment from './fwc/HospitalizationAppointment'
-import HospitalLeaveServiceApi from './fwc/HospitalLeaveServiceApi'
-import HospitalPrepaymentServiceApi from './fwc/HospitalPrepaymentServiceApi'
-import HospitalServiceApi from './fwc/HospitalServiceApi'
-import InhospitalServiceApi from './fwc/InhospitalServiceApi'
-import PatientCardService from './fwc/PatientCardService'
-import RegistServiceApi from './fwc/RegistServiceApi'
-import ReportServiceApi from './fwc/ReportServiceApi'
-import SchedulingServiceApi from './fwc/SchedulingServiceApi'
-import SeflQrCodeServiceApi from './fwc/SeflQrCodeServiceApi'
-import SurgeryServiceApi from './fwc/SurgeryServiceApi'
-import ZzjCustomServiceApi from './fwc/ZzjCustomServiceApi'
+export { default as BillServiceApi } from './fwc/BillServiceApi'
+export { default as BookingServiceApi } from './fwc/BookingServiceApi'
+export { default as ClinicChargeServiceApi } from './fwc/ClinicChargeServiceApi'
+export { default as EvaluateServiceApi } from './fwc/EvaluateServiceApi'
+export { default as FwcServiceApi } from './fwc/FwcServiceApi'
+export { default as HospitalizationAppointment } from './fwc/HospitalizationAppointment'
+export { default as HospitalLeaveServiceApi } from './fwc/HospitalLeaveServiceApi'
+export { default as HospitalPrepaymentServiceApi } from './fwc/HospitalPrepaymentServiceApi'
+export { default as HospitalServiceApi } from './fwc/HospitalServiceApi'
+export { default as InhospitalServiceApi } from './fwc/InhospitalServiceApi'
+export { default as PatientCardService } from './fwc/PatientCardService'
+export { default as RegistServiceApi } from './fwc/RegistServiceApi'
+export { default as ReportServiceApi } from './fwc/ReportServiceApi'
+export { default as SchedulingServiceApi } from './fwc/SchedulingServiceApi'
+export { default as SeflQrCodeServiceApi } from './fwc/SeflQrCodeServiceApi'
+export { default as SurgeryServiceApi } from './fwc/SurgeryServiceApi'
+export { default as ZzjCustomServiceApi } from './fwc/ZzjCustomServiceApi'
 
-import AuthorizeInfoServiceApi from './pay/AuthorizeInfoServiceApi'
-import PayTradeServiceApi from './pay/PayTradeServiceApi'
-
-export {
-  OrgConfigApi,
-  ZWLApi,
-  WHTApi,
-  BillServiceApi,
-  BookingServiceApi,
-  ClinicChargeServiceApi,
-  EvaluateServiceApi,
-  FwcServiceApi,
-  HospitalizationAppointment,
-  HospitalLeaveServiceApi,
-  HospitalPrepaymentServiceApi,
-  HospitalServiceApi,
-  InhospitalServiceApi,
-  PatientCardService,
-  RegistServiceApi,
-  ReportServiceApi,
-  SchedulingServiceApi,
-  SeflQrCodeServiceApi,
-  SurgeryServiceApi,
-  ZzjCustomServiceApi,
-  AuthorizeInfoServiceApi,
-  PayTradeServiceApi
-}
+export { default as AuthorizeInfoServiceApi } from './pay/AuthorizeInfoServiceApi'
+export { default as PayTradeServiceApi } from './pay/PayTradeServiceApi'

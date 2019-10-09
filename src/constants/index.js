@@ -26,6 +26,9 @@ ORG_CONFIG_URL = localStore.adminUrl = gateway + '/admin/api/'
 /* 开发环境的常量地址 */
 if (process.env.NODE_ENV == "development") {
   // ORG_CONFIG_URL = "http://192.168.0.119:8085/api/"
+  localStore.adminUrl = "http://192.168.0.119:8090/admin/api/"
+  localStore.payUrl = 'http://192.168.0.119:8090/pay/api/'
+  localStore.fwcUrl = 'http://192.168.0.119:8090/fwc/api/'
 }
 
 export default {

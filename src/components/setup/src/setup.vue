@@ -3,17 +3,17 @@
     <div @click="showSetup" class="bem-setup__trigger-btn"></div>
     <div class="bem-setup bem--fullscreen" v-if="visible">
       <div class="bem-setup__fun-wrap">
-        <button @click="showlog = !showlog" class="bem-setup__btn bem-setup--shadow">显示日志</button>
+        <button @click="isShowlog = !isShowlog" class="bem-setup__btn bem-setup--shadow">显示日志</button>
         <button @click="clearCache" class="bem-setup__btn bem-setup--shadow">重置机器</button>
         <button @click="openFile()" class="bem-setup__btn bem-setup--shadow">下载文件</button>
-        <button @click="showApiUrl = true" class="bem-setup__btn bem-setup--shadow">网关地址</button>
-        <button v-if="nativeMethod" @click="nativeMethod.gotoAndroidSetting()" class="bem-setup__btn bem-setup--shadow">回到安卓</button>
+        <button @click="isShowApiUrl = true" class="bem-setup__btn bem-setup--shadow">账号配置</button>
+        <button
+          @click="nativeMethod.gotoAndroidSetting()"
+          class="bem-setup__btn bem-setup--shadow"
+          v-if="nativeMethod"
+        >回到安卓</button>
       </div>
       <div class="bem-setup__select-wrap">
-        <select class="bem-setup__select bem-setup--shadow" v-model="orgId">
-          <option :value="0" v-show="orgId === 0">请选择医院</option>
-          <option :key="item.id" :value="item.id" v-for="item in hospList">{{item.hosp_name}}</option>
-        </select>
         <select class="bem-setup__select bem-setup--shadow" v-model="winConfigId">
           <option :value="0" v-show="winConfigId === 0">{{Array.isArray(winCodeList) ? '数据为空' : '请选择机器编号'}}</option>
           <option :key="item.id" :value="item.id" v-for="item in winCodeList">{{item.win_code}}</option>
@@ -38,20 +38,20 @@
         <pre @click="showExtDetail" v-show="isShowExtDetail">{{ hospInfo.ext_info && JSON.parse(hospInfo.ext_info) }}</pre>
       </ul>
     </div>
-    <bem-logcat :show.sync="showlog"></bem-logcat>
-    <api-url :show.sync="showApiUrl"></api-url>
-    <bem-popup :show.sync="showInput" closeOnClickMask width="auto">
+    <bem-logcat :show.sync="isShowlog"></bem-logcat>
+    <api-url :show.sync="isShowApiUrl"></api-url>
+    <bem-popup :show.sync="isShowInput" closeOnClickMask width="auto">
       <input
         class="bem-setup__pwd-input"
         placeholder="请输入维护密码"
         readonly
         ref="theInput"
         slot="title"
-        type="search"
+        type="password"
         v-model="inputVal"
       />
       <div class="bem-setup__pwd">
-        <bem-keypad-2 :setContent="inputVal" :showKeyPad="showInput" v-on:changeNum="changePwd"></bem-keypad-2>
+        <bem-keypad-2 :setContent="inputVal" :showKeyPad="isShowInput" v-on:changeNum="changePwd"></bem-keypad-2>
       </div>
     </bem-popup>
   </div>
@@ -59,6 +59,7 @@
 
 <script>
 import logcat from "@/components/logcat/index";
+import localStore from "@/store/local";
 import { OrgConfigApi, WHTApi } from "@/api/index.js";
 import showalert from "@/components/alert/index";
 import ApiUrl from "./api-url.vue";
@@ -76,35 +77,25 @@ export default {
   },
   data() {
     return {
+      // 机构ID
+      orgId: null,
       // 显示扩展信息详情
       isShowExtDetail: false,
       // 显示网关地址弹窗
-      showApiUrl: false,
+      isShowApiUrl: false,
       // 显示键盘
-      showInput: false,
+      isShowInput: false,
       // 输入的密码
       inputVal: "",
       // 显示日志
-      showlog: false,
+      isShowlog: false,
       // 医院信息
       hospInfo: null,
       /* 医院信息需要展示的字段 */
-      hospitalKeys: [
-        "hosp_name",
-        "app_id",
-        "hosp_code",
-        "org_code",
-        "authorize_redirect_uri",
-        "serv_url",
-        "gate_way"
-      ],
+      hospitalKeys: ["hosp_name", "app_id", "hosp_code", "org_code", "serv_url", "gate_way"],
       winConfigKeys: ["win_url", "win_code"],
-      /* 医院列表 */
-      hospList: null,
       /* 自助机列表 */
       winCodeList: null,
-      /* 机构ID */
-      orgId: 0,
       /* 自助机ID */
       winConfigId: 0,
       /* 下载文件url */
@@ -113,34 +104,35 @@ export default {
       count: 0,
       lastTime: null,
       // 显示日志
-      showlog: false
+      isShowlog: false
     };
   },
   watch: {
-    showInput(val) {
+    isShowInput(val) {
       val && (this.inputVal = "");
     },
     async visible() {
       if (this.visible) {
         this.$store.commit("isFullscreen", true);
         this.$isAutoLeave(false);
-        this.hospList = await OrgConfigApi.getOrgList();
-        this.storeOrgId && (this.orgId = this.storeOrgId);
+        if (localStore.authorization && localStore.orgId) {
+          this.orgId = localStore.orgId
+        } else {
+          this.login();
+        }
       } else {
         this.$isAutoLeave(true);
         this.$store.commit("isFullscreen", false);
       }
     },
-    async orgId(id) {
-      this.winCodeList = await OrgConfigApi.getWinCodeList({ orgId: id }, { loading: false });
+    async orgId() {
+      this.winCodeList = await OrgConfigApi.getWinCodeList({ orgId: this.orgId });
       if (this.storeWinConfigId && !this.hospInfo) {
         this.winConfigId = this.storeWinConfigId;
-      } else if (id != 0) {
-        if (Array.isArray(this.winCodeList) && this.winCodeList.length > 0) {
-          this.winConfigId = this.winCodeList[0].id;
-        } else {
-          this.winConfigId = 0;
-        }
+      } else if (Array.isArray(this.winCodeList) && this.winCodeList.length > 0) {
+        this.winConfigId = this.winCodeList[0].id;
+      } else {
+        this.winConfigId = 0;
       }
     },
     async winConfigId(id) {
@@ -154,13 +146,10 @@ export default {
   computed: {
     // 安卓原生方法
     nativeMethod() {
-      return window.nativeMethod
+      return window.nativeMethod;
     },
     storeHospital() {
       return this.$store.state.common.hospital;
-    },
-    storeOrgId() {
-      return this.$store.getters.getOrgId;
     },
     storeWinConfigId() {
       return this.$store.getters.getWinConfigId;
@@ -169,6 +158,34 @@ export default {
     screenHeight: () => window.screen.height
   },
   methods: {
+    /* 登录 */
+    async login() {
+      console.log('login')
+      let username, password;
+      if (localStore.username) {
+        console.log('localStore.username')
+        username = localStore.username;
+        password = localStore.password;
+      } else {
+        const { hostname } = window.location;
+        if (/(\d{1,3}\.){3}\d{1,3}/.test(hostname)) {
+          username = hostname;
+        } else {
+          this.isShowApiUrl = true;
+          return;
+        }
+        password = "80138013";
+        localStore.username = username;
+      }
+      try {
+        const resp = await this.$bem.api.OauthApi.login({ username, password });
+        localStore.authorization = resp.accessToken;
+        this.orgId = localStore.orgId = resp.orgId;
+      } catch (e) {
+        this.isShowApiUrl = true;
+      }
+    },
+    /* 展开扩展信息 */
     showExtDetail() {
       this.isShowExtDetail = !this.isShowExtDetail;
     },
@@ -179,7 +196,11 @@ export default {
         this.count++;
         if (this.count >= 5) {
           this.count = 0;
-          this.showInput = true;
+          if (process.env.NODE_ENV !== "development") {
+            this.isShowInput = true;
+          } else {
+            this.visible = true;
+          }
         }
       } else {
         this.count = 1;
@@ -189,10 +210,16 @@ export default {
     /* 初始化机器 */
     async init() {
       if (!this.initVerify()) return;
-      this.$store.commit("setHospital", this.hospInfo);
+      this.hospInfo && this.$store.commit("setHospital", this.hospInfo);
       const hardwareInfo = await WHTApi.getInfoByWinConfigId({ winConfigId: this.winConfigId });
-      this.$store.commit("setHardWare", hardwareInfo);
+      hardwareInfo && this.$store.commit("setHardWare", hardwareInfo);
       this.$emit("initSuccess", this.hospInfo);
+      this.close();
+    },
+    /* 关闭 */
+    close() {
+      this.hospInfo = null;
+      this.winConfigId = null;
       this.visible = false;
     },
     /* 初始化校验 */
@@ -210,8 +237,8 @@ export default {
       };
       const keys = Object.keys(items);
       if (keys.some(fn)) return false;
-      if (this.winConfigId == 0 || this.orgId == 0) {
-        showalert("请选择医院");
+      if (this.winConfigId === 0) {
+        showalert("请选择机器");
         return false;
       }
       return true;
@@ -230,7 +257,7 @@ export default {
       if (content == "close") {
         if (this.inputVal == this.$hospital.oper_pwd) {
           this.visible = true;
-          this.showInput = false;
+          this.isShowInput = false;
         } else {
           this.$bem.showalert("密码错误");
         }

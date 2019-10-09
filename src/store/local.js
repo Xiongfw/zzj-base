@@ -19,7 +19,11 @@ const store = {
   // 服务窗地址
   fwcUrl: null,
   // 管理后台地址
-  adminUrl: null
+  adminUrl: null,
+  username: null,
+  password: null,
+  // token
+  authorization: null
 }
 
 Object.keys(store).forEach(key => {
@@ -36,7 +40,10 @@ Object.keys(store).forEach(key => {
       }
     },
     set(value) {
-      if (_.isObject(value)) {
+      if (_.isNull(value) || _.isUndefined(value)) {
+        localStorage.removeItem(key)
+      }
+      else if (_.isObject(value)) {
         localStorage.setItem(key, JSON.stringify(value))
       } else {
         localStorage.setItem(key, value)

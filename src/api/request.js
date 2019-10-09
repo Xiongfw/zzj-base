@@ -2,7 +2,6 @@ import axios from 'axios'
 import loading from '../components/loading/index.js'
 import showalert from '../components/alert/index.js'
 import localStore from '../store/local.js'
-import crypto from "crypto"
 import * as logs from '../lib/logger/index.js'
 
 const instance = axios.create({
@@ -55,14 +54,10 @@ instance.interceptors.request.use(
   config => {
     const { options } = config
     options.loading !== false && isLoading(true)
+    if (localStore.authorization) {
+      config.headers['Authorization'] = 'Bearer ' + localStore.authorization
+    }
     if (localStore.hospital) {
-      let theData = localStore.orgId + localStore.hospital.hosp_code + localStore.hospital.oper_pwd
-      if (theData) {
-        let md5 = crypto.createHash("md5")
-        md5.update(theData)
-        let BermToken = md5.digest("hex")
-        config.headers['BermToken'] = BermToken
-      }
       config.headers['orgId'] = localStore.orgId
       config.headers['winConfigId'] = localStore.winConfigId
     }
