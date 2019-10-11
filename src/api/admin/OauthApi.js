@@ -1,7 +1,8 @@
 import axios from '../request'
 import { createHash } from 'crypto'
+import localStore from '@/store/local'
 
-const baseUrl = 'http://192.168.0.119:8090/admin/oauth/'
+const baseUrl = localStore.gateway + '/admin/oauth/'
 
 export default {
   /**

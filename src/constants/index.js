@@ -21,7 +21,7 @@ if (!localStore.gateway) {
   localStore.gateway = gateway
 }
 
-gateway = 'http://192.168.0.119:8090'
+// gateway = 'http://192.168.0.119:8090'
 
 Logs_URL = gateway + '/logs/api/'
 Unified_Payment_URL = localStore.payUrl = gateway + '/pay/api/'
