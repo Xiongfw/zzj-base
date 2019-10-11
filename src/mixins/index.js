@@ -22,6 +22,9 @@ export default {
     },
     $extInfo() {
       return this.$store.getters.getExtInfo
+    },
+    $winExtInfo() {
+      return this.$store.getters.getWinExtInfo
     }
   },
   methods: {

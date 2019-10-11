@@ -8,6 +8,8 @@ let Unified_Payment_URL
 let Service_Window_URL
 // 后台管理地址
 let ORG_CONFIG_URL
+// 日志接口地址
+let Logs_URL
 
 // 没有配置网关地址
 if (!localStore.gateway) {
@@ -21,6 +23,7 @@ if (!localStore.gateway) {
 
 gateway = 'http://192.168.0.119:8090'
 
+Logs_URL = gateway + '/logs/api/'
 Unified_Payment_URL = localStore.payUrl = gateway + '/pay/api/'
 Service_Window_URL = localStore.fwcUrl = gateway + '/fwc/api/'
 ORG_CONFIG_URL = localStore.adminUrl = gateway + '/admin/api/'
@@ -34,4 +37,5 @@ export default {
   Unified_Payment_URL,
   Service_Window_URL,
   ORG_CONFIG_URL,
+  Logs_URL
 }

@@ -36,6 +36,11 @@
           <span class="text ext-info">{{ hospInfo.ext_info }}</span>
         </li>
         <pre @click="showExtDetail" v-show="isShowExtDetail">{{ hospInfo.ext_info && JSON.parse(hospInfo.ext_info) }}</pre>
+        <li @click="showWinExtDetail">
+          <span class="label">win_ext_info:</span>
+          <span class="text ext-info">{{ hospInfo.winConfig.win_ext_info }}</span>
+        </li>
+        <pre @click="showWinExtDetail" v-show="isShowWinExtDetail">{{ hospInfo.winConfig.win_ext_info && JSON.parse(hospInfo.winConfig.win_ext_info) }}</pre>
       </ul>
     </div>
     <bem-logcat :show.sync="isShowlog"></bem-logcat>
@@ -81,6 +86,8 @@ export default {
       orgId: null,
       // 显示扩展信息详情
       isShowExtDetail: false,
+      // 显示扩展信息详情
+      isShowWinExtDetail: false,
       // 显示网关地址弹窗
       isShowApiUrl: false,
       // 显示键盘
@@ -188,6 +195,10 @@ export default {
     showExtDetail() {
       this.isShowExtDetail = !this.isShowExtDetail;
     },
+    /* 展开扩展信息 */
+    showWinExtDetail() {
+      this.isShowWinExtDetail = !this.isShowWinExtDetail;
+    },
     /* 显示维护界面 */
     async showSetup(e) {
       !this.lastTime && (this.lastTime = e.timeStamp);
@@ -210,7 +221,7 @@ export default {
     async init() {
       if (!this.initVerify()) return;
       this.hospInfo && this.$store.commit("setHospital", this.hospInfo);
-      const hardwareInfo = await WHTApi.getInfoByWinConfigId({ winConfigId: this.winConfigId });
+      const hardwareInfo = this.hospInfo.winHardwareType;
       hardwareInfo && this.$store.commit("setHardWare", hardwareInfo);
       this.$emit("initSuccess", this.hospInfo);
       this.close();

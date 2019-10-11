@@ -17,3 +17,15 @@ export function guid() {
     return v.toString(16)
   })
 }
+
+export function toArray(list) {
+  if (Array.isArray(list)) return list;
+  return list ? [list] : []
+}
+
+export function isEmpty(value) {
+  if (!value) return true;
+  if (Array.isArray(value) && value.length == 0) return true;
+  if (typeof object === 'object' && Object.keys(value).length == 0) return true;
+  return false;
+}

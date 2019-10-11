@@ -13,6 +13,14 @@ export default {
     return axios.post(baseUrl + 'FWC_IF_Withholding_Query', params, { options })
   },
   /**
+   * 99.21、扫码绑定卡号
+   * @param {Object} params 接口入参
+   * @param {Object} options 选项
+   */
+  IF_FWC_BindCardNoByQrCode(params, options = {}) {
+    return axios.post(baseUrl + 'IF_FWC_BindCardNoByQrCode', params, { options })
+  },
+  /**
    * 99.27、自助绑卡 FWC_IF_BindCard
    * @param {Object} params 接口入参
    * @param {Object} options 选项

@@ -76,6 +76,11 @@ export default {
       if (state.hospital && state.hospital.ext_info) {
         return JSON.parse(state.hospital.ext_info)
       }
+    },
+    getWinExtInfo(state) {
+      if (state.hospital && state.hospital.winConfig.win_ext_info) {
+        return JSON.parse(state.hospital.winConfig.win_ext_info)
+      }
     }
   }
 }
