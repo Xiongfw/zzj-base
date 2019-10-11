@@ -72,10 +72,8 @@ import ApiUrl from "./api-url.vue";
 export default {
   name: "BemSetup",
   mounted() {
-    if (!this.storeHospital) {
+    if (!this.storeHospital || !localStore.authorization) {
       this.visible = true;
-    } else if (!localStore.authorization) {
-      this.login()
     }
   },
   components: {
@@ -189,7 +187,6 @@ export default {
         const resp = await this.$bem.api.OauthApi.login({ username, password });
         localStore.authorization = resp.accessToken;
         this.orgId = localStore.orgId = resp.orgId;
-        this.init();
       } catch (e) {
         this.isShowApiUrl = true;
       }
