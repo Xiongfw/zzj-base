@@ -1,7 +1,7 @@
 import axios from '../request'
 import Constants from '@/constants/index'
 
-const baseUrl = Constants.Logs_URL
+const baseUrl = Constants.Logs_URL + 'zwl/'
 
 export default {
   /**
