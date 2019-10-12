@@ -7,6 +7,7 @@
           <span class="bem-popup__title">{{ title }}</span>
         </slot>
         <img
+          :style="closeStyle"
           @click="close"
           class="bem-popup__close"
           src="../../../assets/imgs/close_icon.png"
@@ -32,6 +33,14 @@ export default {
     return {};
   },
   computed: {
+    closeStyle() {
+      const style = {};
+      if (this.fullscreen) {
+        style.top = "0.1rem";
+        style.right = "0.1rem";
+      }
+      return style;
+    },
     headerStyle() {
       const style = {};
       if (this.$slots.title || this.title) {
@@ -45,7 +54,7 @@ export default {
       if (document.querySelector(globalConfig.el)) {
         style.position = "absolute";
       }
-      return style
+      return style;
     },
     mainStyle() {
       const style = {};
@@ -53,8 +62,12 @@ export default {
         style.position = "absolute";
       }
       style.marginTop = this.top;
-      style.width = this.fullscreen ? "100%" : this.width;
-      this.fullscreen && (style.height = "100%");
+      style.width = this.width;
+      if (this.fullscreen) {
+        style.height = "100%";
+        style.width = "100%";
+        style.borderRadius = "0";
+      }
       return style;
     }
   },
