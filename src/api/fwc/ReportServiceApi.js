@@ -1,7 +1,7 @@
 import axios from '../request'
 import Constants from '@/constants/index'
 
-const baseUrl = Constants.Service_Window_URL
+const baseUrl = Constants.service_window_url
 
 export default {
   /**

@@ -25,3 +25,5 @@ export { default as ZzjCustomServiceApi } from './fwc/ZzjCustomServiceApi'
 
 export { default as AuthorizeInfoServiceApi } from './pay/AuthorizeInfoServiceApi'
 export { default as PayTradeServiceApi } from './pay/PayTradeServiceApi'
+
+export { default as DevPrintApi } from './hardware/DevPrintApi'

@@ -1,7 +1,7 @@
 import axios from '../request'
 import Constants from '@/constants/index'
 
-const baseUrl = Constants.ORG_CONFIG_URL + 'account/'
+const baseUrl = Constants.org_config_url + 'account/'
 
 export default {
   /**

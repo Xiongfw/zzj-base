@@ -3,13 +3,20 @@ import localStore from "@/store/local.js";
 // 网关地址
 let gateway = localStore.gateway || "https://zzjapi.linkingcloud.cn"
 // 统一支付接口地址
-let Unified_Payment_URL
+let unified_payment_url
 // 服务窗接口地址
-let Service_Window_URL
+let service_window_url
 // 后台管理地址
-let ORG_CONFIG_URL
+let org_config_url
 // 日志接口地址
-let Logs_URL
+let logs_url
+/** 本地硬件地址 */
+let ext_device_url = "http://localhost:8099/api/"
+
+if (localStore.hospital && localStore.hospital.ext_info) {
+  const { devUrl } = JSON.parse(localStore.hospital.ext_info)
+  devUrl && (ext_device_url = `http://${devUrl}/api/`)
+}
 
 // 没有配置网关地址
 if (!localStore.gateway) {
@@ -23,19 +30,21 @@ if (!localStore.gateway) {
 
 // gateway = 'http://192.168.0.119:8090'
 
-Logs_URL = gateway + '/logs/api/'
-Unified_Payment_URL = localStore.payUrl = gateway + '/pay/api/'
-Service_Window_URL = localStore.fwcUrl = gateway + '/fwc/api/'
-ORG_CONFIG_URL = localStore.adminUrl = gateway + '/admin/api/'
+logs_url = gateway + '/logs/api/'
+unified_payment_url = localStore.payUrl = gateway + '/pay/api/'
+service_window_url = localStore.fwcUrl = gateway + '/fwc/api/'
+org_config_url = localStore.adminUrl = gateway + '/admin/api/'
 
 /* 开发环境的常量地址 */
 if (process.env.NODE_ENV == "development") {
-  // ORG_CONFIG_URL = "http://192.168.0.119:8085/api/"
+  // org_config_url = "http://192.168.0.119:8085/api/"
+  // ext_device_url = 'https://www.fastmock.site/mock/c4908aad6220f675ede43a9ee04ec7f4/api/'
 }
 
 export default {
-  Unified_Payment_URL,
-  Service_Window_URL,
-  ORG_CONFIG_URL,
-  Logs_URL
+  unified_payment_url,
+  service_window_url,
+  org_config_url,
+  logs_url,
+  ext_device_url
 }

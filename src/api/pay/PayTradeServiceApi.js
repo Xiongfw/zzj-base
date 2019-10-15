@@ -1,7 +1,7 @@
 import axios from '../request'
 import Constants from '@/constants/index'
 
-const baseUrl = Constants.Unified_Payment_URL
+const baseUrl = Constants.unified_payment_url
 
 export default {
   /**

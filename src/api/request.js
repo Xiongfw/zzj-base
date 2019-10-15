@@ -81,7 +81,8 @@ instance.interceptors.response.use(
     }
   }, error => {
     isLoading(false)
-    showalert(error.config ? '网络异常，请稍后再试' : error.message)
+    const { options } = error.config
+    options.alert !== false && showalert(error.config ? '网络异常，请稍后再试' : error.message)
     error.config && record('error', error)
     return Promise.reject(error)
   })
