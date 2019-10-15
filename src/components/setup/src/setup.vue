@@ -5,7 +5,7 @@
       <div class="bem-setup__fun-wrap">
         <button @click="isShowlog = !isShowlog" class="bem-setup__btn bem-setup--shadow">显示日志</button>
         <button @click="clearCache" class="bem-setup__btn bem-setup--shadow">重置机器</button>
-        <button @click="openFile()" class="bem-setup__btn bem-setup--shadow">下载文件</button>
+        <button @click="openFile()" class="bem-setup__btn bem-setup--shadow">下载驱动</button>
         <button @click="isShowApiUrl = true" class="bem-setup__btn bem-setup--shadow">账号配置</button>
         <button
           @click="nativeMethod.gotoAndroidSetting()"
@@ -106,7 +106,7 @@ export default {
       /* 自助机ID */
       winConfigId: 0,
       /* 下载文件url */
-      fileUri: "files/ROOT.zip",
+      fileUri: "files/zzjdev.jar",
       visible: false,
       count: 0,
       lastTime: null,
