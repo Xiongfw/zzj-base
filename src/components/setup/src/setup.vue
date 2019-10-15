@@ -7,6 +7,7 @@
         <button @click="clearCache" class="bem-setup__btn bem-setup--shadow">重置机器</button>
         <button @click="openFile()" class="bem-setup__btn bem-setup--shadow">下载驱动</button>
         <button @click="isShowApiUrl = true" class="bem-setup__btn bem-setup--shadow">账号配置</button>
+        <button @click="goTestPage" class="bem-setup__btn bem-setup--shadow">硬件测试</button>
         <button
           @click="nativeMethod.gotoAndroidSetting()"
           class="bem-setup__btn bem-setup--shadow"
@@ -123,7 +124,7 @@ export default {
         this.$store.commit("isFullscreen", true);
         this.$isAutoLeave(false);
         if (localStore.authorization && localStore.orgId) {
-          this.orgId = localStore.orgId
+          this.orgId = localStore.orgId;
         } else {
           this.login();
         }
@@ -258,6 +259,9 @@ export default {
     clearCache() {
       localStorage.clear();
       window.location.reload(true);
+    },
+    goTestPage() {
+      location.href = `/test/index.html`
     },
     //下载文件
     openFile() {
