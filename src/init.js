@@ -58,7 +58,7 @@ async function devInit() {
       CloseDeviceRes && error(`${devType}|关闭串口失败|${CloseDeviceRes}`)
       const OpenDeviceRes = await dev.OpenDevice({ iPort: config.port, iBaud: config.baud })
       OpenDeviceRes !== 0 && error(`${devType}|打开串口失败|${OpenDeviceRes}`)
-      const InitRes = await dev.Init({ iPort: config.port, iBaud: config.baud })
+      const InitRes = await dev.Init({ configInfo: config })
       InitRes !== 0 && error(`${devType}|初始化失败|${InitRes}`)
     } catch (e) {
       console.error(e)
