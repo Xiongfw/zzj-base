@@ -16,7 +16,7 @@ export default {
   },
   /* 初始化打印机 */
   Init(params, options = {}) {
-    return axios.get(baseUrl + 'Init', { params, options: { ...defaultOptions, ...options } })
+    return axios.post(baseUrl + 'Init', params, { options: { ...defaultOptions, ...options } })
   },
   /* 打印字符串 */
   PrintString(params, options = {}) {
