@@ -23,17 +23,10 @@
     </div>
     <div style="background: #2C8DF0; padding: 0.3rem 0.1rem;border-radius:0.1rem;">
       <bem-button @click="handleClick" type="transparent" round>transparent</bem-button>
-      <bem-button @click="handleClick" type="transparent" round>success</bem-button>
-      <bem-button @click="handleClick" type="transparent" round>info</bem-button>
-      <bem-button @click="handleClick" type="transparent" round>warning</bem-button>
-      <bem-button @click="handleClick" type="transparent" round>danger</bem-button>
+      <bem-button @click="handleClick" type="white" round>白色</bem-button>
     </div>
     <div>
       <bem-button @click="handleClick" plain round>背景透明</bem-button>
-      <bem-button @click="handleClick" plain round>success</bem-button>
-      <bem-button @click="handleClick" plain round>info</bem-button>
-      <bem-button @click="handleClick" plain round>warning</bem-button>
-      <bem-button @click="handleClick" plain round>danger</bem-button>
     </div>
     <div>
       <bem-button @click="handleClick" size="large">大按钮</bem-button>

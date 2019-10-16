@@ -58,6 +58,7 @@ export default {
     },
     mainStyle() {
       const style = {};
+      this.minWidth && (style.minWidth = this.minWidth);
       if (document.querySelector(globalConfig.el)) {
         style.position = "absolute";
       }
@@ -85,6 +86,11 @@ export default {
     width: {
       type: String,
       default: "50%"
+    },
+    // 弹窗宽度
+    minWidth: {
+      type: String,
+      default: ""
     },
     // 弹窗距离顶部距离
     top: {

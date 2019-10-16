@@ -25,7 +25,7 @@ export default {
   props: {
     // 按钮大小 large / small
     size: String,
-    // 按钮类型  success / warning / danger / info / transparent
+    // 按钮类型  success / warning / danger / info / transparent / white
     type: String,
     nativeType: {
       type: String,
