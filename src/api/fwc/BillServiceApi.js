@@ -8,8 +8,6 @@ export default {
    * 4.2 更新订单状态（院方） IF_Update_Trade_Status
    * 接口说明：
    * 先调服务窗4.2更新订单状态（院方） IF_Update_Trade_Status 再调贝尔曼统一支付平台更新订单状态（我方） PAY_Update_Trade_Status更新我方订单状态接口
-   * @param {Object} params 接口入参
-   * @param {Object} options 选项
    */
   IF_Update_Trade_Status(params, options = {}) {
     return axios.post(baseUrl + 'IF_Update_Trade_Status', params, { options })

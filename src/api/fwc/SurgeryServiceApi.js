@@ -5,7 +5,7 @@ const baseUrl = Constants.service_window_url
 
 export default {
   /**
-   * 41.1、获取手术相关信息 IF_Surgery_Detail
+   * 41.1、获取手术相关信息
    * @param {Object} params 接口入参
    * @param {Object} options 选项
    */
