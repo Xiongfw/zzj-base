@@ -146,10 +146,15 @@ export default {
     },
     async winConfigId(id) {
       if (!id) return;
-      this.hospInfo = await OrgConfigApi.getOrgWinconfigDetail({
-        orgId: this.orgId,
-        winConfigId: this.winConfigId
-      });
+      try {
+        this.hospInfo = await OrgConfigApi.getOrgWinconfigDetail({
+          orgId: this.orgId,
+          winConfigId: this.winConfigId
+        });
+        a >= 1
+      } catch (e) {
+        console.log(e);
+      }
     }
   },
   computed: {
@@ -261,7 +266,7 @@ export default {
       window.location.reload(true);
     },
     goTestPage() {
-      location.href = `/test/index.html`
+      location.href = `/test/index.html`;
     },
     //下载文件
     openFile() {

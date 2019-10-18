@@ -6,7 +6,7 @@ import * as logs from '../lib/logger/index.js'
 
 const instance = axios.create({
   // 请求超时时间（60s）
-  timeout: 1000 * 60
+  timeout: 1000 * 15
 })
 
 /** 是否显示加载动画 */
@@ -81,9 +81,11 @@ instance.interceptors.response.use(
     }
   }, error => {
     isLoading(false)
-    const { options } = error.config
-    options.alert !== false && showalert(error.config ? '网络异常，请稍后再试' : error.message)
-    error.config && record('error', error)
+    if (error.request) {
+      const { options } = error.config
+      options.alert !== false && showalert('网络异常，请稍后再试')
+      record('error', error)
+    }
     return Promise.reject(error)
   })
 
