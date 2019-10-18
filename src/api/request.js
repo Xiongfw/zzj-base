@@ -81,6 +81,7 @@ instance.interceptors.response.use(
     }
   }, error => {
     isLoading(false)
+    // error里面有request属性就是网络错误
     if (error.request) {
       const { options } = error.config
       options.alert !== false && showalert('网络异常，请稍后再试')
