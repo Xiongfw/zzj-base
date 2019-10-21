@@ -1,4 +1,5 @@
 import { info, warn, error } from '@/lib/logger/index.js'
+import { buildOpenUserID, isEmpty, toArray } from "@/utils/index.js"
 
 export default {
   computed: {
@@ -25,9 +26,18 @@ export default {
     },
     $winExtInfo() {
       return this.$store.getters.getWinExtInfo
+    },
+    $openUserID() {
+      return buildOpenUserID()
     }
   },
   methods: {
+    $isEmpty(value) {
+      return isEmpty(value)
+    },
+    $toArray(list) {
+      return toArray(list)
+    },
     $isAutoLeave(status) {
       this.$store.dispatch('isAutoLeave', status)
     },

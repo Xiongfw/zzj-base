@@ -1,3 +1,5 @@
+import localStore from "../store/local.js"
+
 export * from './idCard.js'
 export { default as masking } from '@/filters/masking.js'
 
@@ -16,6 +18,15 @@ export function guid() {
     var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8)
     return v.toString(16)
   })
+}
+
+export function buildOpenUserID() {
+  if (localStore.hospital) {
+    let openCode = localStore.hospital.hosp_code + '_' + localStore.hospital.org_code + '_' + localStore.hospital.winConfig.win_code
+    if (openCode) {
+      return openCode
+    }
+  }
 }
 
 export function toArray(list) {
