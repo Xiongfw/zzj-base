@@ -77,7 +77,9 @@ instance.interceptors.response.use(
     } else {
       options.alert !== false && showalert(res.data.msg)
       record('warn', res)
-      return Promise.reject(new Error(res.data.msg || '接口异常->' + JSON.stringify(res.data)))
+      const error = new Error(res.data.msg || '接口异常->' + JSON.stringify(res.data))
+      error.failure = true
+      return Promise.reject(error)
     }
   }, error => {
     isLoading(false)
