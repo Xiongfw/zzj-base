@@ -31,8 +31,23 @@ export default {
     $isAutoLeave(status) {
       this.$store.dispatch('isAutoLeave', status)
     },
-    $info: data => info(data),
-    $warn: data => warn(data),
-    $error: data => error(data)
+    $info(data) {
+      if (this.$options.name) {
+        data = `[${this.$options.name}]${data}`
+      }
+      info(data)
+    },
+    $warn(data) {
+      if (this.$options.name) {
+        data = `[${this.$options.name}]${data}`
+      }
+      warn(data)
+    },
+    $error(data) {
+      if (this.$options.name) {
+        data = `[${this.$options.name}]${data}`
+      }
+      error(data)
+    },
   }
 }
