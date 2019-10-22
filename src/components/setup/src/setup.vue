@@ -188,6 +188,7 @@ export default {
         const resp = await this.$bem.api.OauthApi.login({ username, password });
         localStore.authorization = resp.accessToken;
         this.orgId = localStore.orgId = resp.orgId;
+        localStore.winConfigId = null;
       } catch (e) {
         this.isShowApiUrl = true;
       }
