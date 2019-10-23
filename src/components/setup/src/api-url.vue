@@ -4,15 +4,15 @@
       <ul>
         <li>
           <p class="label">网关地址</p>
-          <input type="search" v-model="gateway" />
+          <input @keyup.enter="save" type="search" v-model="gateway" />
         </li>
         <li>
           <p class="label">账号</p>
-          <input type="search" v-model="username" />
+          <input @keyup.enter="save" type="search" v-model="username" />
         </li>
         <li>
           <p class="label">密码</p>
-          <input type="password" v-model="password" />
+          <input @keyup.enter="save" type="password" v-model="password" />
         </li>
       </ul>
       <div slot="footer">
