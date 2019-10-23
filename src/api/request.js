@@ -54,6 +54,11 @@ instance.interceptors.request.use(
   config => {
     const { options } = config
     options.loading !== false && isLoading(true)
+    if (options.yibao && localStore.hospital) {
+      const extInfo = JSON.parse(localStore.hospital.ext_info || "{}")
+      config.headers['YYID'] = extInfo.yyid || ""
+      config.headers['SBID'] = localStore.hospital.winConfig.win_code
+    }
     if (localStore.authorization) {
       config.headers['Authorization'] = 'Bearer ' + localStore.authorization
     }
