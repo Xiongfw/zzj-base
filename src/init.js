@@ -1,4 +1,7 @@
 import DevPrintApi from './api/hardware/DevPrintApi.js';
+import DevIDCardApi from './api/hardware/DevIDCardApi';
+import DevCardApi from './api/hardware/DevCardApi';
+import DevCashApi from './api/hardware/DevCashApi';
 import { error } from './lib/logger/index.js';
 
 var hospital = null;
@@ -39,11 +42,11 @@ async function devInit() {
   const winExtInfo = JSON.parse(hospital.winConfig.win_ext_info)
   const devs = {
     'printDev': DevPrintApi,
-    'readCardDev': null,
-    'idCardDev': null,
+    'readCardDev': DevCardApi,
+    'idCardDev': DevIDCardApi,
+    'cashDev': DevCashApi,
     'issueCardDev': null,
-    'umsDev': null,
-    'cashDev': null
+    'umsDev': null
   }
   const devKeys = Object.keys(devs)
   for (let key of devKeys) {
