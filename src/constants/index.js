@@ -11,7 +11,7 @@ let org_config_url
 // 日志接口地址
 let logs_url
 /** 本地硬件地址 */
-let ext_device_url = "http://localhost:8099/api/"
+let ext_device_url = "http://localhost:8010/api/"
 
 if (localStore.hospital && localStore.hospital.ext_info) {
   const { devUrl } = JSON.parse(localStore.hospital.ext_info)
