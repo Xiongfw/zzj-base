@@ -19,16 +19,16 @@ export default Object.assign({}, DevBaseApi, {
     return axios({ method: 'get', url: this.baseUrl + 'GetCardBoxStatus', params, options: { ...defaultOptions, ...options } });
   },
   /* 回收卡 */
-  CollectCard(data, options = {}) {
-    return axios({ method: 'post', url: this.baseUrl + 'CollectCard', data, options: { ...defaultOptions, ...options } });
+  CollectCard(params, options = {}) {
+    return axios({ method: 'get', url: this.baseUrl + 'CollectCard', params, options: { ...defaultOptions, ...options } });
   },
   /* 发卡到指定读卡位置 */
-  DispenseCard(data, options = {}) {
-    return axios({ method: 'post', url: this.baseUrl + 'DispenseCard', data, options: { ...defaultOptions, ...options } });
+  DispenseCard(params, options = {}) {
+    return axios({ method: 'get', url: this.baseUrl + 'DispenseCard', params, options: { ...defaultOptions, ...options } });
   },
   /* 读磁卡信息，就诊卡、社保卡 */
-  ReadCardInfo(data, options = {}) {
-    return axios({ method: 'post', url: this.baseUrl + 'ReadCardInfo', data, options: { ...defaultOptions, ...options } });
+  ReadCardInfo(params, options = {}) {
+    return axios({ method: 'get', url: this.baseUrl + 'ReadCardInfo', params, options: { ...defaultOptions, ...options } });
   },
   /* 发卡到门口 */
   IssueCard(params, options = {}) {
