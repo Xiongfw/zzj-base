@@ -1,6 +1,7 @@
 import DevPrintApi from './api/hardware/DevPrintApi.js';
 import DevIDCardApi from './api/hardware/DevIDCardApi';
-import DevCardApi from './api/hardware/DevCardApi';
+import DevReadCardApi from './api/hardware/DevReadCardApi';
+import DevIssueCardApi from './api/hardware/DevIssueCardApi';
 import DevCashApi from './api/hardware/DevCashApi';
 import { error } from './lib/logger/index.js';
 
@@ -42,16 +43,16 @@ async function devInit() {
   const winExtInfo = JSON.parse(hospital.winConfig.win_ext_info)
   const devs = {
     'printDev': DevPrintApi,
-    'readCardDev': DevCardApi,
+    'readCardDev': DevReadCardApi,
+    'issueCardDev': DevIssueCardApi,
     'idCardDev': DevIDCardApi,
     'cashDev': DevCashApi,
-    'issueCardDev': null,
     'umsDev': null
   }
   const devKeys = Object.keys(devs)
   for (let key of devKeys) {
     const config = winExtInfo[key]
-    if (config) {
+    if (config && devs[key]) {
       await init(devs[key], config, key)
     }
   }
@@ -59,7 +60,7 @@ async function devInit() {
     try {
       const CloseDeviceRes = await dev.CloseDevice()
       CloseDeviceRes && error(`${devType}|关闭串口失败|${CloseDeviceRes}`)
-      const OpenDeviceRes = await dev.OpenDevice({ iPort: config.port, iBaud: config.baud })
+      const OpenDeviceRes = await dev.OpenDevice(config)
       OpenDeviceRes !== 0 && error(`${devType}|打开串口失败|${OpenDeviceRes}`)
       const InitRes = await dev.Init(config)
       InitRes !== 0 && error(`${devType}|初始化失败|${InitRes}`)

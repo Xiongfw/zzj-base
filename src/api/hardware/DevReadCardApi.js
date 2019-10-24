@@ -46,16 +46,4 @@ export default Object.assign({}, DevBaseApi, {
   PowerOff(data, options = {}) {
     return axios({ method: 'post', url: this.baseUrl + 'PowerOff', data, options: { ...defaultOptions, ...options } });
   },
-  /* 回收卡 */
-  CollectCard(data, options = {}) {
-    return axios({ method: 'post', url: this.baseUrl + 'CollectCard', data, options: { ...defaultOptions, ...options } });
-  },
-  /* 发卡到指定读卡位置 */
-  DispenseCard(data, options = {}) {
-    return axios({ method: 'post', url: this.baseUrl + 'DispenseCard', data, options: { ...defaultOptions, ...options } });
-  },
-  /* 发卡到门口 */
-  IssueCard(params, options = {}) {
-    return axios({ method: 'get', url: this.baseUrl + 'IssueCard', params, options: { ...defaultOptions, ...options } });
-  },
 })

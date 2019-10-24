@@ -27,7 +27,8 @@ export { default as AuthorizeInfoServiceApi } from './pay/AuthorizeInfoServiceAp
 export { default as PayTradeServiceApi } from './pay/PayTradeServiceApi'
 
 export { default as DevPrintApi } from './hardware/DevPrintApi'
-export { default as DevCardApi } from './hardware/DevCardApi'
+export { default as DevReadCardApi } from './hardware/DevReadCardApi'
+export { default as DevIssueCardApi } from './hardware/DevIssueCardApi'
 export { default as DevIDCardApi } from './hardware/DevIDCardApi'
 export { default as DevYibaoApi } from './hardware/DevYibaoApi'
 export { default as DevUMSApi } from './hardware/DevUMSApi'
