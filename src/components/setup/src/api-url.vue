@@ -16,7 +16,7 @@
         </li>
       </ul>
       <div slot="footer">
-        <bem-button @click="save">确定</bem-button>
+        <bem-button @click="save">登录</bem-button>
         <bem-button @click="reset" type="info">重置</bem-button>
       </div>
     </bem-popup>

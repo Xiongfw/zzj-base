@@ -15,8 +15,8 @@ export default Object.assign({}, DevBaseApi, {
     return axios({ method: 'post', url: this.baseUrl + 'SetDeviceParam', data, options: { ...defaultOptions, ...options } });
   },
   /* 获取卡箱状态 */
-  GetCardBoxStatus(data, options = {}) {
-    return axios({ method: 'post', url: this.baseUrl + 'GetCardBoxStatus', data, options: { ...defaultOptions, ...options } });
+  GetCardBoxStatus(params, options = {}) {
+    return axios({ method: 'get', url: this.baseUrl + 'GetCardBoxStatus', params, options: { ...defaultOptions, ...options } });
   },
   /* 回收卡 */
   CollectCard(data, options = {}) {
