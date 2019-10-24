@@ -5,7 +5,7 @@ import DevBaseApi from './DevBaseApi'
 const defaultOptions = { log: false, loading: false, alert: false }
 
 export default Object.assign({}, DevBaseApi, {
-  baseUrl: Constants.ext_device_url + 'card/',
+  baseUrl: Constants.ext_device_url + 'readcard/',
   /* 设置设备类型 */
   SetDeviceType(data, options = {}) {
     return axios({ method: 'post', url: this.baseUrl + 'SetDeviceType', data, options: { ...defaultOptions, ...options } });
