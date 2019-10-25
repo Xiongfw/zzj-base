@@ -3,11 +3,12 @@
     <div @click="showSetup" class="bem-setup__trigger-btn"></div>
     <div class="bem-setup bem--fullscreen" v-if="visible">
       <div class="bem-setup__fun-wrap">
+        <button @click="refresh" class="bem-setup__btn bem-setup--shadow">刷新</button>
+        <button @click="isShowApiUrl = true" class="bem-setup__btn bem-setup--shadow">账号配置</button>
         <button @click="isShowlog = !isShowlog" class="bem-setup__btn bem-setup--shadow">显示日志</button>
         <button @click="clearCache" class="bem-setup__btn bem-setup--shadow">重置机器</button>
         <button @click="downloadFile('zzjdev.jar')" class="bem-setup__btn bem-setup--shadow">下载驱动</button>
         <button @click="downloadFile('file.zip')" class="bem-setup__btn bem-setup--shadow">下载文件</button>
-        <button @click="isShowApiUrl = true" class="bem-setup__btn bem-setup--shadow">账号配置</button>
         <button @click="goTestPage" class="bem-setup__btn bem-setup--shadow">硬件测试</button>
         <button
           @click="nativeMethod.gotoAndroidSetting()"
@@ -20,8 +21,8 @@
           <option :value="0" v-show="winConfigId === 0">{{Array.isArray(winCodeList) ? '数据为空' : '请选择机器编号'}}</option>
           <option :key="item.id" :value="item.id" v-for="item in winCodeList">{{item.win_code}}</option>
         </select>
+        <button @click="init" class="bem-setup__init-btn bem-setup__btn bem-setup--shadow">初始化机器</button>
       </div>
-      <button @click="init" class="bem-setup__init-btn bem-setup__btn bem-setup--shadow">初始化机器</button>
       <div class="bem-setup__hr">分辨率{{screenWidth}}x{{screenHeight}}</div>
       <h6 class="bem-setup__text--not-init" v-if="!hospInfo">暂无信息，请先初始化机器</h6>
       <ul class="bem-setup__info-wrap" v-else>
@@ -70,6 +71,7 @@ import localStore from "@/store/local";
 import { OrgConfigApi, WHTApi } from "@/api/index.js";
 import showalert from "@/components/alert/index";
 import ApiUrl from "./api-url.vue";
+import { refresh } from "@/utils/index.js";
 
 export default {
   name: "BemSetup",
@@ -253,6 +255,9 @@ export default {
         return false;
       }
       return true;
+    },
+    refresh() {
+      refresh();
     },
     //清除缓存
     clearCache() {

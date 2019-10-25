@@ -34,7 +34,7 @@ export default {
     // 上传多少小时内的日志, 默认48小时内
     time: {
       type: String,
-      default: '48'
+      default: "48"
     }
   },
   methods: {
@@ -67,10 +67,15 @@ export default {
         step: this.interval * 1000,
         callback: () => {
           // 后台日志等级不为none&&当前没有日志在上传&&日志不为空 则上传日志
-          if (this.$hospital.log_level == 'none' || !this.lock) return;
-          getAllByTime(res => {
-            Array.isArray(res) && res.length > 0 && this.uploadLogs(res)
-          }, this.time, "h");
+          if (!this.$hospital && !this.$hospital.log_level) return;
+          if (this.$hospital.log_level == "none" || !this.lock) return;
+          getAllByTime(
+            res => {
+              Array.isArray(res) && res.length > 0 && this.uploadLogs(res);
+            },
+            this.time,
+            "h"
+          );
         }
       });
     },

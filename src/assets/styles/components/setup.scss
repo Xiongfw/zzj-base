@@ -62,9 +62,11 @@
       justify-content: flex-start;
     }
     #{&}__select-wrap {
-      margin-bottom: 0.3rem;
+      display: flex;
+      align-items: center;
     }
     #{&}__hr {
+      margin-top: 0.1rem;;
       font-size: $--font-size-base;
       display: flex;
       align-items: center;
@@ -95,6 +97,7 @@
     #{&}__init-btn {
       padding: 0.2rem 0.3rem;
       margin: 0;
+      margin-left: 0.3rem;
       background: #009688;
       flex-basis: auto;
       align-self: flex-start;
@@ -107,7 +110,6 @@
     }
     #{&}__select {
       background: #fff;
-      margin: 0.1rem 0;
       outline: none;
       border: 0;
       padding: 0.1rem;
