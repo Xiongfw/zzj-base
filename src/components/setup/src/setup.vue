@@ -6,7 +6,7 @@
         <button @click="isShowlog = !isShowlog" class="bem-setup__btn bem-setup--shadow">显示日志</button>
         <button @click="clearCache" class="bem-setup__btn bem-setup--shadow">重置机器</button>
         <button @click="downloadFile('zzjdev.jar')" class="bem-setup__btn bem-setup--shadow">下载驱动</button>
-        <button @click="downloadFile('file.zip')" class="bem-setup__btn bem-setup--shadow">下载压缩包</button>
+        <button @click="downloadFile('file.zip')" class="bem-setup__btn bem-setup--shadow">下载文件</button>
         <button @click="isShowApiUrl = true" class="bem-setup__btn bem-setup--shadow">账号配置</button>
         <button @click="goTestPage" class="bem-setup__btn bem-setup--shadow">硬件测试</button>
         <button

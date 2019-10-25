@@ -54,10 +54,12 @@ instance.interceptors.request.use(
   config => {
     const { options } = config
     options.loading !== false && isLoading(true)
-    if (options.yibao && localStore.hospital) {
+    if (options.hardware && localStore.hospital) {
       const extInfo = JSON.parse(localStore.hospital.ext_info || "{}")
       config.headers['YYID'] = extInfo.yyid || ""
-      config.headers['SBID'] = localStore.hospital.winConfig.win_code
+      config.headers['SBID'] = localStore.hospital.winConfig.win_code || ""
+      config.headers['LogLevel'] = localStore.hospital.log_level || ""
+      config.headers['Gateway'] = localStore.gateway || ""
     }
     if (localStore.authorization) {
       config.headers['Authorization'] = 'Bearer ' + localStore.authorization
