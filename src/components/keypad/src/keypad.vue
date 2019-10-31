@@ -35,9 +35,6 @@ export default {
       this.inputType = this.type;
     },
     show() {
-      if (this.show) {
-        this.content = "";
-      }
       this.visible = this.show;
     },
     content() {
@@ -48,7 +45,7 @@ export default {
     value: String,
     top: {
       type: String,
-      default: "1.2rem"
+      default: "0"
     },
     left: {
       type: String,
@@ -77,7 +74,7 @@ export default {
         width: this.width,
         top: this.top,
         left: this.left
-      }
+      };
     },
     mainStyle() {
       return {
