@@ -2,11 +2,7 @@
 @import "../mixins/index.scss";
 
 .bem-keypad {
-  position: fixed;
-  margin: 0 auto;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  position: absolute;
   padding: 0.15rem 0.06rem;
   background: #f6f6f6;
   border-radius: 0.1rem;

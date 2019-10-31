@@ -1,9 +1,9 @@
 <template>
-  <div :style="{width}" class="bem-keypad" v-if="visible">
+  <div :style="keypadStyle" class="bem-keypad" v-if="visible">
     <div class="keypad__header" v-if="$slots.header">
       <slot name="header"></slot>
     </div>
-    <div :style="keypadStyle" class="keypad__main">
+    <div :style="mainStyle" class="keypad__main">
       <keep-alive>
         <component :is="inputType" @confirm="confirm" @exit="exit" @switchType="switchType" v-model="content"></component>
       </keep-alive>
@@ -46,6 +46,14 @@ export default {
   },
   props: {
     value: String,
+    top: {
+      type: String,
+      default: "1.2rem"
+    },
+    left: {
+      type: String,
+      default: "-0.05rem"
+    },
     type: {
       type: String,
       default: "number"
@@ -56,7 +64,7 @@ export default {
     },
     width: {
       type: String,
-      default: "70%"
+      default: "100%"
     },
     height: {
       type: String,
@@ -65,6 +73,13 @@ export default {
   },
   computed: {
     keypadStyle() {
+      return {
+        width: this.width,
+        top: this.top,
+        left: this.left
+      }
+    },
+    mainStyle() {
       return {
         height: this.height
       };
