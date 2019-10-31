@@ -67,7 +67,7 @@ export default {
         step: this.interval * 1000,
         callback: () => {
           // 后台日志等级不为none&&当前没有日志在上传&&日志不为空 则上传日志
-          if (!this.$hospital && !this.$hospital.log_level) return;
+          if (!this.$hospital || !this.$hospital.log_level) return;
           if (this.$hospital.log_level == "none" || !this.lock) return;
           getAllByTime(
             res => {
