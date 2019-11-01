@@ -78,8 +78,8 @@ instance.interceptors.request.use(
 /* 响应拦截 */
 instance.interceptors.response.use(
   res => {
-    options.loading !== false && isLoading(false)
     const { options } = res.config
+    options.loading !== false && isLoading(false)
     if (res.data.code === 0) {
       record('info', res)
       return Promise.resolve(res.data.data)
@@ -91,10 +91,10 @@ instance.interceptors.response.use(
       return Promise.reject(error)
     }
   }, error => {
-    options.loading !== false && isLoading(false)
     // error里面有request属性就是网络错误
     if (error.request) {
       const { options } = error.config
+      options.loading !== false && isLoading(false)
       options.alert !== false && showalert(`接口${getApiName(error.config.url)}响应超时，请稍后再试`)
       record('error', error)
     }
