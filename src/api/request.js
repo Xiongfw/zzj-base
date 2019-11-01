@@ -5,9 +5,11 @@ import localStore from '../store/local.js'
 import * as logs from '../lib/logger/index.js'
 
 const instance = axios.create({
-  // 请求超时时间（60s）
-  timeout: 1000 * 15
+  // 请求超时时间（20s）
+  timeout: 1000 * 20
 })
+
+const getApiName = url => url.substring(url.lastIndexOf('/') + 1)
 
 /** 是否显示加载动画 */
 function isLoading(status) {
@@ -42,7 +44,7 @@ function record(level, res) {
   outInfo[level]()
   logs[level]({
     type: 'api',
-    desc: isError() ? res.message : url.substring(url.lastIndexOf('/') + 1),
+    desc: isError() ? res.message : getApiName(url),
     url: url,
     in_param: Object.assign({}, config.params, JSON.parse(config.data || '{}')),
     out_param: res.data
@@ -76,7 +78,7 @@ instance.interceptors.request.use(
 /* 响应拦截 */
 instance.interceptors.response.use(
   res => {
-    isLoading(false)
+    options.loading !== false && isLoading(false)
     const { options } = res.config
     if (res.data.code === 0) {
       record('info', res)
@@ -89,11 +91,11 @@ instance.interceptors.response.use(
       return Promise.reject(error)
     }
   }, error => {
-    isLoading(false)
+    options.loading !== false && isLoading(false)
     // error里面有request属性就是网络错误
     if (error.request) {
       const { options } = error.config
-      options.alert !== false && showalert('网络异常，请稍后再试')
+      options.alert !== false && showalert(`接口${getApiName(error.config.url)}响应超时，请稍后再试`)
       record('error', error)
     }
     return Promise.reject(error)

@@ -14,7 +14,7 @@ export default {
    * 9.2、获取住院总费用详细
    */
   IF_Get_Inhospital_Total_Cost_Detail(params, options = {}) {
-    return axios.get(baseUrl + 'IF_Get_Inhospital_Total_Cost_Detail', { params, options })
+    return axios.get(baseUrl + 'IF_Get_Inhospital_Total_Cost_Detail', { params, options: { log: false, ...options } })
   },
   /**
    * 9.5、获取住院患者列表
