@@ -7,20 +7,20 @@ export default {
   /**
    * 23.1、获取挂号资源
    */
-  IF_Get_Regist_Resource(params, options = {}) {
-    return axios.get(baseUrl + 'IF_Get_Regist_Resource', { params, options: { log: false, ...options } })
+  IF_Get_Regist_Resource(data, options = {}) {
+    return axios({ method: 'post', url: 'IF_Get_Regist_Resource', data, options: { log: false, ...options } });
   },
   /**
    * 23.1、获取挂号资源
    */
-  IF_Get_Regist_Resource_DataSource(params, options = {}) {
-    return axios.get(baseUrl + 'IF_Get_Regist_Resource_DataSource', { params, options: { log: false, ...options } })
+  IF_Get_Regist_Resource_DataSource(data, options = {}) {
+    return axios({ method: 'post', url: 'IF_Get_Regist_Resource_DataSource', data, options: { log: false, ...options } });
   },
   /**
    * 23.3、获取医生挂号号源
    */
-  IF_Get_Regist_Doc_Resource(params, options = {}) {
-    return axios.get(baseUrl + 'IF_Get_Regist_Doc_Resource', { params, options: { log: false, ...options } })
+  IF_Get_Regist_Doc_Resource(data, options = {}) {
+    return axios({ method: 'post', url: 'IF_Get_Regist_Doc_Resource', data, options: { log: false, ...options } });
   },
   /**
    * 23.6、确认挂号
