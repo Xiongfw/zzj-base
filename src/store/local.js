@@ -9,6 +9,7 @@ const store = {
   version: null,
   // 机构ID
   orgId: null,
+  deptId: null,
   // 机器ID
   winConfigId: null,
   winCode: null,

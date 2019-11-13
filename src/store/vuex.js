@@ -25,6 +25,7 @@ export default {
       localStore.orgId = state.hospital.id
       localStore.winConfigId = state.hospital.winConfig.winConfigInfo.win_config_id
       localStore.winCode = state.hospital.winConfig.win_code
+      localStore.deptId = state.hospital.winConfig.dept_id
     },
     setHardWare(state, v) {
       state.hardware = v
@@ -70,6 +71,11 @@ export default {
     getWinCode(state) {
       if (state.hospital) {
         return state.hospital.winConfig.win_code
+      }
+    },
+    getDeptId(state) {
+      if (state.hospital) {
+        return state.hospital.winConfig.dept_id
       }
     },
     getExtInfo(state) {

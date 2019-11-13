@@ -18,6 +18,9 @@ export default {
     $winConfigId() {
       return this.$store.getters.getWinConfigId
     },
+    $deptId() {
+      return this.$store.getters.getDeptId
+    },
     $winCode() {
       return this.$store.getters.getWinCode
     },

@@ -67,8 +67,9 @@ instance.interceptors.request.use(
       config.headers['Authorization'] = 'Bearer ' + localStore.authorization
     }
     if (localStore.hospital) {
-      config.headers['orgId'] = localStore.orgId
-      config.headers['winConfigId'] = localStore.winConfigId
+      config.headers['orgId'] = localStore.orgId || ""
+      config.headers['winConfigId'] = localStore.winConfigId || ""
+      config.headers['deptId'] = localStore.dept_id || ""
     }
     return config
   }, error => {
