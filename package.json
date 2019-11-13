@@ -1,6 +1,6 @@
 {
   "name": "zzj-base",
-  "version": "1.0.64",
+  "version": "1.0.65",
   "description": "自助机组件库",
   "author": "jxberm",
   "private": true,
@@ -54,7 +54,7 @@
     "rollup-plugin-img": "^1.1.0",
     "rollup-plugin-json": "^4.0.0",
     "rollup-plugin-node-resolve": "^5.2.0",
-    "rollup-plugin-vue": "^5.0.1",
+    "rollup-plugin-vue": "5.0.1",
     "sass-loader": "^7.1.0",
     "semver": "^5.3.0",
     "shelljs": "^0.7.6",
