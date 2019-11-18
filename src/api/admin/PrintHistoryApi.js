@@ -7,8 +7,8 @@ export default {
     /**
      * 查询打印历史
      */
-    list(params, options = {}) {
-        return axios({ method: 'get', url: baseUrl + 'list', params, options });
+    list(data, options = {}) {
+        return axios({ method: 'post', url: baseUrl + 'list', data, options });
     },
     /**
      * 添加打印历史
