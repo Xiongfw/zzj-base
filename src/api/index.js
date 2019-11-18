@@ -4,6 +4,7 @@ export { default as WHTApi } from './admin/WHTApi'
 export { default as AccountApi } from "./admin/AccountApi"
 export { default as UserApi } from "./admin/UserApi"
 export { default as OauthApi } from "./admin/OauthApi"
+export { default as PrintHistoryApi } from "./admin/PrintHistoryApi"
 
 export { default as BillServiceApi } from './fwc/BillServiceApi'
 export { default as BookingServiceApi } from './fwc/BookingServiceApi'
