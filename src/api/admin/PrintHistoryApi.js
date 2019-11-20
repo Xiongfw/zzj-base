@@ -7,14 +7,14 @@ export default {
     /**
      * 查询打印历史
      */
-    list(data, options = {}) {
-        return axios({ method: 'get', url: baseUrl + 'list', data, options });
+    list(params, options = {}) {
+        return axios({ method: 'get', url: baseUrl + 'list', params, options });
     },
     /**
      * 添加打印历史
      */
-    add(params, options = {}) {
-        return axios({ method: 'post', url: baseUrl + 'add', params, options });
+    add(data, options = {}) {
+        return axios({ method: 'post', url: baseUrl + 'add', data, options });
     },
     /**
      * 删除打印历史
