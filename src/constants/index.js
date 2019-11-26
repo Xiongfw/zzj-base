@@ -19,7 +19,11 @@ if (localStore.hospital) {
   const extInfo = JSON.parse(localStore.hospital.ext_info || "{}")
   const winExtInfo = JSON.parse(localStore.hospital.winConfig.win_ext_info || "{}")
   extInfo.devUrl && (ext_device_url = `http://${extInfo.devUrl}/api/`)
-  winExtInfo.yibaoUrl && (yibao_url = `http://${winExtInfo.yibaoUrl}/api/`)
+  if (winExtInfo.yibaoUrl) {
+    yibao_url = `http://${winExtInfo.yibaoUrl}/api/`
+  } else {
+    yibao_url = ext_device_url
+  }
 }
 
 // 没有配置网关地址

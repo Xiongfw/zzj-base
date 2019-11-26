@@ -225,8 +225,9 @@ export default {
       this.hospInfo && this.$store.commit("setHospital", this.hospInfo);
       const hardwareInfo = this.hospInfo.winHardwareType;
       hardwareInfo && this.$store.commit("setHardWare", hardwareInfo);
-      this.$emit("initSuccess", this.hospInfo);
-      this.close();
+      this.refresh();
+      // this.$emit("initSuccess", this.hospInfo);
+      // this.close();
     },
     /* 关闭 */
     close() {
