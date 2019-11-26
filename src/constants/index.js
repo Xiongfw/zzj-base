@@ -10,12 +10,16 @@ let service_window_url
 let org_config_url
 // 日志接口地址
 let logs_url
-/** 本地硬件地址 */
+// 本地硬件地址
 let ext_device_url = "http://localhost:8010/api/"
+// 医保地址
+let yibao_url = ext_device_url
 
-if (localStore.hospital && localStore.hospital.ext_info) {
-  const { devUrl } = JSON.parse(localStore.hospital.ext_info)
-  devUrl && (ext_device_url = `http://${devUrl}/api/`)
+if (localStore.hospital) {
+  const extInfo = localStore.hospital.ext_info || {}
+  const winExtInfo = localStore.hospital.winConfig.win_ext_info || {}
+  extInfo.devUrl && (ext_device_url = `http://${extInfo.devUrl}/api/`)
+  winExtInfo.yibaoUrl && (ext_device_url = `http://${winExtInfo.yibaoUrl}/api/`)
 }
 
 // 没有配置网关地址
@@ -34,6 +38,8 @@ logs_url = gateway + '/logs/api/'
 unified_payment_url = localStore.payUrl = gateway + '/pay/api/'
 service_window_url = localStore.fwcUrl = gateway + '/fwc/api/'
 org_config_url = localStore.adminUrl = gateway + '/admin/api/'
+localStore.devUrl = ext_device_url
+localStore.yibaoUrl = yibao_url
 
 /* 开发环境的常量地址 */
 if (process.env.NODE_ENV == "development") {
@@ -46,5 +52,6 @@ export default {
   service_window_url,
   org_config_url,
   logs_url,
-  ext_device_url
+  ext_device_url,
+  yibao_url
 }

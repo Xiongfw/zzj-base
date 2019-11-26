@@ -19,6 +19,10 @@ const store = {
   payUrl: null,
   // 服务窗地址
   fwcUrl: null,
+  // 硬件服务地址
+  devUrl: null,
+  // 医保服务地址
+  yibaoUrl: null,
   // 管理后台地址
   adminUrl: null,
   username: null,
