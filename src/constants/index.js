@@ -16,10 +16,10 @@ let ext_device_url = "http://localhost:8010/api/"
 let yibao_url = ext_device_url
 
 if (localStore.hospital) {
-  const extInfo = localStore.hospital.ext_info || {}
-  const winExtInfo = localStore.hospital.winConfig.win_ext_info || {}
+  const extInfo = JSON.parse(localStore.hospital.ext_info || "{}")
+  const winExtInfo = JSON.parse(localStore.hospital.winConfig.win_ext_info || "{}")
   extInfo.devUrl && (ext_device_url = `http://${extInfo.devUrl}/api/`)
-  winExtInfo.yibaoUrl && (ext_device_url = `http://${winExtInfo.yibaoUrl}/api/`)
+  winExtInfo.yibaoUrl && (yibao_url = `http://${winExtInfo.yibaoUrl}/api/`)
 }
 
 // 没有配置网关地址
