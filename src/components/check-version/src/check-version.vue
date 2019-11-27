@@ -43,9 +43,11 @@ export default {
         orgId: this.$orgId,
         winConfigId: this.$winConfigId
       });
-      if (version.startsWith("uploadLogs") && version.includes(this.$winCode)) {
+      if (version.startsWith("uploadLogs")) {
         /* uploadLogs|face_zzj|48|h 单独上传face_zzj48小时内日志*/
-        this.uploadLogsByWinCode(version);
+        if (version.includes(this.$winCode)) {
+          this.uploadLogsByWinCode(version);
+        }
       } else if (isString(version) && version.startsWith("stop")) {
         /* stop|15分钟 系统维护中 请等待15分钟 */
         version.includes("|") && (this.tip = "请等待" + version.split("|")[1]);
@@ -91,9 +93,14 @@ export default {
       let timeValue = splitRes[2] || "48";
       let timeUnit = splitRes[3] || "h";
       getAllByTime(uploadLogs, timeValue, timeUnit);
-      async function uploadLogs(res) {
-        await ZWLApi.receiveLogs({ zzjWebLogsList: res }, { alert: false });
-        logRemove(res);
+      async function uploadLogs(logs) {
+        if (logs.length == 0) return;
+        logs.forEach(log => {
+          log.in_param = log.in_param ? JSON.stringify(log.in_param) : "";
+          log.out_param = log.out_param ? JSON.stringify(log.out_param) : "";
+        });
+        await ZWLApi.receiveLogs({ zzjWebLogsList: logs }, { alert: false });
+        logRemove(logs);
       }
     }
   }
