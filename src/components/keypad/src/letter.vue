@@ -32,7 +32,7 @@ export default {
   mixins: [mixin],
   data() {
     return {
-      capsLock: false
+      capsLock: true
     };
   },
   computed: {
