@@ -48,6 +48,7 @@ export default {
       }
       state.isAutoLeave = v
       globalConfig.autoLeavelEl.dispatchEvent(new Event("touchstart"))
+      globalConfig.autoLeavelEl.click()
     }
   },
   actions: {
