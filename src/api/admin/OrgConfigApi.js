@@ -8,8 +8,8 @@ export default {
    * @param {Object} params 接口入参
    * @param {Object} options 选项
    */
-  getVersionById(params, options = {}) {
-    return axios({ method: 'get', url: baseUrl + 'getVersionById', params, options: { loading: false, log: false, alert: false, ...options } });
+  getHeartbeatPacket(params, options = {}) {
+    return axios({ method: 'get', url: baseUrl + 'getHeartbeatPacket', params, options: { loading: false, log: false, alert: false, ...options } });
   },
   /**
    * @param {Object} params 接口入参

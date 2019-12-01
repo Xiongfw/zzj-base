@@ -39,10 +39,12 @@ export default {
   methods: {
     /** 获取版本更新 */
     async getVersion() {
-      const version = await OrgConfigApi.getVersionById({
+      const resp = await OrgConfigApi.getHeartbeatPacket({
         orgId: this.$orgId,
         winConfigId: this.$winConfigId
       });
+      this.$store.commit("setHeartbeatPacket", resp);
+      const { version } = resp
       if (version.startsWith("uploadLogs")) {
         /* uploadLogs|face_zzj|48|h 单独上传face_zzj48小时内日志*/
         if (version.includes(this.$winCode)) {

@@ -32,6 +32,9 @@ export default {
     },
     $openUserID() {
       return buildOpenUserID()
+    },
+    $heartbeatPacket() {
+      return this.$store.getters.getHeartbeatPacket 
     }
   },
   methods: {

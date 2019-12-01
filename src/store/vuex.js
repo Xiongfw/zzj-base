@@ -16,6 +16,8 @@ export default {
     nowTimeout: 0,
     // 当前医院
     hospital: localStore.hospital || null,
+    // 心跳包数据
+    heartbeatPacket: { dateTime: new Date() }
   },
   mutations: {
     setHospital(state, v) {
@@ -33,6 +35,9 @@ export default {
     },
     setNowTimeout(state, v) {
       _.isUndefined(v) ? state.nowTimeout-- : state.nowTimeout = v
+    },
+    setHeartbeatPacket(state, v) {
+      state.heartbeatPacket = v
     },
     isFullscreen(state, v) {
       state.isFullscreen = v
@@ -58,6 +63,9 @@ export default {
     }
   },
   getters: {
+    getHeartbeatPacket(state) {
+      return state.heartbeatPacket
+    },
     getOrgId(state) {
       if (state.hospital) {
         return state.hospital.id
