@@ -97,6 +97,7 @@ instance.interceptors.response.use(
       const { options } = error.config
       options.loading !== false && isLoading(false)
       options.alert !== false && showalert(`接口${getApiName(error.config.url)}响应超时，请稍后再试`)
+      error.network = true
       record('error', error)
     }
     return Promise.reject(error)
