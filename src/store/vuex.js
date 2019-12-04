@@ -42,7 +42,7 @@ export default {
         state.nowTimeout = state.hospital.exit_timeout
       }
       state.isAutoLeave = v
-      globalConfig.autoLeavelEl.click()
+      globalConfig.autoLeavelEl.dispatchEvent(new Event("touchstart"))
     }
   },
   actions: {
