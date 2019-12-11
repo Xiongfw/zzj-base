@@ -56,9 +56,9 @@ export default {
       this.username = localStore.username;
     },
     save() {
-      if (this.gateway.endsWith("/")) {
-        this.gateway = this.gateway.slice(0, -1);
-      }
+      // if (this.gateway.endsWith("/")) {
+      //   this.gateway = this.gateway.slice(0, -1);
+      // }
       localStore.gateway = this.gateway;
       localStore.username = this.username;
       localStore.password = this.password;
