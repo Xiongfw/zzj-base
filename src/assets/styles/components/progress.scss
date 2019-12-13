@@ -2,6 +2,7 @@
 @import "../mixins/index.scss";
 
 .bem-progress {
+  display: inline-block;
   .bem-progress-circle {
     position: relative;
   }
