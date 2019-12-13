@@ -11,6 +11,7 @@ import Button from '../views/Button'
 import Popup from '../views/Popup'
 import Keypad from '../views/Keypad'
 import Audio from '../views/Audio'
+import Progress from '../views/Progress'
 
 Vue.use(VueRouter)
 
@@ -26,6 +27,7 @@ const router = new VueRouter({
     { path: '/popup', component: Popup },
     { path: '/keypad', component: Keypad },
     { path: '/audio', component: Audio },
+    { path: '/progress', component: Progress },
   ]
 })
 

@@ -1,0 +1,17 @@
+@import "../var.scss";
+@import "../mixins/index.scss";
+
+.bem-progress {
+  .bem-progress-circle {
+    position: relative;
+  }
+  .el-progress__text {
+    width: 100%;
+    position: absolute;
+    margin: 0;
+    text-align: center;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+  }
+}

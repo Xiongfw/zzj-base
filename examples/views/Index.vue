@@ -11,6 +11,7 @@
       <router-link to="/keypad">键盘</router-link>
       <router-link to="/uploadLogs">轮询上传日志</router-link>
       <router-link to="/audio">音频</router-link>
+      <router-link to="/progress">进度条</router-link>
     </div>
   </div>
 </template>
