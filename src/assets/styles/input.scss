@@ -1,6 +1,11 @@
 /* 全局输入样式*/
 @import "./var.scss";
 
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100%   { transform: rotate(360deg); }
+}
+
 // 全屏
 .bem--fullscreen {
   width: 100%;
@@ -15,4 +20,13 @@
 // 圆角
 .is-round {
   border-radius: $--border-radius-large;
+}
+
+.loading {
+  width: 0.5rem;
+  height: 0.5rem;
+  border: 0.05rem solid $--color-primary;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  animation: 1s spin linear infinite;
 }
