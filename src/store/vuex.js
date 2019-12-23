@@ -12,6 +12,8 @@ export default {
     isAutoLeave: true,
     // 是否全屏
     isFullscreen: false,
+    // 局部倒计时
+    localExitTime: null,
     // 当前倒计时时间
     nowTimeout: 0,
     // 当前医院
@@ -28,6 +30,13 @@ export default {
       localStore.winConfigId = state.hospital.winConfig.winConfigInfo.win_config_id
       localStore.winCode = state.hospital.winConfig.win_code
       localStore.deptId = state.hospital.winConfig.dept_id
+    },
+    setLocalExitTime(state, v) {
+      state.localExitTime = v;
+    },
+    /* 重置全局倒计时 */
+    resetExitTime(state, v) {
+      state.localExitTime = null
     },
     setHardWare(state, v) {
       state.hardware = v
