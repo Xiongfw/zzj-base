@@ -6,11 +6,9 @@ import _ from 'lodash'
 var store, timeoutId;
 var endCallback, beforeCountDown;
 var setNowTimeout = null;
-var setLocalExitTime = null;
 
 function autoleave() {
   // 是否为局部的倒计时
-  const isLocal = !!store.state.common.localExitTime
   const exit_timeout = store.state.common.localExitTime || localStore.hospital.exit_timeout || 180
   setNowTimeout(exit_timeout)
   CountDown.ticker({
@@ -18,11 +16,7 @@ function autoleave() {
     step: 1000,
     stopCount: exit_timeout,
     callback: () => {
-      if (isLocal) {
-        setLocalExitTime(store.state.common.localExitTime - 1)
-      } else {
-        setNowTimeout(store.state.common.nowTimeout - 1)
-      }
+      setNowTimeout(store.state.common.nowTimeout - 1)
     },
     endCallback() {
       _.isFunction(endCallback) && endCallback()
@@ -61,7 +55,6 @@ export default {
       }
       store = globalConfig.store
       setNowTimeout = p => store.commit('setNowTimeout', p);
-      setLocalExitTime = p => store.commit('setLocalExitTime', p);
       el.addEventListener('touchstart', handleClick);
       el.addEventListener('click', handleClick);
     }
