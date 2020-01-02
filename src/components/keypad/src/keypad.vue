@@ -35,6 +35,7 @@ export default {
       this.inputType = this.type;
     },
     show() {
+      this.content = this.value;
       this.visible = this.show;
     },
     content() {
