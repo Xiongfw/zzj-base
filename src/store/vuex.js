@@ -6,8 +6,6 @@ const autoLeaveQueue = []
 
 export default {
   state: {
-    // 加载动画文字
-    loadingText: null,
     // 硬件信息
     hardware: localStore.hardware || null,
     // 是否自动退出
@@ -35,9 +33,6 @@ export default {
     },
     setLocalExitTime(state, v) {
       state.localExitTime = v;
-    },
-    setLoadingText(state, v) {
-      state.loadingText = v;
     },
     /* 重置全局倒计时 */
     resetExitTime(state, v) {

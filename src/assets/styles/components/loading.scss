@@ -1,34 +1,9 @@
 @import "../mixins/index.scss";
 
 .bem-loading-mask {
-  @include flex-box(column);
+  @include flex-box();
   background: rgba(#000, 0.5);
   img {
-    width: 1.3rem;
+    width: 4rem;
   }
-  .bem-loading__text {
-    color: #fff;
-    font-size: 0.38rem;
-    margin-top: 0.1rem;
-    letter-spacing: 0.02rem;
-  }
-  .bem-loading__dot {
-    display: inline-block; 
-    height: 1em;
-    line-height: 1;
-    text-align: left;
-    vertical-align: -0.2em;
-    overflow: hidden;
-    &::after {
-      content: '...\A..\A.';
-      display: block;
-      white-space: pre-wrap;
-      animation: dot 1.2s infinite step-start both;
-    }
-  }
-}
-
-@keyframes dot {
-  33% { transform: translateY(-2em); }
-  66% { transform: translateY(-1em); }
 }
