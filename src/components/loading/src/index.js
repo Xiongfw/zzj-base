@@ -6,6 +6,7 @@ const LoadingConstructor = Vue.extend(loadingVue)
 let vm = null
 
 LoadingConstructor.prototype.close = function () {
+  globalConfig.store.commit("setLoadingText", null)
   this.visible = false
 }
 
@@ -16,6 +17,7 @@ LoadingConstructor.prototype.show = function () {
   } else {
     vm.$el.style.position = "absolute"
   }
+  this.loadingText = globalConfig.store.state.common.loadingText || "加载中";
   this.visible = true
 }
 

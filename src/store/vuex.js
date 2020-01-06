@@ -6,6 +6,8 @@ const autoLeaveQueue = []
 
 export default {
   state: {
+    // 加载动画文字
+    loadingText: null,
     // 硬件信息
     hardware: localStore.hardware || null,
     // 是否自动退出
@@ -33,6 +35,9 @@ export default {
     },
     setLocalExitTime(state, v) {
       state.localExitTime = v;
+    },
+    setLoadingText(state, v) {
+      state.loadingText = v;
     },
     /* 重置全局倒计时 */
     resetExitTime(state, v) {
@@ -76,26 +81,31 @@ export default {
     getHeartbeatPacket(state) {
       return state.heartbeatPacket
     },
+    /* 医院ID */
     getOrgId(state) {
       if (state.hospital) {
         return state.hospital.id
       }
     },
+    /* 机器ID */
     getWinConfigId(state) {
       if (state.hospital) {
         return state.hospital.winConfig.winConfigInfo.win_config_id
       }
     },
+    /* 机器编号 */
     getWinCode(state) {
       if (state.hospital) {
         return state.hospital.winConfig.win_code
       }
     },
+    /* 部门ID */
     getDeptId(state) {
       if (state.hospital) {
         return state.hospital.winConfig.dept_id
       }
     },
+    /* 医院扩展信息 */
     getExtInfo(state) {
       if (state.hospital && state.hospital.ext_info) {
         return JSON.parse(state.hospital.ext_info)
@@ -103,6 +113,7 @@ export default {
         return {}
       }
     },
+    /* 机器扩展信息 */
     getWinExtInfo(state) {
       if (state.hospital && state.hospital.winConfig.win_ext_info) {
         return JSON.parse(state.hospital.winConfig.win_ext_info)
