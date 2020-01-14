@@ -87,7 +87,7 @@ instance.interceptors.response.use(
     } else {
       options.alert !== false && showalert(res.data.msg)
       record('warn', res)
-      const error = new Error(res.data.msg || '接口异常->' + JSON.stringify(res.data))
+      const error = new Error(res.data.msg || '接口调用失败，错误信息为空')
       error.failure = true
       return Promise.reject(error)
     }
