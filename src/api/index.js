@@ -27,6 +27,7 @@ export { default as PricePublicityServiceApi } from './fwc/PricePublicityService
 
 export { default as AuthorizeInfoServiceApi } from './pay/AuthorizeInfoServiceApi'
 export { default as PayTradeServiceApi } from './pay/PayTradeServiceApi'
+export { default as PaymentApi } from './pay/PaymentApi'
 
 export { default as DevPrintApi } from './hardware/DevPrintApi'
 export { default as DevReadCardApi } from './hardware/DevReadCardApi'
