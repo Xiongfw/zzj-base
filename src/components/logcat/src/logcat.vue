@@ -131,7 +131,7 @@ export default {
         log.in_param = log.in_param ? JSON.stringify(log.in_param) : "";
         log.out_param = log.out_param ? JSON.stringify(log.out_param) : "";
       });
-      await ZWLApi.receiveLogs({ zzjWebLogsList: logs });
+      await ZWLApi.receiveLogs({ zzjWebLogsList: logs }, { loading: true });
       await logger.remove(logs);
       this.refresh();
     },
