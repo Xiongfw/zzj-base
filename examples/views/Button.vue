@@ -1,6 +1,11 @@
 <template>
   <div>
     <div>
+      <bem-button @click="handleClick" stereo>默认按钮</bem-button>
+      <bem-button @click="handleClick" stereo type="warning">warning</bem-button>
+      <bem-button @click="handleClick" stereo type="info">info</bem-button>
+    </div>
+    <div>
       <bem-button @click="handleClick">默认按钮</bem-button>
       <bem-button @click="handleClick" type="success">success</bem-button>
       <bem-button @click="handleClick" type="info">info</bem-button>

@@ -4,6 +4,7 @@
       size ? `bem-button--${size}` : '',
       type ? `bem-button--${type}` : '',
       {
+        'is-stereo' : stereo,
         'is-disabled' : disabled,
         'is-round': round,
         'is-plain': plain,
@@ -32,6 +33,8 @@ export default {
       default: "button"
     },
     plain: Boolean,
+    // 立体按钮
+    stereo: Boolean,
     // 圆角按钮
     round: Boolean,
     // 背景透明
