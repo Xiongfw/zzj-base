@@ -13,11 +13,6 @@
     background: transparent;
     border-color: $border-color;
   }
-  &.is-disabled {
-    background: #e0e0e0;
-    color: #ffffff;
-    border: 0;
-  }
   &.is-stereo {
     background: #18AC91;
     color: #fff;
@@ -36,6 +31,11 @@
       background: #fff;
       color: #27393B;
     }
+  }
+  &.is-disabled {
+    background: #e0e0e0;
+    color: #ffffff;
+    border: 0;
   }
 }
 
