@@ -54,7 +54,7 @@ function record(level, res) {
 /* 请求拦截 */
 instance.interceptors.request.use(
   config => {
-    const { options } = config
+    const { options = {} } = config
     options.loading !== false && isLoading(true)
     if (options.hardware && localStore.hospital) {
       const extInfo = JSON.parse(localStore.hospital.ext_info || "{}")
@@ -79,7 +79,7 @@ instance.interceptors.request.use(
 /* 响应拦截 */
 instance.interceptors.response.use(
   res => {
-    const { options } = res.config
+    const { options = {} } = res.config
     options.loading !== false && isLoading(false)
     if (res.data.code === 0) {
       record('info', res)
@@ -94,7 +94,7 @@ instance.interceptors.response.use(
   }, error => {
     // error里面有request属性就是网络错误
     if (error.request) {
-      const { options } = error.config
+      const { options = {} } = error.config
       options.loading !== false && isLoading(false)
       options.alert !== false && showalert(`接口${getApiName(error.config.url)}响应超时，请稍后再试`)
       error.network = true
