@@ -6,8 +6,7 @@ export { default as UserApi } from "./admin/UserApi"
 export { default as OauthApi } from "./admin/OauthApi"
 export { default as PrintHistoryApi } from "./admin/PrintHistoryApi"
 export { default as CloudApi } from "./admin/CloudApi"
-export { default as SpeciApi } from "./admin/SpeciApi"
-export { default as DoctorApi } from "./admin/DoctorApi"
+export { default as LinkingcloudApi } from "./admin/LinkingcloudApi"
 
 export { default as BillServiceApi } from './fwc/BillServiceApi'
 export { default as BookingServiceApi } from './fwc/BookingServiceApi'
