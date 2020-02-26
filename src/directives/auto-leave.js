@@ -55,8 +55,11 @@ export default {
       }
       store = globalConfig.store
       setNowTimeout = p => store.commit('setNowTimeout', p);
-      el.addEventListener('touchstart', handleClick);
-      el.addEventListener('click', handleClick);
+      if ('ontouchstart' in window.document.body) {
+        el.addEventListener('touchstart', handleClick);
+      } else {
+        el.addEventListener('click', handleClick);
+      }
     }
   }
 }
