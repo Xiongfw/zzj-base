@@ -15,7 +15,7 @@ export default {
   /**
    * 4.3、账单(所有)
    */
-  IF_Get_Bill_List(data, options = {}) {
-    return axios({ method: 'post', url: baseUrl + 'IF_Get_Bill_List', data, options });
+  IF_Get_Bill_List(params, options = {}) {
+    return axios({ method: 'get', url: baseUrl + 'IF_Get_Bill_List', params, options });
   }
 }
