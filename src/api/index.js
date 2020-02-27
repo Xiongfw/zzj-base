@@ -26,6 +26,7 @@ export { default as SeflQrCodeServiceApi } from './fwc/SeflQrCodeServiceApi'
 export { default as SurgeryServiceApi } from './fwc/SurgeryServiceApi'
 export { default as ZzjCustomServiceApi } from './fwc/ZzjCustomServiceApi'
 export { default as PricePublicityServiceApi } from './fwc/PricePublicityServiceApi'
+export { default as MedicalCardApi } from './fwc/MedicalCardApi'
 
 export { default as AuthorizeInfoServiceApi } from './pay/AuthorizeInfoServiceApi'
 export { default as PayTradeServiceApi } from './pay/PayTradeServiceApi'
