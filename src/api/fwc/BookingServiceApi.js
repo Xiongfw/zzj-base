@@ -51,11 +51,11 @@ export default {
   /**
    * 22.7、取消预约
    */
-  IF_Cancel_Booking(data, options = {}) {
+  IF_Cancel_Booking(params, options = {}) {
     return axios({
       method: "get",
       url: baseUrl + "IF_Cancel_Booking",
-      data,
+      params,
       options
     });
   },
