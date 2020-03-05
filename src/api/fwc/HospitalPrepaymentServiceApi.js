@@ -33,5 +33,11 @@ export default {
    */
   IF_Get_Inhospital_Patient_List(params, options = {}) {
     return axios({ method: 'get', url: baseUrl + 'IF_Get_Inhospital_Patient_List', params, options })
+  },
+  /**
+   * 9.28、获取入院登记字段（自助机专用）
+   */
+  IF_Get_InhospitalCost_Field(params, options = {}) {
+    return axios({ method: 'get', url: baseUrl + 'IF_Get_InhospitalCost_Field', params, options })
   }
 }
