@@ -89,6 +89,7 @@ export default {
      * 获取字典
      */
     async fetchFwcHospConfig({ commit }) {
+      commit("setFwcHospConfig", {})
       try {
         const resp = await HospitalServiceApi.IF_Get_Inhospital_ConfigList(
           {},
@@ -112,6 +113,7 @@ export default {
      * 获取字典
      */
     async fetchTipDicts({ commit }) {
+      commit("setTipDicts", {})
       try {
         const resp = await HospitalServiceApi.IF_FWC_Tip_Dictionary(
           {},
