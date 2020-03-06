@@ -9,6 +9,12 @@ export default {
     $hospital() {
       return this.$store.state.common.hospital
     },
+    $tipDicts() {
+      return this.$store.state.common.tipDicts
+    },
+    $fwcHospConfig() {
+      return this.$store.state.common.fwcHospConfig
+    },
     $hardware() {
       return this.$store.state.common.hardware
     },

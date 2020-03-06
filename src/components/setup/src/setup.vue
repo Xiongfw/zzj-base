@@ -223,6 +223,8 @@ export default {
     async init() {
       if (!this.initVerify()) return;
       this.hospInfo && this.$store.commit("setHospital", this.hospInfo);
+      await this.$store.dispatch("fetchFwcHospConfig");
+      await this.$store.dispatch("fetchTipDicts");
       const hardwareInfo = this.hospInfo.winHardwareType;
       hardwareInfo && this.$store.commit("setHardWare", hardwareInfo);
       this.refresh();
