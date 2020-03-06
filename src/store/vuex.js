@@ -99,7 +99,7 @@ export default {
           const configObj = HospitalConfigList.reduce((prev, item) => {
             return {
               ...prev,
-              [item.TipCode]: item.CommonContent
+              [item.ConfigCode]: item.ExtInfo
             }
           }, {})
           commit("setFwcHospConfig", configObj)
@@ -122,7 +122,7 @@ export default {
           const tipObj = TipDictionaryList.reduce((prev, item) => {
             return {
               ...prev,
-              [item.TipCode]: item.CommonContent
+              [item.TipCode]: item.CommonContent.replace(/\\r\\n/g, "<br>")
             }
           }, {})
           commit("setTipDicts", tipObj)
