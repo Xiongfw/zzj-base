@@ -1,4 +1,5 @@
 import * as api from "./api/index.js"
+import axios from "./api/request.js"
 import init from './init.js'
 import { error } from './lib/logger/index.js'
 import storeCommon from './store/vuex.js'
@@ -53,7 +54,8 @@ const install = function (Vue, config = globalConfig) {
     loading,
     api,
     audio,
-    utils
+    utils,
+    axios
   }
 }
 

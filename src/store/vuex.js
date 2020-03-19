@@ -1,6 +1,8 @@
 import globalConfig from '@/globalConfig.js'
 import localStore from './local.js'
 import _ from 'lodash'
+import { HospitalServiceApi } from "../api/index"
+import { isEmpty, toArray} from "../utils/index"
 
 const autoLeaveQueue = []
 
@@ -18,6 +20,10 @@ export default {
     nowTimeout: 0,
     // 当前医院
     hospital: localStore.hospital || null,
+    // 10.11、获取提醒字典 IF_FWC_Tip_Dictionary
+    tipDicts: localStore.tipDicts || {},
+    // 10.15、获取医院配置 IF_Get_Inhospital_ConfigList
+    fwcHospConfig: localStore.fwcHospConfig || {},
     // 心跳包数据
     heartbeatPacket: { dateTime: new Date() }
   },
@@ -30,6 +36,14 @@ export default {
       localStore.winConfigId = state.hospital.winConfig.winConfigInfo.win_config_id
       localStore.winCode = state.hospital.winConfig.win_code
       localStore.deptId = state.hospital.winConfig.dept_id
+    },
+    setTipDicts(state, v) {
+      state.tipDicts = v
+      localStore.tipDicts = v
+    },
+    setFwcHospConfig(state, v) {
+      state.fwcHospConfig = v
+      localStore.fwcHospConfig = v
     },
     setLocalExitTime(state, v) {
       state.localExitTime = v;
@@ -69,6 +83,54 @@ export default {
       } else {
         commit("_isAutoLeave", v)
         !_.isEmpty(autoLeaveQueue) && commit("_isAutoLeave", autoLeaveQueue.shift())
+      }
+    },
+    /**
+     * 获取字典
+     */
+    async fetchFwcHospConfig({ commit }) {
+      commit("setFwcHospConfig", {})
+      try {
+        const resp = await HospitalServiceApi.IF_Get_Inhospital_ConfigList(
+          {},
+          { alert: false, loading: false, log: false }
+        )
+        const HospitalConfigList = toArray(resp.HospitalConfigList)
+        if (!isEmpty(HospitalConfigList)) {
+          const configObj = HospitalConfigList.reduce((prev, item) => {
+            return {
+              ...prev,
+              [item.ConfigCode]: item.ExtInfo
+            }
+          }, {})
+          commit("setFwcHospConfig", configObj)
+        }
+      } catch(e) {
+        console.error(e)
+      }
+    },
+    /**
+     * 获取字典
+     */
+    async fetchTipDicts({ commit }) {
+      commit("setTipDicts", {})
+      try {
+        const resp = await HospitalServiceApi.IF_FWC_Tip_Dictionary(
+          {},
+          { alert: false, loading: false, log: false }
+        )
+        const TipDictionaryList = toArray(resp.TipDictionaryList)
+        if (!isEmpty(TipDictionaryList)) {
+          const tipObj = TipDictionaryList.reduce((prev, item) => {
+            return {
+              ...prev,
+              [item.TipCode]: item.CommonContent.replace(/\\r\\n/g, "<br>")
+            }
+          }, {})
+          commit("setTipDicts", tipObj)
+        }
+      } catch(e) {
+        console.error(e)
       }
     }
   },

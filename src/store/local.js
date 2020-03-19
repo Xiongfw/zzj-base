@@ -28,7 +28,11 @@ const store = {
   username: null,
   password: null,
   // token
-  authorization: null
+  authorization: null,
+  // 10.11、获取提醒字典 IF_FWC_Tip_Dictionary
+  tipDicts: null,
+  // 10.15、获取医院配置 IF_Get_Inhospital_ConfigList
+  fwcHospConfig: null
 }
 
 Object.keys(store).forEach(key => {

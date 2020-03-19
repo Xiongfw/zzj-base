@@ -5,6 +5,8 @@ export { default as AccountApi } from "./admin/AccountApi"
 export { default as UserApi } from "./admin/UserApi"
 export { default as OauthApi } from "./admin/OauthApi"
 export { default as PrintHistoryApi } from "./admin/PrintHistoryApi"
+export { default as CloudApi } from "./admin/CloudApi"
+export { default as LinkingcloudApi } from "./admin/LinkingcloudApi"
 
 export { default as BillServiceApi } from './fwc/BillServiceApi'
 export { default as BookingServiceApi } from './fwc/BookingServiceApi'
@@ -24,9 +26,11 @@ export { default as SeflQrCodeServiceApi } from './fwc/SeflQrCodeServiceApi'
 export { default as SurgeryServiceApi } from './fwc/SurgeryServiceApi'
 export { default as ZzjCustomServiceApi } from './fwc/ZzjCustomServiceApi'
 export { default as PricePublicityServiceApi } from './fwc/PricePublicityServiceApi'
+export { default as MedicalCardApi } from './fwc/MedicalCardApi'
 
 export { default as AuthorizeInfoServiceApi } from './pay/AuthorizeInfoServiceApi'
 export { default as PayTradeServiceApi } from './pay/PayTradeServiceApi'
+export { default as PaymentApi } from './pay/PaymentApi'
 
 export { default as DevPrintApi } from './hardware/DevPrintApi'
 export { default as DevReadCardApi } from './hardware/DevReadCardApi'
@@ -35,3 +39,4 @@ export { default as DevIDCardApi } from './hardware/DevIDCardApi'
 export { default as DevYibaoApi } from './hardware/DevYibaoApi'
 export { default as DevUMSApi } from './hardware/DevUMSApi'
 export { default as DevCashApi } from './hardware/DevCashApi'
+export { default as DevExeApi } from './hardware/DevExeApi'

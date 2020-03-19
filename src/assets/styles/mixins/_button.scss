@@ -13,6 +13,25 @@
     background: transparent;
     border-color: $border-color;
   }
+  &.is-stereo {
+    background: #18AC91;
+    color: #fff;
+    border: 0;
+    box-shadow: 0rem -0.03rem 0.03rem 0rem rgba(0, 0, 0, 0.2) inset;
+    // transition: transform 0.1s;
+    &:active {
+      transform: translateY(0.01rem);
+      box-shadow: 0rem -0.01rem 0.01rem 0rem rgba(0, 0, 0, 0.2) inset;;
+    }
+    &.bem-button--warning {
+      background: #fff;
+      color: #F08560;
+    }
+    &.bem-button--info {
+      background: #fff;
+      color: #27393B;
+    }
+  }
   &.is-disabled {
     background: #e0e0e0;
     color: #ffffff;
