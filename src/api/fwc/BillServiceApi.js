@@ -5,6 +5,12 @@ const baseUrl = Constants.service_window_url
 
 export default {
   /**
+   * 4.1、检查订单状态（院方）
+   */
+  IF_Check_Hospital_Trade_Status(params, options = {}) {
+    return axios({ method: 'get', url: baseUrl + 'IF_Check_Hospital_Trade_Status', params, options });
+  },
+  /**
    * 4.2 更新订单状态（院方） IF_Update_Trade_Status
    * 接口说明：
    * 先调服务窗4.2更新订单状态（院方） IF_Update_Trade_Status 再调贝尔曼统一支付平台更新订单状态（我方） PAY_Update_Trade_Status更新我方订单状态接口
