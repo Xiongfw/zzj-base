@@ -147,13 +147,13 @@ export default {
         isAutoExit: false,
         onClose: confirm => {
           if (confirm) {
-            logger.getAll(res => {
+            logger.getAllByTime(res => {
               if (res.length > 0) {
                 this.uploadLogs(res)
               } else {
                 this.$bem.showalert("日志为空")
               }
-            })
+            }, 2, 'h');
           }
         }
       })
