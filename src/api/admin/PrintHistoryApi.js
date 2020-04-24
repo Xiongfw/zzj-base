@@ -5,6 +5,18 @@ const baseUrl = Constants.org_config_url + 'printHistory/'
 
 export default {
     /**
+     * 获取打印信息
+     */
+    printInfo(data, options = {}) {
+        return axios({ method: 'post', url: baseUrl + 'printInfo', data, options });
+    },
+    /**
+     * 添加打印历史
+     */
+    updatePrintRemainNum(data, options = {}) {
+        return axios({ method: 'post', url: baseUrl + 'updatePrintRemainNum', data, options });
+    },
+    /**
      * 查询打印历史
      */
     list(params, options = {}) {
