@@ -7,8 +7,8 @@ export default {
   /**
    * 4.1、检查订单状态（院方）
    */
-  IF_Check_Hospital_Trade_Status(params, options = {}) {
-    return axios({ method: 'get', url: baseUrl + 'IF_Check_Hospital_Trade_Status', params, options });
+  IF_Check_Hospital_Trade_Status(data, options = {}) {
+    return axios({ method: 'post', url: baseUrl + 'IF_Check_Hospital_Trade_Status', data, options });
   },
   /**
    * 4.2 更新订单状态（院方） IF_Update_Trade_Status
