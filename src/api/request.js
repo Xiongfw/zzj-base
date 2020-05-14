@@ -12,9 +12,9 @@ const instance = axios.create({
 const getApiName = url => url.substring(url.lastIndexOf('/') + 1)
 
 /** 是否显示加载动画 */
-function isLoading(status) {
+function isLoading(status, loadingText) {
   if (status) {
-    loading.show()
+    loading.show(loadingText)
   } else {
     loading.close()
   }
@@ -55,7 +55,7 @@ function record(level, res) {
 instance.interceptors.request.use(
   config => {
     const { options = {} } = config
-    options.loading !== false && isLoading(true)
+    options.loading !== false && isLoading(true, options.loadingText)
     if (options.hardware && localStore.hospital) {
       const extInfo = JSON.parse(localStore.hospital.ext_info || "{}")
       config.headers['YYID'] = extInfo.yyid || ""

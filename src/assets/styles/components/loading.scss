@@ -1,9 +1,21 @@
 @import "../mixins/index.scss";
 
 .bem-loading-mask {
-  @include flex-box();
+  @include flex-box($direction: column);
   background: rgba(#000, 0.5);
-  img {
-    width: 4rem;
+  .bem-loading__logo {
+    width: 1.8rem;
+    margin-bottom: 0.15rem;
+  }
+  .bem-loading__text-wrap {
+    font-size: 0.5rem;
+    text-align: center;
+  }
+  .bem-loading__text {
+    color: #fff;
+  }
+  .bem-loading__dot {
+    height: 0.3em;
+    vertical-align: bottom;
   }
 }

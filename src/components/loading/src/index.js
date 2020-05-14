@@ -9,7 +9,7 @@ LoadingConstructor.prototype.close = function () {
   this.visible = false
 }
 
-LoadingConstructor.prototype.show = function () {
+LoadingConstructor.prototype.show = function (loadingText = "加载中") {
   vm.$emit("mount")
   if (globalConfig.store.state.common.isFullscreen) {
     vm.$el.style.position = "fixed"
@@ -17,6 +17,7 @@ LoadingConstructor.prototype.show = function () {
     vm.$el.style.position = "absolute"
   }
   this.visible = true
+  this.loadingText = loadingText
 }
 
 const Loading = (options = {}) => {
