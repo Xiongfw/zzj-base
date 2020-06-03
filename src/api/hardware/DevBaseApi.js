@@ -1,6 +1,6 @@
 import axios from '../request'
 
-const defaultOptions = { log: false, loading: false, alert: false, hardware: true }
+const defaultOptions = { log: true, loading: false, alert: false, hardware: true }
 
 export default {
   /* 打开打印设备串口 */

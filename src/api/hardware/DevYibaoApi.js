@@ -1,7 +1,7 @@
 import axios from '../request'
 import Constants from '@/constants/index'
 
-const defaultOptions = { log: false, loading: false, alert: false, hardware: true }
+const defaultOptions = { log: true, loading: false, alert: false, hardware: true }
 
 export default {
   baseUrl: Constants.yibao_url + 'yibao/',
